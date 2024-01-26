@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Chat with NeRF to localize novel object in 3D scenes.">
-  <meta name="keywords" content="GPT-4, LLM, LERF, NeRF">
+        content="Dataset of 3D scene language pairs">
+  <meta name="keywords" content="GPT-4, LLM, 3D">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chat with NeRF</title>
+  <title>3D-Instruct</title>
 
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
@@ -26,6 +26,19 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+            "PLYLoader": "https://unpkg.com/three@0.158.0/examples/jsm/loaders/PLYLoader.js",
+            "OrbitControls": "https://unpkg.com/three@0.158.0/examples/jsm/controls/OrbitControls.js"
+        }
+    }
+    </script>
+  <script type="module" src="static/js/visualize.js"></script>
+  <!-- <script type="module" src="./static/js/visualize-three.js"></script> -->
+
 </head>
 <body>
 
@@ -75,8 +88,8 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">📸 Chat with NeRF</h1>
-          <h3 class="title is-3 publication-title">Grounding 3D Objects in Neural Radiance Field through Dialog</h3>
+          <h1 class="title is-1 publication-title">🌐💬 3D-Instruct</h1>
+          <h3 class="title is-3 publication-title">3D-Instruct</h3>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://jedyang.com/">Jianing (Jed) Yang</a><sup>*,1</sup>,</span>
@@ -89,7 +102,7 @@
               <a href="https://chat-with-nerf.github.io/">Nikhil Madaan</a>,
             </span>
             <span class="author-block">
-              <a href="https://chat-with-nerf.github.io/">Madhavan Iyengar</a><sup>1</sup>,
+              <a href="https://madhavaniyengar.github.io/">Madhavan Iyengar</a><sup>1</sup>,
             </span>
             <span class="author-block">
               <a href="https://web.eecs.umich.edu/~fouhey/">David Fouhey</a><sup>1,2</sup>,
@@ -129,16 +142,16 @@
                 </a>
               </span> -->
               <!-- Demo Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="http://sled-whistler.eecs.umich.edu:7777/"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
                   </span>
                   <span>Live Demo</span>
-                  </a>
+                  </a> -->
               <!-- Video Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://youtu.be/eO-Vaf-1R1s"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -146,7 +159,7 @@
                   </span>
                   <span>Video Demo</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Demo Link. -->
               <!-- <span class="link-block">
                 <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
@@ -168,7 +181,6 @@
                   </a>
               </span>
             </div>
-
           </div>
         </div>
       </div>
@@ -176,7 +188,7 @@
   </div>
 </section>
 
-<section class="hero teaser">
+<!-- <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline height="100%">
@@ -188,9 +200,9 @@
       </h2>
     </div>
   </div>
-</section>
+</section> -->
 
-<div class="columns is-centered has-text-centered">
+<!-- <div class="columns is-centered has-text-centered">
   <div class="column is-four-fifths">
     <h2 class="title is-3">Video</h2>
     <div class="publication-video">
@@ -200,7 +212,7 @@
       Video Demo with examples.
     </h2>
   </div>
-</div>
+</div> -->
 
 
 <section class="section">
@@ -209,27 +221,19 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         
-        <img width="100%" src="static/images/overview.png" alt="Overview">
+        <!-- <img width="100%" src="static/images/overview.png" alt="Overview"> -->
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of localizing novel objects in 3D scenes using
-            Neural Radiance Field (NeRF) and Large Language Models (LLMs) through iterative,
-            natural language-based interactions. While grounding dialog to 2D images in multimodal
-            dialog systems has been extensively studied, little work has been done in 3D object grounding.
-            Furthermore, the existing 3D object grounding approaches predominantly rely on rigid,
-            phrase-based manners, a stark contrast to how humans naturally refer to objects using short,
-            natural phrases and iteratively clarifying their references.
+            This is the 3D-instruct dataset
           </p>
-          <p>
-            Addressing these gaps, our work introduces a novel framework, "Chat with NeRF," that
-            integrates interactive dialog systems with NeRF. This integration enables a more human-like
-            interaction with 3D objects in a learned 3D scene representation,
-            leading to a more intuitive and accurate object localization.
-          </p>
+
         </div>
       </div>
     </div>
+    
+    <div id="meshPlot" style="width:100%; height:100%;"></div> <!-- Div to hold the plot -->
+
     <!--/ Abstract. -->
 
     <!-- Paper video. -->
@@ -390,7 +394,7 @@
 </section>
 
 <section class="section" id="Examples">
-  <div class="container is-max-desktop content">
+  <!-- <div class="container is-max-desktop content">
     <h2 class="title">More Examples</h2>
     <video id="teaser" autoplay muted loop playsinline height="100%">
       <source src="./static/videos/cutting_board_2.mp4"
@@ -410,7 +414,7 @@
     </video>
     <center>"Computer"</center>
   </div>
-</section>
+</section> -->
 
 
 <footer class="footer">
