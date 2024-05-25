@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { PLYLoader } from 'PLYLoader';
 
-document.addEventListener('DOMContentLoaded', function() {
+function loadScene(scenePath, sceneDescription) {
     var loader = new PLYLoader();
     loader.load('../../scene0011_00_vh_clean_2_centered.ply', function(geometry) {
         var vertices = geometry.attributes.position.array;
@@ -80,4 +80,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
         Plotly.newPlot('meshPlot', data, layout);
     });
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Event listener for radio buttons
+    document.querySelectorAll('input[name="scene"]').forEach(radio => {
+        radio.addEventListener('change', (event) => {
+            const scene = event.target.value;
+            let scenePath, sceneDescription;
+
+            // Define paths and descriptions for each scene
+            switch(scene) {
+                case 'scene1':
+                    scenePath = '../../scene0011_00_vh_clean_2_centered.ply';
+                    sceneDescription = 'Description for Scene 1';
+                    break;
+                case 'scene2':
+                    scenePath = '../../scene0011_00_vh_clean_2_centered.ply';
+                    sceneDescription = 'Description for Scene 2';
+                    break;
+                // Add more cases as needed
+                default:
+                    return;
+            }
+
+            // Load the selected scene and update the description
+            loadScene(scenePath, sceneDescription);
+            document.getElementById('description').textContent = sceneDescription;
+        });
+    });
 });
+

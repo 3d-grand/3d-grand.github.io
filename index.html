@@ -6,7 +6,7 @@
         content="Dataset of 3D scene language pairs">
   <meta name="keywords" content="GPT-4, LLM, 3D">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>3D-Instruct</title>
+  <title>3D-GRAND</title>
 
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
@@ -29,15 +29,191 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script type="importmap">
     {
-        "imports": {
-            "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
-            "PLYLoader": "https://unpkg.com/three@0.158.0/examples/jsm/loaders/PLYLoader.js",
-            "OrbitControls": "https://unpkg.com/three@0.158.0/examples/jsm/controls/OrbitControls.js"
-        }
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js",
+        "three": "https://unpkg.com/three@0.127.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.127.0/examples/jsm/"
+      }
     }
     </script>
-  <script type="module" src="static/js/visualize.js"></script>
+  <!-- <script type="module" src="static/js/visualize.js"></script> -->
   <!-- <script type="module" src="./static/js/visualize-three.js"></script> -->
+  <script type="module" src="static/js/visualize-new.js"></script>
+  <script type="module">
+    import * as THREE from 'three'
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+    import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
+    // functions borrowed from PaLM-E
+
+    let canvas1 = document.querySelector('#webgl_pose')
+    let scene1 = new THREE.Scene()
+    let assetLoader1 = new GLTFLoader()
+    let model1
+
+    let camera1 = new THREE.PerspectiveCamera(45, 1.618 / 1.0, 0.1, 100)
+    camera1.position.set(5.2, 3.9, -3.9)
+    let grid1 = new THREE.GridHelper(30, 30)
+    scene1.add(camera1)
+    scene1.add(grid1)
+    for (let i = 0; i <= 1; i++) {
+      for (let k = 0; k <= 1; k++) {
+        let spotLight = new THREE.SpotLight(0xAAAAAA)
+        spotLight.position.set(50 * (i * 2 - 1), 100, 100 * (k * 2 - 1))
+        scene1.add(spotLight)
+      }
+    }
+
+    let controls1 = new OrbitControls(camera1, canvas1)
+    controls1.enableZoom = true
+    // controls2.enableDamping = true
+    controls1.object.position.set(camera1.position.x, camera1.position.y, camera1.position.z)
+    controls1.target = new THREE.Vector3(0, 0, 0)
+    controls1.update()
+
+    let renderer1 = new THREE.WebGLRenderer({
+        canvas: canvas1,
+        alpha: true,
+    })
+    renderer1.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer1.outputEncoding = THREE.sRGBEncoding
+    renderer1.setAnimationLoop(() => {
+      renderer1.render(scene1, camera1)
+    });
+
+    const radioButtons = document.querySelectorAll('input[name="capability"]')
+    for (const radioButton of radioButtons) {
+      radioButton.addEventListener('change', (e) => {
+        // console.log(radioButton.value)
+        var capability = radioButton.value;
+        // console.log("capability", capability)
+        console.log("here")
+        for (const rb of radioButtons) {rb.disabled = true}
+
+        var scannet = document.getElementById("scene1");
+        var front3d = document.getElementById("scene2");
+        var structured3d = document.getElementById("scene3");
+        // console.log("captioning")
+        if (capability == "captioning") {
+            scannet.value = "Here is an example of captioning for scannet [sep] Here is the answer"
+            front3d.value = "Here is an example of captioning for 3d front [sep] Here is the answer"
+            structured3d.value = "Here is an example of captioning for structured3d [sep] Here is the answer"
+        }
+
+        else if (capability == "3d-context-dependent-qa") {
+            scannet.value = "Here is an example of context dependent qa for scannet [sep] Here is the answer"
+            front3d.value = "Here is an example of context dependent qa for 3d front [sep] Here is the answer"
+            structured3d.value = "Here is an example of context dependent qa for structured3d [sep] Here is the answer"
+        }
+
+        else if (capability == "conversation") {
+            scannet.value = "Here is an example of conversation for scannet [sep] Here is the answer"
+            front3d.value = "Here is an example of conversation for 3d front [sep] Here is the answer"
+            structured3d.value = "Here is an example of conversation for structured3d [sep] Here is the answer"
+        }
+
+        else if (capability == "complex-reasoning") {
+            scannet.value = "Here is an example of complex reasoning question for scannet [sep] Here is the answer"
+            front3d.value = "Here is an example of complex reasoning question for 3d front [sep] Here is the answer"
+            structured3d.value = "Here is an example of complex reasoning question for structured3d [sep] Here is the answer"
+        }
+
+        for (const rb of radioButtons) {rb.disabled = false}
+      })
+    }
+    radioButtons[0].click()
+
+    // resize renderers
+    function resizeRenderers() {
+      let content_width = document.querySelector('#demo').offsetWidth
+      renderer1.setSize(content_width * 6.7 / 12, content_width / 1.618 * 6.7 / 12)
+    }
+    window.addEventListener('resize', () => {
+      resizeRenderers()
+    })
+    resizeRenderers()
+
+    window.model1 = model1;
+    window.scene1 = scene1;
+    window.assetLoader1 = assetLoader1;
+  </script>
+  <script>
+    var timeoutIds = [];
+  
+    function populateDemo(dataset) {
+        console.log("dataset", dataset);
+  
+        var img1 = document.getElementById("scene1");
+        img1.onclick = null;
+  
+        var img2 = document.getElementById("scene2");
+        img2.onclick = null;
+  
+        var img3 = document.getElementById("scene3");
+        img3.onclick = null;
+  
+        for (const idx of [1, 2, 3, 4, 5]) {
+            var instruction = document.getElementById("instruction" + idx);
+            var response = document.getElementById("response" + idx);
+            instruction.innerHTML = "";
+            response.innerHTML = "";
+        }
+  
+        model1 = scene1.getObjectByName("mesh");
+        scene1.remove(model1);
+        document.querySelector('#pose_loading').innerHTML = `<img src="assets/loading.svg" width="48" height="48">`;
+  
+        var capability = document.querySelector('input[name="capability"]:checked').value;
+        //let assetUrl = new URL('./assets/scenes/' + capability + '-' + dataset + '.glb', document.URL);
+        let assetUrl = new URL('./assets/scenes/scannet.glb', document.URL);
+        assetLoader1.load(assetUrl.href, (gltf) => {
+            model1 = gltf.scene;
+            model1.name = "mesh";
+            scene1.add(model1);
+            document.querySelector('#pose_loading').innerHTML = '';
+  
+            img1.onclick = function () { populateDemo('scannet'); };
+            img2.onclick = function () { populateDemo('3dfront'); };
+            img3.onclick = function () { populateDemo('structured3d'); };
+  
+            for (var timeoutId of timeoutIds) {
+                clearTimeout(timeoutId);
+            }
+            var delay = 0;
+            var qa = getSelectedScene().split('[sep]');
+            console.log(qa)
+            var idx = 0
+            for (var i = 0; i < qa.length; i++) {
+                var q = qa[i];
+                var a = qa[++i];
+                idx += 1;
+                displayDialogue(q, a, idx);
+            }
+        }, undefined, (error) => { console.error(error) });
+    }
+  
+    // Removed the typeWriter function as it's no longer needed
+  
+    function displayDialogue(q, a, idx) {
+      var instruction = document.getElementById("instruction" + idx);
+      var response = document.getElementById("response" + idx);
+      instruction.innerHTML = q; // Display the question
+      response.innerHTML = a; // Display the answer directly
+    }
+  
+    function getSelectedScene() {
+      var radios = document.getElementsByName('scene');
+  
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          return radios[i].value;
+        }
+      }
+      return null;
+    }
+  
+    
+
+  </script>
 
 </head>
 <body>
@@ -88,8 +264,8 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">🌐💬 3D-Instruct</h1>
-          <h3 class="title is-3 publication-title">3D-Instruct</h3>
+          <h1 class="title is-1 publication-title">🌐💬 3D-GRAND</h1>
+          <h3 class="title is-3 publication-title">3D-GRAND</h3>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://jedyang.com/">Jianing (Jed) Yang</a><sup>*,1</sup>,</span>
@@ -161,15 +337,15 @@
                 </a>
               </span> -->
               <!-- Demo Link. -->
-              <!-- <span class="link-block">
+              <span class="link-block">
                 <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fas fa-play-circle"></i>
+                      <i class="fa fa-database"></i>
                   </span>
-                  <span>Video</span>
+                  <span>Dataset</span>
                 </a>
-              </span> -->
+              </span>
               <!-- Code Link. -->
               <span class="link-block">
                 <a href="https://github.com/sled-group/chat-with-nerf"
@@ -225,14 +401,96 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            This is the 3D-instruct dataset
+            3D-grounded Conversation Generation helps alleviate hallucination in multimodal LLMs. 
+            Grounded generation also makes the generated response of 3D Large Language Models more actionable and interpretable in a physical 3D environment for embodied and robotics tasks. 
+            Recent efforts have been made to construct larger grounded conversation datasets for 2D images; however, the 3D research community currently lacks a large dataset of such kind. 
+            In this paper, we introduce the first million-scale 3D grounded conversation dataset that consists of 3.2M 3D-text pairs on 4.2k 3D scenes. 
           </p>
 
         </div>
       </div>
     </div>
-    
-    <div id="meshPlot" style="width:100%; height:100%;"></div> <!-- Div to hold the plot -->
+    <div class="columns is-centered">
+      <div class="column is-full-width" id="demo">
+        <h2 class="title is-3" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">Demo</h2>
+
+        <div style="text-align: center;"><b>Choose a task</b></div>
+        <br/>
+        <div class="columns is-centered" style="position: relative;">
+          <div class="control" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+            <label class="radio">
+              <input value="captioning" type="radio" name="capability" onclick="populateDemo('scannet')"> <b>3D-Grounded Scene Captioning</b>
+            </label>
+
+            <span style="width:6em"></span>
+
+            <label class="radio">
+              <input value="3d-context-dependent-qa" type="radio" name="capability"> <b>3D Context-Dependent QA</b>
+            </label>
+
+            <span style="width:6em"></span>
+
+            <label class="radio">
+              <input value="conversation" type="radio" name="capability"> <b>Conversation</b>
+            </label>
+
+            <span style="width:6em"></span>
+
+            <label class="radio">
+              <input value="complex-reasoning" type="radio" name="capability"> <b>Complex Reasoning</b>
+            </label>
+          </div>
+        </div>
+
+        <div style="text-align: center;"><b>Choose a dataset</b></div>
+        <br/>
+        <div class="columns is-centered" style="position: relative;">
+          <div class="control" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+            <label for="scene1">
+              <input type="radio" id="scene1" name="scene" value="Here is an example of captioning for scannet [sep] Here is the answer" onclick="populateDemo('scannet');">
+              Scannet
+            </label>
+
+            <span style="width:6em"></span>
+
+            <label for="scene2">
+              <input type="radio" id="scene2" name="scene" value="Here is an example of captioning  for 3d front [sep] Here is the answer" onclick="populateDemo('3dfront');">
+              3D-Front
+            </label>
+
+            <span style="width:6em"></span>
+
+            <label for="scene3">
+              <input type="radio" id="scene3" name="scene" value="Here is an example of captioning for structured3d [sep] Here is the answer" onclick="populateDemo('structured3d');">
+              Structured3D
+            </label>
+          </div>
+        </div>
+
+        <div class="row border rounded" style="padding-top:10px; padding-bottom:10px;">
+          <div class="col-md-7" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+            <div id="pose_loading" style="position: absolute; left: 26.55%; top: 51.1%;"></div>
+            <canvas id="webgl_pose"></canvas>
+          </div>
+
+          <div class="col-md-5" style="transform: translate(-4.5px,0)">
+            <div id="instruction1">Prompt text in gray.</div>
+            <div><p id="response1" style="white-space: pre-line">LEO's response in blue shade.</p></div>
+            <div id="instruction2"></div>
+            <div><p id="response2" style="white-space: pre-line"></p></div>
+            <div id="instruction3"></div>
+            <div><p id="response3" style="white-space: pre-line"></p></div>
+            <div id="instruction4"></div>
+            <div><p id="response4" style="white-space: pre-line"></p></div>
+            <div id="instruction5"></div>
+            <div><p id="response5" style="white-space: pre-line"></p></div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+        <br>
+        <br>
 
     <!--/ Abstract. -->
 

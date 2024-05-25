@@ -2,7 +2,6 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
-
 .footer .icon-link {
     font-size: 25px;
     color: #000;
@@ -156,9 +155,47 @@ body {
   border-radius: 5px;
 }
 
-.under-construction {
-  background-color: red;
-  color: white;
-  padding: 20px;
-  text-align: center;
+#instruction1 {
+  color: rgb(120, 120, 120);
+}
+
+#instruction2 {
+  color: rgb(120, 120, 120);
+}
+
+#instruction3 {
+  color: rgb(120, 120, 120);
+}
+
+#instruction4 {
+  color: rgb(120, 120, 120);
+}
+
+#instruction5 {
+  color: rgb(120, 120, 120);
+}
+
+#response1 {
+  color: black;
+  background-color: #e5f8f9;
+}
+
+#response2 {
+  color: black;
+  background-color: #e5f8f9;
+}
+
+#response3 {
+  color: black;
+  background-color: #e5f8f9;
+}
+
+#response4 {
+  color: black;
+  background-color: #e5f8f9;
+}
+
+#response5 {
+  color: black;
+  background-color: #e5f8f9;
 }
