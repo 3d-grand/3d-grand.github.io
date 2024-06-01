@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Dataset of 3D scene language pairs">
+  <meta name="keywords" content="GPT-4, LLM, 3D">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D-GRAND</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📸</text></svg>"/>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js",
+        "three": "https://unpkg.com/three@0.127.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.127.0/examples/jsm/"
+      }
+    }
+    </script>
+  <!-- <script type="module" src="static/js/visualize.js"></script> -->
+  <!-- <script type="module" src="./static/js/visualize-three.js"></script> -->
+  <!-- <script type="module" src="static/js/visualize-new.js"></script> -->
+  <script type="module">
+    import * as THREE from 'three'
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+    import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
+    // functions borrowed from PaLM-E
+
+    let canvas1 = document.querySelector('#webgl_pose')
+    let sceneobj = new THREE.Scene()
+    let assetLoader1 = new GLTFLoader()
+    let model1
+
+    let camera1 = new THREE.PerspectiveCamera(45, 1.618 / 1.0, 0.1, 100)
+    camera1.position.set(5.2, 3.9, -3.9)
+    let grid1 = new THREE.GridHelper(30, 30)
+    sceneobj.add(camera1)
+    sceneobj.add(grid1)
+    for (let i = 0; i <= 1; i++) {
+      for (let k = 0; k <= 1; k++) {
+        let spotLight = new THREE.SpotLight(0xAAAAAA)
+        spotLight.position.set(50 * (i * 2 - 1), 100, 100 * (k * 2 - 1))
+        sceneobj.add(spotLight)
+      }
+    }
+
+    let controls1 = new OrbitControls(camera1, canvas1)
+    controls1.enableZoom = true
+    // controls2.enableDamping = true
+    controls1.object.position.set(camera1.position.x, camera1.position.y, camera1.position.z)
+    controls1.target = new THREE.Vector3(0, 0, 0)
+    controls1.update()
+
+    let renderer1 = new THREE.WebGLRenderer({
+        canvas: canvas1,
+        alpha: true,
+    })
+    renderer1.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer1.outputEncoding = THREE.sRGBEncoding
+    renderer1.setAnimationLoop(() => {
+      renderer1.render(sceneobj, camera1)
+    });
+
+    const radioButtons = document.querySelectorAll('input[name="dropdowns"]')
+    for (const radioButton of radioButtons) {
+      radioButton.addEventListener('change', (e) => {
+        // console.log(radioButton.value)
+        var capability = radioButton.value;
+        // console.log("capability", capability)
+        console.log("here")
+        for (const rb of radioButtons) {rb.disabled = true}
+
+        var scannet = document.getElementById("scene1");
+        var front3d = document.getElementById("scene2");
+        var structured3d = document.getElementById("scene3");
+        // console.log("captioning")
+        if (capability == "captioning") {
+            scannet.value = "Here is an example of captioning for scannet [sep] Here is the answer"
+            front3d.value = "Here is an example of captioning for 3d front [sep] Here is the answer"
+            structured3d.value = "Here is an example of captioning for structured3d [sep] Here is the answer"
+        }
+
+        else if (capability == "3d-context-dependent-qa") {
+            scannet.value = "Here is an example of context dependent qa for scannet [sep] Here is the answer"
+            front3d.value = "Here is an example of context dependent qa for 3d front [sep] Here is the answer"
+            structured3d.value = "Here is an example of context dependent qa for structured3d [sep] Here is the answer"
+        }
+
+        else if (capability == "conversation") {
+            scannet.value = "Here is an example of conversation for scannet [sep] Here is the answer"
+            front3d.value = "Here is an example of conversation for 3d front [sep] Here is the answer"
+            structured3d.value = "Here is an example of conversation for structured3d [sep] Here is the answer"
+        }
+
+        else if (capability == "complex-reasoning") {
+            scannet.value = "Here is an example of complex reasoning question for scannet [sep] Here is the answer"
+            front3d.value = "Here is an example of complex reasoning question for 3d front [sep] Here is the answer"
+            structured3d.value = "Here is an example of complex reasoning question for structured3d [sep] Here is the answer"
+        }
+
+        for (const rb of radioButtons) {rb.disabled = false}
+      })
+    }
+    radioButtons[0].click()
+
+    // resize renderers
+    function resizeRenderers() {
+      let content_width = document.querySelector('#demo').offsetWidth
+      renderer1.setSize(content_width * 6.7 / 12, content_width / 1.618 * 6.7 / 12)
+    }
+    window.addEventListener('resize', () => {
+      resizeRenderers()
+    })
+    resizeRenderers()
+
+    window.model1 = model1;
+    window.sceneobj = sceneobj;
+    window.assetLoader1 = assetLoader1;
+  </script>
+  <script>
+    var timeoutIds = [];
+  
+    function handleDropdownChange() {
+      var dropdown = document.getElementById("capability-dropdown");
+      var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+
+      console.log("here")
+      console.log(dropdown)
+
+      if (selectedValue == 'captioning') {
+        populateDemo('scannet');
+      }
+      // Add any other necessary logic for other options here
+    }
+
+    function populateDemo(dataset) {
+        console.log("dataset", dataset);
+  
+        var img1 = document.getElementById("scene11");
+        img1.onclick = null;
+  
+        var img2 = document.getElementById("scene22");
+        img2.onclick = null;
+  
+        var img3 = document.getElementById("scene33");
+        img3.onclick = null;
+  
+        for (const idx of [1, 2, 3, 4, 5]) {
+            var instruction = document.getElementById("instruction" + idx);
+            var response = document.getElementById("response" + idx);
+            instruction.innerHTML = "";
+            response.innerHTML = "";
+        }
+        console.log("here")
+        console.log(window.sceneobj)
+        model1 = window.sceneobj.getObjectByName("mesh");
+        window.sceneobj.remove(model1);
+        document.querySelector('#pose_loading').innerHTML = `<img src="assets/loading.svg" width="48" height="48">`;
+  
+        var capability = document.querySelector('input[name="capability"]:checked').value;
+        //let assetUrl = new URL('./assets/scenes/' + capability + '-' + dataset + '.glb', document.URL);
+        let assetUrl = new URL('./assets/scenes/scannet.glb', document.URL);
+        assetLoader1.load(assetUrl.href, (gltf) => {
+            model1 = gltf.scene;
+            model1.name = "mesh";
+            window.sceneobj.add(model1);
+            document.querySelector('#pose_loading').innerHTML = '';
+  
+            img1.onclick = function () { populateDemo('scannet'); };
+            img2.onclick = function () { populateDemo('3dfront'); };
+            img3.onclick = function () { populateDemo('structured3d'); };
+  
+            for (var timeoutId of timeoutIds) {
+                clearTimeout(timeoutId);
+            }
+            var delay = 0;
+            var qa = getSelectedScene().split('[sep]');
+            console.log(qa)
+            var idx = 0
+            for (var i = 0; i < qa.length; i++) {
+                var q = qa[i];
+                var a = qa[++i];
+                idx += 1;
+                displayDialogue(q, a, idx);
+            }
+        }, undefined, (error) => { console.error(error) });
+    }
+  
+    // Removed the typeWriter function as it's no longer needed
+  
+    function displayDialogue(q, a, idx) {
+      var instruction = document.getElementById("instruction" + idx);
+      var response = document.getElementById("response" + idx);
+      instruction.innerHTML = q; // Display the question
+      response.innerHTML = a; // Display the answer directly
+    }
+  
+    function getSelectedScene() {
+      var radios = document.getElementsByName('scene');
+  
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          return radios[i].value;
+        }
+      }
+      return null;
+    }
+    
+
+    
+
+  </script>
+
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">🌐💬 3D-GRAND</h1>
+          <h3 class="title is-3 publication-title">3D-GRAND</h3>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://jedyang.com/">Jianing (Jed) Yang</a><sup>*,1</sup>,</span>
+            <span class="author-block">
+              <a href="https://xuweiyichen.github.io/">Xuweiyi Chen</a><sup>*,1</sup>,</span>
+            <span class="author-block">
+              <a href="https://jasonqsy.github.io/">Shengyi Qian</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://chat-with-nerf.github.io/">Nikhil Madaan</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://madhavaniyengar.github.io/">Madhavan Iyengar</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://web.eecs.umich.edu/~fouhey/">David Fouhey</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://web.eecs.umich.edu/~chaijy/">Joyce Y. Chai</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Michigan <sup>2</sup>New York University</span>
+          </div>
+          <div class="is-size-7 publication-authors">
+            <span class="author-block"><sup>*</sup>Denotes Equal Contribution</span>
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2309.12311"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Demo Link. -->
+              <!-- <span class="link-block">
+                <a href="http://sled-whistler.eecs.umich.edu:7777/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Live Demo</span>
+                  </a> -->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://youtu.be/eO-Vaf-1R1s"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video Demo</span>
+                </a>
+              </span> -->
+              <!-- Demo Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-database"></i>
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/sled-group/chat-with-nerf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/yellow_yoga_mat.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Chat with NeRF</span> enables users to interact with a NeRF model by typing in natural language.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+<!-- <div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+    <h2 class="title is-3">Video</h2>
+    <div class="publication-video">
+      <iframe src="https://www.youtube.com/embed/eO-Vaf-1R1s?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+    </div>
+    <h2 class="subtitle has-text-centered">
+      Video Demo with examples.
+    </h2>
+  </div>
+</div> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        
+        <!-- <img width="100%" src="static/images/overview.png" alt="Overview"> -->
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            3D-grounded Conversation Generation helps alleviate hallucination in multimodal LLMs. 
+            Grounded generation also makes the generated response of 3D Large Language Models more actionable and interpretable in a physical 3D environment for embodied and robotics tasks. 
+            Recent efforts have been made to construct larger grounded conversation datasets for 2D images; however, the 3D research community currently lacks a large dataset of such kind. 
+            In this paper, we introduce the first million-scale 3D grounded conversation dataset that consists of 3.2M 3D-text pairs on 4.2k 3D scenes. 
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-full-width" id="demo">
+        <h2 class="title is-3" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">Demo</h2>
+
+        <div style="text-align: center;"><b>Choose a task</b></div>
+        <br/>
+        <div class="columns is-centered" style="position: relative;">
+          <div class="control" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+            <!-- <label class="radio">
+              <input value="captioning" type="radio" name="capability" onclick="populateDemo('scannet')"> <b>3D-Grounded Scene Captioning</b>
+            </label>
+
+            <span style="width:6em"></span>
+
+            <label class="radio">
+              <input value="3d-context-dependent-qa" type="radio" name="capability"> <b>3D Context-Dependent QA</b>
+            </label>
+
+            <span style="width:6em"></span>
+
+            <label class="radio">
+              <input value="conversation" type="radio" name="capability"> <b>Conversation</b>
+            </label>
+
+            <span style="width:6em"></span>
+
+            <label class="radio">
+              <input value="complex-reasoning" type="radio" name="capability"> <b>Complex Reasoning</b>
+            </label> -->
+
+            <select name="capability" id="capability-dropdown" onchange="populateDemo('scannet')">
+              <option value="captioning">3D-Grounded Scene Captioning</option>
+              <option value="3d-context-dependent-qa">3D Context-Dependent QA</option>
+              <option value="conversation">Conversation</option>
+              <option value="complex-reasoning">Complex Reasoning</option>
+            </select>
+
+          </div>
+        </div>
+
+        <div style="text-align: center;"><b>Choose a dataset</b></div>
+        <br/>
+        <div class="columns is-centered" style="position: relative;">
+          <div class="control" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+            <label for="scene1">
+              <input type="radio" id="scene11" name="scene" value="Here is an example of captioning for scannet [sep] Here is the answer" onclick="populateDemo('scannet');">
+              Scannet
+            </label>
+
+            <span style="width:6em"></span>
+
+            <label for="scene2">
+              <input type="radio" id="scene22" name="scene" value="Here is an example of captioning  for 3d front [sep] Here is the answer" onclick="populateDemo('3dfront');">
+              3D-Front
+            </label>
+
+            <span style="width:6em"></span>
+
+            <label for="scene3">
+              <input type="radio" id="scene33" name="scene" value="Here is an example of captioning for structured3d [sep] Here is the answer" onclick="populateDemo('structured3d');">
+              Structured3D
+            </label>
+          </div>
+        </div>
+
+        <div class="row border rounded" style="padding-top:10px; padding-bottom:10px;">
+          <div class="col-md-7" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+            <div id="pose_loading" style="position: absolute; left: 26.55%; top: 51.1%;"></div>
+            <canvas id="webgl_pose"></canvas>
+          </div>
+
+          <div class="col-md-5" style="transform: translate(-4.5px,0)">
+            <div id="instruction1">Prompt text in gray.</div>
+            <div><p id="response1" style="white-space: pre-line">LEO's response in blue shade.</p></div>
+            <div id="instruction2"></div>
+            <div><p id="response2" style="white-space: pre-line"></p></div>
+            <div id="instruction3"></div>
+            <div><p id="response3" style="white-space: pre-line"></p></div>
+            <div id="instruction4"></div>
+            <div><p id="response4" style="white-space: pre-line"></p></div>
+            <div id="instruction5"></div>
+            <div><p id="response5" style="white-space: pre-line"></p></div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+        <br>
+        <br>
+
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="under-construction">
+      <p>This section is under construction</p>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<!--
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Visual Effects</h2>
+          <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="column">
+        <h2 class="title is-3">Matting</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p>
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/matting.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Animation</h2>
+
+        <h3 class="title is-4">Interpolating states</h3>
+        <div class="content has-text-justified">
+          <p>
+            We can also animate the scene by interpolating the deformation latent codes of two input
+            frames. Use the slider here to linearly interpolate between the left frame and the right
+            frame.
+          </p>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <div class="column is-3 has-text-centered">
+            <img src="./static/images/interpolate_start.jpg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+            <p>Start Frame</p>
+          </div>
+          <div class="column interpolation-video-column">
+            <div id="interpolation-image-wrapper">
+              Loading...
+            </div>
+            <input class="slider is-fullwidth is-large is-info"
+                   id="interpolation-slider"
+                   step="1" min="0" max="100" value="0" type="range">
+          </div>
+          <div class="column is-3 has-text-centered">
+            <img src="./static/images/interpolate_end.jpg"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+            <p class="is-bold">End Frame</p>
+          </div>
+        </div>
+        <br/>
+
+        <h3 class="title is-4">Re-rendering the input video</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="./static/videos/replay.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+-->
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <pre><code>@misc{yang2023llmgrounder,
+      title={LLM-Grounder: Open-Vocabulary 3D Visual Grounding with Large Language Model as an Agent}, 
+      author={Jianing Yang and Xuweiyi Chen and Shengyi Qian and Nikhil Madaan and Madhavan Iyengar and David F. Fouhey and Joyce Chai},
+      year={2023},
+      eprint={2309.12311},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}</code></pre>
+  </div>
+</section>
+
+<section class="section" id="Examples">
+  <!-- <div class="container is-max-desktop content">
+    <h2 class="title">More Examples</h2>
+    <video id="teaser" autoplay muted loop playsinline height="100%">
+      <source src="./static/videos/cutting_board_2.mp4"
+              type="video/mp4">
+    </video>
+    <center>"I want a cutting board"</center>
+    <br>
+    <video id="teaser" autoplay muted loop playsinline height="100%">
+      <source src="./static/videos/food.mp4"
+              type="video/mp4">
+    </video>
+    <center>"I'm hungry, can you find me something to eat?"</center>
+    <br>
+    <video id="teaser" autoplay muted loop playsinline height="100%">
+      <source src="./static/videos/computer.mp4"
+              type="video/mp4">
+    </video>
+    <center>"Computer"</center>
+  </div>
+</section> -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+  <!-- <div class="columns is-centered">
+    <div class="column">
+      <img src="assets/model.gif" width="100%">
+    </div>
+    <div class="column">
+      <div class="content has-text-justified">
+        <p>
+          <b>Grounded Pre-training for Scenes (GPS)</b> is a transformer-based model trained with multi-level contrastive losses for aligning 3D scenes and texts.
+          We echo the language descriptions collected to form scene-language pairs at both object-level, referral-object-level, and scene-level for contrastive objectives in GPS.
+          The resulting model shows scaling effect in pre-train/fine-tune and zero-shot settings.
+        </p>
+        <img src="assets/scaling.jpg" width="100%">
+      </div>
+    </div>
+  </div> -->
+  <!--/ Model -->
+  
+  <!-- Data explorer -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+    <h2 class="title is-3">Data Explorer</h2>
+      <div class="content has-text-justified">
+        <!-- <p>
+          To use the interactive data explorer, first <b>select</b> from the available scenes in the select bar and then choose a type of language description
+          available in the buttons. <b>Click</b> the "Scene Caption" button for scene captions. To visualize other types, <b>check</b> the corresponding box and <b>double click</b> an object in the scene for visualizing
+          the results. All available objects could be found according to the segmentation visualization. Best viewed on monitors.
+          <br>
+          <span class="tag">Control</span>: <span class="tag">Click + Drag = Rotate</span> <span class="tag">Ctrl + Drag = Translate</span> <span class="tag">Scroll Up/Down = Zoom In/Out</span> <span class="tag">Double Click = Select Object</span>
+        </p> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <div class="select is-info custom-select">
+        <select id="scene_list"></select>
+      </div>
+      <div class="columns is-centered is-gapless" id="options">
+        <div class="column is-one-fifths">
+          <button id="scene_caption" for="scene_caption" class="button is-fullwidth is-outlined is-normal scene_caption">Scene Caption</label>
+        </div>
+        <div class="column">
+          <input type="checkbox" id="obj_cap">
+          <label id="obj_cap" for="obj_cap" class="button is-fullwidth is-normal obj_cap">Object Caption</label>
+        </div>
+        <div class="column">
+          <input type="checkbox" id="anno">
+          <label id="anno" for="anno" class="button is-fullwidth is-normal anno">Refer (Annotated)</label>
+        </div>
+        <div class="column">
+          <input type="checkbox" id="template">
+          <label id="template" for="template" class="button is-fullwidth is-normal template">Refer (Template)</label>
+        </div>
+        <div class="column">
+          <input type="checkbox" id="rewrite">
+          <label id="rewrite" for="rewrite" class="button is-fullwidth is-normal rewrite">Refer (LLM refined)</label>
+        </div>
+      </div>
+      <div class="columns is-full-width is-centered is-gapless">
+        <div class="column is-three-quarters">
+          <div class="card">
+            <div id="mesh_viewer"></div>
+            <div class="card-content is-overlay is-pulled-right m-0 p-0">
+              <div id="segmentation"></div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div id="chat-container">
+            <div class="chat-body">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>          
+  </div>
+    </div>
+  </div>
+  <!-- Data explorer -->
+  
+</div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a> -->
+      <a class="icon-link" href="https://github.com/sled-group/chat-with-nerf" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed
+            under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

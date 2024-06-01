@@ -8,7 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>3D-GRAND</title>
 
-
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
 
@@ -27,6 +26,7 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
   <script type="importmap">
     {
       "imports": {
@@ -38,6 +38,35 @@
     </script>
   <!-- <script type="module" src="static/js/visualize.js"></script> -->
   <!-- <script type="module" src="./static/js/visualize-three.js"></script> -->
+  <style>
+    .chat-interface {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+  
+    .chat-bubble {
+      background-color: #f1f1f1;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+    }
+  
+    .spacer {
+      height: 10px;
+    }
+  
+    label {
+      cursor: pointer;
+    }
+  
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+  </style>
   <script type="module" src="static/js/visualize-new.js"></script>
   <script type="module">
     import * as THREE from 'three'
@@ -46,20 +75,20 @@
     // functions borrowed from PaLM-E
 
     let canvas1 = document.querySelector('#webgl_pose')
-    let scene1 = new THREE.Scene()
+    let scene_obj = new THREE.Scene()
     let assetLoader1 = new GLTFLoader()
     let model1
 
     let camera1 = new THREE.PerspectiveCamera(45, 1.618 / 1.0, 0.1, 100)
     camera1.position.set(5.2, 3.9, -3.9)
     let grid1 = new THREE.GridHelper(30, 30)
-    scene1.add(camera1)
-    scene1.add(grid1)
+    scene_obj.add(camera1)
+    scene_obj.add(grid1)
     for (let i = 0; i <= 1; i++) {
       for (let k = 0; k <= 1; k++) {
         let spotLight = new THREE.SpotLight(0xAAAAAA)
         spotLight.position.set(50 * (i * 2 - 1), 100, 100 * (k * 2 - 1))
-        scene1.add(spotLight)
+        scene_obj.add(spotLight)
       }
     }
 
@@ -77,52 +106,73 @@
     renderer1.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer1.outputEncoding = THREE.sRGBEncoding
     renderer1.setAnimationLoop(() => {
-      renderer1.render(scene1, camera1)
+      renderer1.render(scene_obj, camera1)
     });
 
-    const radioButtons = document.querySelectorAll('input[name="capability"]')
-    for (const radioButton of radioButtons) {
-      radioButton.addEventListener('change', (e) => {
-        // console.log(radioButton.value)
-        var capability = radioButton.value;
-        // console.log("capability", capability)
-        console.log("here")
-        for (const rb of radioButtons) {rb.disabled = true}
+    // Make scene_obj globally accessible
+    window.scene_obj = scene_obj;
 
-        var scannet = document.getElementById("scene1");
-        var front3d = document.getElementById("scene2");
-        var structured3d = document.getElementById("scene3");
-        // console.log("captioning")
-        if (capability == "captioning") {
-            scannet.value = "Here is an example of captioning for scannet [sep] Here is the answer"
-            front3d.value = "Here is an example of captioning for 3d front [sep] Here is the answer"
-            structured3d.value = "Here is an example of captioning for structured3d [sep] Here is the answer"
-        }
+    const capabilityDropdown = document.getElementById('capability-dropdown');
+    
+    capabilityDropdown.addEventListener('change', (e) => {
+        const capability = e.target.value;
 
-        else if (capability == "3d-context-dependent-qa") {
-            scannet.value = "Here is an example of context dependent qa for scannet [sep] Here is the answer"
-            front3d.value = "Here is an example of context dependent qa for 3d front [sep] Here is the answer"
-            structured3d.value = "Here is an example of context dependent qa for structured3d [sep] Here is the answer"
-        }
+        // const scannet = document.getElementById("scene1");
+        const front3d = document.getElementById("scene2");
+        const structured3d = document.getElementById("scene3");
 
-        else if (capability == "conversation") {
-            scannet.value = "Here is an example of conversation for scannet [sep] Here is the answer"
-            front3d.value = "Here is an example of conversation for 3d front [sep] Here is the answer"
-            structured3d.value = "Here is an example of conversation for structured3d [sep] Here is the answer"
-        }
+        if (capability === "captioning") {
+            // scannet.value = "Here is an example of captioning for scannet [sep] Here is the answer";
+            front3d.value = "<span style=\"color: black; font-weight: bold;\"> Caption: </span> The living Room is a blend of Modern and Vintage styles, with a touch of Minimalist design. The <span style=\"color: green; font-weight: bold;\">&lt;p&gt;wardrobe&lt;/p&gt;</span> &#91;wardrobe-0&#93; in solid wood with a sleek form stands as a vintage statement piece. A set of <span style=\"color: green; font-weight: bold;\">&lt;p&gt;sofa&lt;/p&gt;</span>&#91;three-seat/multi-seat sofa-1&#93; and <span style=\"color: green; font-weight: bold;\">&lt;p&gt;sofa&lt;/p&gt;</span>&#91;three-seat/multi-seat sofa-8&#93;, both upholstered in a neutral grey cloth, offer ample seating and a modern touch. In the center, two <span style=\"color: green; font-weight: bold;\">&lt;p&gt;coffee table&lt;/p&gt;</span>&#91;coffee table-2&#93; and <span style=\"color: green; font-weight: bold;\">&lt;p&gt;coffee table&lt;/p&gt;</span>&#91;coffee table-3&#93; with marble tops and black metal frames provide a minimalist aesthetic and surface space. Flanking the sofas, <span style=\"color: green; font-weight: bold;\">&lt;p&gt;armchair&lt;/p&gt;</span>&#91;armchair-4&#93; and <span style=\"color: green; font-weight: bold;\">&lt;p&gt;armchair&lt;/p&gt;</span>&#91;armchair-5&#93; present a modern two-tone look with their rough cloth material. The <span style=\"color: green; font-weight: bold;\">&lt;p&gt;side table&lt;/p&gt;</span>&#91;corner/side table-6&#93; beside the <span style=\"color: green; font-weight: bold;\">&lt;p&gt;armchair&lt;/p&gt;</span>&#91;armchair-5&#93; offers additional surface space with its modern design. Above the central seating area, the <span style=\"color: green; font-weight: bold;\">&lt;p&gt;pendant lamp&lt;/p&gt;</span>&#91;pendant lamp-7&#93; with its Chinoiserie style casts a warm light, enhancing the room's inviting atmosphere. This layout promotes socialization and relaxation, with lighting and furniture arranged to create a comfortable and stylish living space. [sep] ";
+            structured3d.value = "Here is an example of captioning for structured3d [sep] Here is the answer";
+        } else if (capability === "object-referral") {
+            // scannet.value = "Here is an example of context dependent qa for scannet [sep] Here is the answer";
+            front3d.value = "This is a <span style=\"color: green; font-weight: bold;\">&lt;p&gt;wardrobe&lt;/p&gt;</span>&#91;wardrobe-0&#93; with a warm wooden hue, showcasing a sleek and elongated rectangular form. The <span style=\"color: green; font-weight: bold;\">&lt;p&gt;wooden wardrobe&lt;/p&gt;</span>&#91;wardrobe-0&#93; has a smooth and polished wood texture, adding a touch of vintage charm to the living room. The <span style=\"color: green; font-weight: bold;\">&lt;p&gt;wardrobe&lt;/p&gt;</span>&#91;wardrobe-0&#93; is positioned behind the <span style=\"color: green; font-weight: bold;\">&lt;p&gt;grey fabric sofa&lt;/p&gt;</span>&#91;three-seat/multi-seat sofa-1&#93;, <span style=\"color: green; font-weight: bold;\">&lt;p&gt;coffee tables&lt;/p&gt;</span>&#91;coffee table-2, coffee table-3&#93;, and the <span style=\"color: green; font-weight: bold;\">&lt;p&gt;armchair&lt;/p&gt;</span>&#91;armchair-4&#93;, creating a focal point in the room. [sep] ";
+            structured3d.value = "Here is an example of context dependent qa for structured3d [sep] Here is the answer";
+        } else if (capability === "conversation") {
+            // scannet.value = "Here is an example of conversation for scannet [sep] Here is the answer";
+            front3d.value = "<span style=\"color: black; font-weight: bold;\"> Question: </span> I was wondering, do we have any <span style=\"color: green; font-weight: bold;\">&lt;p&gt;wardrobe&lt;/p&gt;</span> here? [sep] <span style=\"color: black; font-weight: bold;\"> Answer: </span> yes";
+            structured3d.value = "Here is an example of conversation for structured3d [sep] Here is the answer";
+        } 
+        // else if (capability === "complex-reasoning") {
+        //     // scannet.value = "Here is an example of complex reasoning question for scannet [sep] Here is the answer";
+        //     front3d.value = "Here is an example of complex reasoning question for 3d front [sep] Here is the answer";
+        //     structured3d.value = "Here is an example of complex reasoning question for structured3d [sep] Here is the answer";
+        // }
+    });
 
-        else if (capability == "complex-reasoning") {
-            scannet.value = "Here is an example of complex reasoning question for scannet [sep] Here is the answer"
-            front3d.value = "Here is an example of complex reasoning question for 3d front [sep] Here is the answer"
-            structured3d.value = "Here is an example of complex reasoning question for structured3d [sep] Here is the answer"
-        }
+    capabilityDropdown.dispatchEvent(new Event('change'));
 
-        for (const rb of radioButtons) {rb.disabled = false}
-      })
-    }
-    radioButtons[0].click()
+    // const sceneDropdown = document.getElementById('scene-dropdown');
+    // sceneDropdown.addEventListener('change', (e) => {
+    //     const scene = e.target.value;
 
-    // resize renderers
+    //     const scannet = document.getElementById("scene1");
+    //     const front3d = document.getElementById("scene2");
+    //     const structured3d = document.getElementById("scene3");
+
+    //     if (capability === "captioning") {
+    //         scannet.value = "Here is an example of captioning for scannet [sep] Here is the answer";
+    //         front3d.value = "Here is an example of captioning for 3d front [sep] Here is the answer";
+    //         structured3d.value = "Here is an example of captioning for structured3d [sep] Here is the answer";
+    //     } else if (capability === "3d-context-dependent-qa") {
+    //         scannet.value = "Here is an example of context dependent qa for scannet [sep] Here is the answer";
+    //         front3d.value = "Here is an example of context dependent qa for 3d front [sep] Here is the answer";
+    //         structured3d.value = "Here is an example of context dependent qa for structured3d [sep] Here is the answer";
+    //     } else if (capability === "conversation") {
+    //         scannet.value = "Here is an example of conversation for scannet [sep] Here is the answer";
+    //         front3d.value = "Here is an example of conversation for 3d front [sep] Here is the answer";
+    //         structured3d.value = "Here is an example of conversation for structured3d [sep] Here is the answer";
+    //     } else if (capability === "complex-reasoning") {
+    //         scannet.value = "Here is an example of complex reasoning question for scannet [sep] Here is the answer";
+    //         front3d.value = "Here is an example of complex reasoning question for 3d front [sep] Here is the answer";
+    //         structured3d.value = "Here is an example of complex reasoning question for structured3d [sep] Here is the answer";
+    //     }
+    // });
+
+    // capabilityDropdown.dispatchEvent(new Event('change'));
+
+
     function resizeRenderers() {
       let content_width = document.querySelector('#demo').offsetWidth
       renderer1.setSize(content_width * 6.7 / 12, content_width / 1.618 * 6.7 / 12)
@@ -133,13 +183,47 @@
     resizeRenderers()
 
     window.model1 = model1;
-    window.scene1 = scene1;
+    window.scene_obj = scene_obj;
     window.assetLoader1 = assetLoader1;
   </script>
   <script>
     var timeoutIds = [];
-  
-    function populateDemo(dataset) {
+    
+    function handleDropdownChange(mode) {
+
+      if (mode=='task') {
+        var dropdown = document.getElementById("capability-dropdown");
+        var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+
+        console.log("here")
+        console.log(selectedValue)
+
+        if (selectedValue == 'captioning') {
+          populateDemo('scannet','scannet');
+        }
+        if (selectedValue == 'object-referral') {
+          populateDemo('scannet','scannet');
+        }
+        if (selectedValue == 'conversation') {
+          populateDemo('scannet','scannet');
+        }
+      // Add any other necessary logic for other options here
+      }
+      else {
+        var dropdown = document.getElementById("dataset-dropdown");
+        var displayedValue = dropdown.options[dropdown.selectedIndex].text;
+        console.log("herhe", typeof displayedValue, displayedValue.includes('3d-front'));
+        var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+        
+
+        console.log("here")
+        console.log(selectedValue)
+        
+        populateDemo(selectedValue, displayedValue);
+      }
+    }
+
+    function populateDemo(dataset, displayedValue) {
         console.log("dataset", dataset);
   
         var img1 = document.getElementById("scene1");
@@ -157,18 +241,31 @@
             instruction.innerHTML = "";
             response.innerHTML = "";
         }
-  
-        model1 = scene1.getObjectByName("mesh");
-        scene1.remove(model1);
+        console.log(window.scene_obj)
+        model1 = window.scene_obj.getObjectByName("mesh");
+        window.scene_obj.remove(model1);
         document.querySelector('#pose_loading').innerHTML = `<img src="assets/loading.svg" width="48" height="48">`;
   
-        var capability = document.querySelector('input[name="capability"]:checked').value;
+        var capability = document.querySelector('#capability-dropdown').value;
+        // var datasetDropdown = document.getElementById('#dataset-dropdown').value;
+
+        console.log("datasetDropdown");
+        // console.log(datasetDropdown);
         //let assetUrl = new URL('./assets/scenes/' + capability + '-' + dataset + '.glb', document.URL);
+        console.log(capability);
+        
         let assetUrl = new URL('./assets/scenes/scannet.glb', document.URL);
+        
+        if (displayedValue.includes('scannet')) {
+          assetUrl = new URL('./assets/scenes/scannet.glb', document.URL);
+        }
+        else {
+          assetUrl = new URL('./assets/scenes/scannet.glb', document.URL);
+        }
         assetLoader1.load(assetUrl.href, (gltf) => {
             model1 = gltf.scene;
             model1.name = "mesh";
-            scene1.add(model1);
+            window.scene_obj.add(model1);
             document.querySelector('#pose_loading').innerHTML = '';
   
             img1.onclick = function () { populateDemo('scannet'); };
@@ -179,6 +276,8 @@
                 clearTimeout(timeoutId);
             }
             var delay = 0;
+            console.log("selected scene")
+            console.log(getSelectedScene())
             var qa = getSelectedScene().split('[sep]');
             console.log(qa)
             var idx = 0
@@ -201,18 +300,17 @@
     }
   
     function getSelectedScene() {
-      var radios = document.getElementsByName('scene');
-  
-      for (var i = 0; i < radios.length; i++) {
-        if (radios[i].checked) {
-          return radios[i].value;
-        }
-      }
-      return null;
+      var dropdown = document.getElementById("dataset-dropdown");
+      var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+      return selectedValue;
+    }
+
+    function updateModelSrc() {
+      var modelViewer = document.getElementById('sceneModelViewer');
+      var modelSelector = document.getElementById('modelSelector');
+      modelViewer.src = modelSelector.value;
     }
   
-    
-
   </script>
 
 </head>
@@ -418,35 +516,42 @@
         <br/>
         <div class="columns is-centered" style="position: relative;">
           <div class="control" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
-            <label class="radio">
+            <label class="radio" style="margin-right: 6em; display: flex; align-items: center;">
               <input value="captioning" type="radio" name="capability" onclick="populateDemo('scannet')"> <b>3D-Grounded Scene Captioning</b>
             </label>
 
-            <span style="width:6em"></span>
+            <span style="width:1em"></span>
 
-            <label class="radio">
+            <label class="radio" style="margin-right: 6em; display: flex; align-items: center;">
               <input value="3d-context-dependent-qa" type="radio" name="capability"> <b>3D Context-Dependent QA</b>
             </label>
 
-            <span style="width:6em"></span>
+            <span style="width:1em"></span>
 
-            <label class="radio">
+            <label class="radio" style="margin-right: 6em; display: flex; align-items: center;">
               <input value="conversation" type="radio" name="capability"> <b>Conversation</b>
             </label>
 
-            <span style="width:6em"></span>
+            <span style="width:1em"></span>
 
-            <label class="radio">
+            <label class="radio" style="margin-right: 6em; display: flex; align-items: center;">
               <input value="complex-reasoning" type="radio" name="capability"> <b>Complex Reasoning</b>
             </label>
+            <!-- <select id="capability-dropdown" onchange="handleDropdownChange('task')">
+              <option name="capability" value="select">Select Task</option>
+              <option name="capability" value="captioning">3D-Grounded Scene Captioning</option>
+              <option name="capability" value="object-referral">3D-Grounded Object Referral</option>
+              <option name="capability" value="conversation">Conversation</option> -->
+              <!-- <option name="capability" value="complex-reasoning">Complex Reasoning</option> -->
+            <!-- </select> -->
           </div>
         </div>
 
-        <div style="text-align: center;"><b>Choose a dataset</b></div>
+        <div style="text-align: center;"><b>Choose a scene-dataset</b></div>
         <br/>
         <div class="columns is-centered" style="position: relative;">
           <div class="control" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
-            <label for="scene1">
+            <!-- <label for="scene1">
               <input type="radio" id="scene1" name="scene" value="Here is an example of captioning for scannet [sep] Here is the answer" onclick="populateDemo('scannet');">
               Scannet
             </label>
@@ -463,19 +568,36 @@
             <label for="scene3">
               <input type="radio" id="scene3" name="scene" value="Here is an example of captioning for structured3d [sep] Here is the answer" onclick="populateDemo('structured3d');">
               Structured3D
-            </label>
+            </label> -->
+
+            <!-- <select id="dataset-dropdown" onchange="handleDropdownChange('dataset-dropdown')">
+              <option id="scene1" name="scene" value="Here is an example of captioning for scannet [sep] Here is the answer">Select Scene</option>
+              <option id="scene2" name="scene" value="Here is an example of captioning  for 3d front [sep] Here is the answer">LivingRoom-3973-3d-front</option>
+              <option id="scene3" name="scene" value="Here is an example of captioning for structured3d [sep] Here is the answer">structured3d</option>
+            </select> -->
+
+            <select id="modelSelector" onchange="updateModelSrc()">
+              <option value="assets/scenes/scannet.glb">ScanNet</option>
+              <option value="assets/scenes/random.glb">Model 2</option>
+              <option value="assets/scenes/LivingRoom-3973-3d-front.glb">Model 3</option>
+              <!-- Add more models as needed -->
+            </select>
           </div>
+
+
         </div>
 
         <div class="row border rounded" style="padding-top:10px; padding-bottom:10px;">
-          <div class="col-md-7" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+          <div class="col-md-10" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
             <div id="pose_loading" style="position: absolute; left: 26.55%; top: 51.1%;"></div>
-            <canvas id="webgl_pose"></canvas>
+            <!-- <canvas id="webgl_pose"></canvas> -->
+
+            <model-viewer id="sceneModelViewer" src="assets/scenes/scene0011_00_vh_clean_2_centered.glb" shadow-intensity="1" scale="1 1 1" camera-controls touch-action="pan-y" exposure="3.5"  style="width: 100%; height: 500px; filter: saturate(1.5) contrast(1.2);"></model-viewer>
           </div>
 
           <div class="col-md-5" style="transform: translate(-4.5px,0)">
-            <div id="instruction1">Prompt text in gray.</div>
-            <div><p id="response1" style="white-space: pre-line">LEO's response in blue shade.</p></div>
+            <div id="instruction1"></div>
+            <div><p id="response1" style="white-space: pre-line"></p></div>
             <div id="instruction2"></div>
             <div><p id="response2" style="white-space: pre-line"></p></div>
             <div id="instruction3"></div>
@@ -485,6 +607,11 @@
             <div id="instruction5"></div>
             <div><p id="response5" style="white-space: pre-line"></p></div>
           </div>
+
+          <!-- <div id="chat-container">
+            <div class="chat-body">
+            </div>
+          </div> -->
         </div>
       </div>
       </div>
@@ -674,6 +801,7 @@
   </div>
 </section> -->
 
+<!-- <model-viewer alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum" src="assets/scenes/scannet.glb" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer> -->
 
 <footer class="footer">
   <div class="container">

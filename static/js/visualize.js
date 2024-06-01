@@ -2,8 +2,9 @@ import * as THREE from 'three';
 import { PLYLoader } from 'PLYLoader';
 
 function loadScene(scenePath, sceneDescription) {
+    console.log(scenePath);
     var loader = new PLYLoader();
-    loader.load('../../scene0011_00_vh_clean_2_centered.ply', function(geometry) {
+    loader.load(scenePath, function(geometry) {
         var vertices = geometry.attributes.position.array;
         var faces = geometry.index.array;
         var colors = geometry.attributes.color.array;
@@ -85,20 +86,20 @@ function loadScene(scenePath, sceneDescription) {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Event listener for radio buttons
-    document.querySelectorAll('input[name="scene"]').forEach(radio => {
-        radio.addEventListener('change', (event) => {
+    document.querySelectorAll('input[name="dataset-dropdown"]').forEach(dropDown => {
+        dropDown.addEventListener('change', (event) => {
             const scene = event.target.value;
             let scenePath, sceneDescription;
 
             // Define paths and descriptions for each scene
             switch(scene) {
-                case 'scene1':
-                    scenePath = '../../scene0011_00_vh_clean_2_centered.ply';
-                    sceneDescription = 'Description for Scene 1';
-                    break;
                 case 'scene2':
-                    scenePath = '../../scene0011_00_vh_clean_2_centered.ply';
+                    scenePath = '../../LivingRoom-3973-3d-front.ply';
                     sceneDescription = 'Description for Scene 2';
+                    break;
+                case 'scene3':
+                    scenePath = '../../scene0011_00_vh_clean_2_centered.ply';
+                    sceneDescription = 'Description for LivingRoom-3973.';
                     break;
                 // Add more cases as needed
                 default:
