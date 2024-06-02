@@ -206,10 +206,10 @@
   <section class="hero is-small">
     <div class="hero-body">
       <div class="container">
-        <div class="columns is-centered">
-          <!-- Your image here -->
-          <img src="assets/images/dataset_dist.png" width="90%" alt="Generalist outputs" />
-        </div>
+        <div class="columns-is-centered">
+          <!-- Embedding the Plotly HTML file using iframe -->
+          <iframe src="sankey.html" style="width:100%; height:500px; border:none;"></iframe>
+      </div>
       </div>
     </div>
   </section>
@@ -254,7 +254,7 @@
           <h2 class="title is-3">Results Visualization</h2>
           <div class="select is-rounded">
             <select id="pointCloudSelector">
-              <option value="assets/scene0011_00">Scene 1</option>
+              <option value="assets/scenes/LivingRoom-3973-3d-front">Scene 1</option>
               <option value="assets/scene0050_00">Scene 2</option>
               <option value="assets/scene0426_00">Scene 3</option>
               <option value="assets/scene0086_00">Scene 4</option>
@@ -572,7 +572,7 @@
 
     try {
       const geometry = await new Promise((resolve, reject) => {
-        loader.load(rootDirectory + '/instance_raw.ply', resolve, undefined, reject);
+        loader.load(rootDirectory + '/output.ply', resolve, undefined, reject);
       });
 
       geometry.computeVertexNormals();
@@ -618,7 +618,7 @@
       }
     }
   }
-  let lastLoadedScene = "assets/scene0011_00";
+  let lastLoadedScene = "assets/LivingRoom-3973-3d-front";
   document.addEventListener('DOMContentLoaded', function () {
 
     const taskRadios = document.querySelectorAll('input[name="task"]');
@@ -707,7 +707,7 @@
   controls1.target = new THREE.Vector3(0, 0, 0)
   controls1.update()
 
-  loadPointCloud('assets/scene0011_00', ["instance_raw.ply"]); // Load the first point cloud by default
+  loadPointCloud('assets/scenes/LivingRoom-3973-3d-front', ["output.ply"]); // Load the first point cloud by default
 
   console.log("Script loaded and executing.");
   window.addEventListener('resize', () => {
