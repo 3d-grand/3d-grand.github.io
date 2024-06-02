@@ -68,31 +68,34 @@
             <h1 class="title is-1 publication-title">Grounded 3D-LLM with Referent Tokens
             </h1>
             <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                Yilun Chen<sup>1*</sup>,</span>
-              <span class="author-block">
-                Shuai Yang<sup>1,2*</sup>,</span>
-              <span class="author-block">
-                Haifeng Huang<sup>1,2*</sup>,</span>
-
-              <span class="author-block">Tai Wang<sup>1</sup>,</span>
-
-              <span class="author-block">Ruiyuan Lyu<sup>1</sup>,</span>
-              <br>
-              <span class="author-block">Runsen Xu<sup>3</sup>,</span>
-
-              <span class="author-block">Dahua Lin<sup>1,3</sup>,</span>
-
-              <span class="author-block">Jiangmiao Pang<sup>1&#8224;</sup></span>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://jedyang.com/">Jianing (Jed) Yang</a><sup>*,1</sup>,</span>
+                <span class="author-block">
+                  <a href="https://xuweiyichen.github.io/">Xuweiyi Chen</a><sup>*,1</sup>,</span>
+                <span class="author-block">
+                  <a href="https://madaan-nikhil.github.io/">Nikhil Madaan</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://madhavaniyengar.github.io/">Madhavan Iyengar</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://jasonqsy.github.io/">Shengyi Qian</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://web.eecs.umich.edu/~fouhey/">David Fouhey</a><sup>1,2</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://web.eecs.umich.edu/~chaijy/">Joyce Y. Chai</a><sup>1</sup>,
+                </span>
+              </div>
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>Shanghai AI Laboratory, <sup>2</sup>Zhejiang
-                University, <sup>3</sup>The Chinese University of Hong Kong</span>
-              <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution,<sup>&#8224;</sup>Indicates
-                  Corresponding Author</small></span>
+              <span class="author-block"><sup>1</sup>University of Michigan <sup>2</sup>New York University</span>
             </div>
+            <div class="is-size-7 publication-authors">
+              <span class="author-block"><sup>*</sup>Denotes Equal Contribution</span>
 
             <div class="column has-text-centered">
               <div class="publication-links">
@@ -173,19 +176,10 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Prior studies on 3D scene understanding have primarily developed specialized models for specific tasks or
-              required task-specific fine-tuning. In this study, we propose <i>Grounded 3D-LLM</i>, which explores the
-              potential of 3D large multi-modal models (3D LMMs) to consolidate various 3D vision tasks within a unified
-              generative framework. The model uses scene <i>referent</i> tokens as special noun phrases to reference
-              3D scenes, enabling the handling of sequences that interleave 3D and textual data. It offers a natural
-              approach for translating 3D vision tasks into language formats using task-specific instruction templates.
-              To facilitate the use of <i>referent</i> tokens in subsequent language modeling, we have curated
-              large-scale grounded language datasets that offer finer scene-text correspondence at the phrase level by
-              bootstrapping existing object labels. Subsequently, we introduced Contrastive LAnguage-Scene Pre-training
-              (CLASP) to effectively leverage this data, thereby integrating 3D vision with language models. Our
-              comprehensive evaluation covers open-ended tasks like dense captioning and 3D QA, alongside close-ended
-              tasks such as object detection and language grounding. Experiments across multiple 3D benchmarks reveal
-              the leading performance and the broad applicability of <i>Grounded 3D-LLM</i>.
+              3D-grounded Conversation Generation helps alleviate hallucination in multimodal LLMs. 
+            Grounded generation also makes the generated response of 3D Large Language Models more actionable and interpretable in a physical 3D environment for embodied and robotics tasks. 
+            Recent efforts have been made to construct larger grounded conversation datasets for 2D images; however, the 3D research community currently lacks a large dataset of such kind. 
+            In this paper, we introduce the first million-scale 3D grounded conversation dataset that consists of 3.2M 3D-text pairs on 4.2k 3D scenes.</i>.
             </p>
           </div>
         </div>
@@ -405,31 +399,26 @@
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
         <div class="container">
-          <h2 class="title is-3">Example Visualization of Grounded Scene Caption Dataset</h2>
-          <div id="results-carousel" class="carousel results-carousel">
-            <div class="item item-video1">
-              <video poster="" id="video1" autoplay controls muted loop height="100%">
-                <!-- Your video file here -->
-                <source src="static/videos/scene0027_00.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="item item-video2">
-              <video poster="" id="video2" autoplay controls muted loop height="100%">
-                <!-- Your video file here -->
-                <source src="static/videos/scene0092_00.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="item item-video3">
-              <video poster="" id="video3" autoplay controls muted loop height="100%">\
-                <!-- Your video file here -->
-                <source src="static/videos/scene0240_00.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="item item-video4">
-              <video poster="" id="video4" autoplay controls muted loop height="100%">\
-                <!-- Your video file here -->
-                <source src="static/videos/scene0265_00.mp4" type="video/mp4">
-              </video>
+          <h2 class="title is-3">3D-POPE Leaderboard</h2>
+          <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+            <table class="table svelte-1txh5yn" style="width: auto; margin-top: 2rem;"> <thead class="thead svelte-1txh5yn"><tr slot="thead" class="svelte-1bvc1p0"><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-0);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Model Idx</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-1);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">🤖 Model</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-2);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Accuracy (Random Split) </span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-3);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Precision (Random Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-4);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Recall (Random Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-5);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Accuracy (Popular Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-6);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Precision (Popular Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Recall (Popular Split)</span><div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-5);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Accuracy (Adversarial Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-6);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Precision (Adversarial Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Recall (Adversarial Split)</span> 
+            <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th></tr><iframe style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;" aria-hidden="true" tabindex="-1" src="about:blank"></iframe></thead> <tbody class="tbody svelte-1txh5yn">
+          
+            <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">1</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://openai.com/index/hello-gpt-4o/" target="_blank" rel="noopener noreferrer">3D-LLM</a></p>
+          </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">100.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">100.00</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">100.00</span></div> </td></tr>
+          
+          <tr slot="tbody" class="svelte-1bvc1p0" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">2</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://deepmind.google/technologies/gemini/pro" target="_blank" rel="noopener noreferrer">3D-Vista</a></p>
+          </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.12</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.08</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">77.13</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.27</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.23</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">77.13</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.44</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.48</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">77.14</span></div> </td></tr>
+          
+          <tr slot="tbody" class="svelte-1bvc1p0" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">3</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/" target="_blank" rel="noopener noreferrer">LEO</a></p>
+          </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">54.03</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">52.70</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">78.52</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">48.86</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">49.28</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">77.44</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">49.77</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">49.85</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">77.67</span></div> </td></tr>
+          
+          <tr slot="tbody" class="svelte-1bvc1p0" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">4</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/" target="_blank" rel="noopener noreferrer">Ours zero-shot (No Grounding)</a></p>
+          </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">86.45</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">87.26</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">85.36</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">80.85</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">78.30</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">85.35</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">81.47</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">78.98</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">85.78</span></div> </td></tr>
+          
+          <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">5</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4" target="_blank" rel="noopener noreferrer">Ours zero-shot (Grounding)</a></p>
+          </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">85.68</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">88.22</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">82.34</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">81.69</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">81.32</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">82.28</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">82.10</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">81.72</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">82.72</span></div> </td></tr></tbody> <tfoot class="tfoot svelte-1txh5yn" style="position: relative;"><iframe style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;" aria-hidden="true" tabindex="-1" src="about:blank"></iframe></tfoot></table>
+          
             </div>
           </div>
         </div>
