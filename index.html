@@ -379,6 +379,8 @@
   </section> --> -->
 
   <!-- Video carousel -->
+
+  
   <section class="section hero is-light">
     <div class="hero-body">
       <div class="container">
@@ -714,5 +716,38 @@
     camera.updateProjectionMatrix();
   });
 </script>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+      const table = document.querySelector('.table'); // Assuming your table has a class called 'table'
+      const headers = table.querySelectorAll('th');
+      const tableBody = table.querySelector('tbody');
+      const rows = Array.from(tableBody.querySelectorAll('tr'));
+  
+      const getCellValue = (row, index) => row.children[index].innerText || row.children[index].textContent;
+  
+      const comparer = (index, asc) => (a, b) => {
+          const valA = getCellValue(a, index);
+          const valB = getCellValue(b, index);
+  
+          return ((v1, v2) => {
+              return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2);
+          })(asc ? valA : valB, asc ? valB : valA);
+      };
+  
+      headers.forEach((header, index) => {
+          header.addEventListener('click', () => {
+              const asc = !header.classList.contains('asc');
+              headers.forEach(th => th.classList.remove('asc', 'desc'));
+              header.classList.toggle('asc', asc);
+              header.classList.toggle('desc', !asc);
+  
+              rows.sort(comparer(index, asc)).forEach(row => tableBody.appendChild(row));
+          });
+      });
+  });
+    
+  </script>
 
 </html>
