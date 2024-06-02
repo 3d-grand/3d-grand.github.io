@@ -65,7 +65,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Grounded 3D-LLM with Referent Tokens
+            <h1 class="title is-1 publication-title">3D-GRAND
             </h1>
             <div class="is-size-5 publication-authors">
               <div class="is-size-5 publication-authors">
@@ -200,35 +200,15 @@
     </div>
   </section>
 
+
   <!-- End image carousel -->
 
-  <section class="section hero is-light" id="Contribution">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Contributions</h2>
-          <div class="content has-text-justified">
-            <p>
-              <!-- To summarize, our contributions are as follows: -->
-            <ul>
-              <li> We developed Grounded 3D-LLM, which first establishes a correspondence between 3D scenes and language
-                phrases through <i>referent</i> tokens. This method enhances scene referencing and effectively
-                supports 3D vision tasks in language modeling, including single- and multi-object grounding, along with
-                introducing 3D detection for the first time.
-              </li>
-              <li> We developed a carefully crafted automated 3D scene caption dataset curation pipeline that provides
-                <i>finer</i> correspondence at the <i>phrase</i> level. Experiments using CLASP in both supervised
-                and zero-shot text settings demonstrate the effectiveness of pre-training on this data for phrase-level
-                scene-text alignment.
-              </li>
-              <li> The <i>Grounded 3D-LLM</i> model tackles 3D grounding and language tasks generatively without the
-                need for specialized models. It achieves top-tier performance in most downstream tasks among generative
-                models, particularly in grounding problems, without task-specific fine-tuning.
-              </li>
-            </ul>
-            </p>
-            </p>
-          </div>
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <!-- Your image here -->
+          <img src="assets/images/dataset_dist.png" width="90%" alt="Generalist outputs" />
         </div>
       </div>
     </div>
@@ -291,30 +271,30 @@
             <div class="control"
               style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
               <label class="radio">
-                <input value="detection" type="radio" name="task"> <b>Object Detection</b>
+                <input value="detection" type="radio" name="task"> <b>3D-Grounded Scene Captioning</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="grounding" type="radio" name="task"> <b>Language Grounding</b>
+                <input value="grounding" type="radio" name="task"> <b>3D Context-Dependent QA</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="captioning" type="radio" name="task"> <b>Dense Captioning</b>
+                <input value="captioning" type="radio" name="task"> <b>Conversation</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="reasoning" type="radio" name="task"> <b>Question Answering</b>
+                <input value="reasoning" type="radio" name="task"> <b>Complex Reasoning</b>
               </label>
 
               <span style="width:5em"></span>
 
-              <label class="radio">
+              <!-- <label class="radio">
                 <input value="dialogue" type="radio" name="task"> <b>Embodied Dialogue</b>
               </label>
 
@@ -322,7 +302,7 @@
 
               <label class="radio">
                 <input value="planning" type="radio" name="task"> <b>Embodied Planning</b>
-              </label>
+              </label> -->
 
             </div>
           </div>
@@ -399,7 +379,7 @@
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
         <div class="container">
-          <h2 class="title is-3">3D-POPE Leaderboard</h2>
+          <h2 class="title is-3">Evaluating Hallucination for 3D-LLMs: 3D-POPE Leaderboard</h2>
           <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
             <table class="table svelte-1txh5yn" style="width: auto; margin-top: 2rem;"> <thead class="thead svelte-1txh5yn"><tr slot="thead" class="svelte-1bvc1p0"><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-0);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Model Idx</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-1);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">🤖 Model</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-2);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Accuracy (Random Split) </span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-3);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Precision (Random Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-4);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Recall (Random Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-5);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Accuracy (Popular Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-6);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Precision (Popular Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Recall (Popular Split)</span><div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-5);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Accuracy (Adversarial Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-6);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Precision (Adversarial Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Recall (Adversarial Split)</span> 
             <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th></tr><iframe style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;" aria-hidden="true" tabindex="-1" src="about:blank"></iframe></thead> <tbody class="tbody svelte-1txh5yn">
@@ -463,13 +443,15 @@
   <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>@article{chen2024grounded,
-      title={Grounded 3D-LLM with Referent Tokens}, 
-      author={Chen, Yilun and Yang, Shuai and Huang, Haifeng and Wang, Tai and Lyu, Ruiyuan and Xu, Runsen and Lin, Dahua and Pang, Jiangmiao},
-      journal={arXiv preprint arXiv:2405.10370},
-      year={2024},
-}</code></pre>
+      <h2 class="title">Citation</h2>
+      <pre><code>@misc{yang2023llmgrounder,
+        title={LLM-Grounder: Open-Vocabulary 3D Visual Grounding with Large Language Model as an Agent}, 
+        author={Jianing Yang and Xuweiyi Chen and Nikhil Madaan and Madhavan Iyengar and Shengyi Qian and David F. Fouhey and Joyce Chai},
+        year={2023},
+        eprint={2309.12311},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV}
+  }</code></pre>
     </div>
   </section>
   <!--End BibTex citation -->
