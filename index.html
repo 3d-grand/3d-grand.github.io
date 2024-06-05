@@ -174,6 +174,17 @@
   </section> -->
   <!-- End teaser video -->
 
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <!-- Your image here -->
+          <img src="assets/images/3d_grand.png" width="90%" alt="Generalist outputs" />
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Paper abstract -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
@@ -182,10 +193,7 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              3D-grounded Conversation Generation helps alleviate hallucination in multimodal LLMs. 
-            Grounded generation also makes the generated response of 3D Large Language Models more actionable and interpretable in a physical 3D environment for embodied and robotics tasks. 
-            Recent efforts have been made to construct larger grounded conversation datasets for 2D images; however, the 3D research community currently lacks a large dataset of such kind. 
-            In this paper, we introduce the first million-scale 3D grounded conversation dataset that consists of 3.2M 3D-text pairs on 4.2k 3D scenes.</i>.
+              The integration of language and 3D perception is crucial for developing embodied agents and robots that comprehend and interact with the physical world. While large language models (LLMs) have demonstrated impressive language understanding and generation capabilities, their adaptation to 3D environments (3D-LLMs) remains in its early stages. A primary challenge is the absence of large-scale datasets that provide dense grounding between language and 3D scenes. In this paper, we introduce 3D-GRAND, a pioneering large-scale dataset comprising 40,087 household scenes paired with 6.2 million densely-grounded scene-language instructions. Our results show that instruction tuning with 3D-GRAND significantly reduces hallucinations and enhances the grounding capabilities of 3D-LLMs compared to models trained without dense grounding. As part of our contributions, we propose a comprehensive benchmark 3D-POPE to systematically evaluate hallucination in 3D-LLMs, enabling fair comparisons among future models. Our experiments underscore a scaling effect between dataset size and 3D-LLM performance, emphasizing the critical role of large-scale 3D-text datasets in advancing embodied AI research. Through 3D-GRAND and 3D-POPE, we aim to equip the embodied AI community with essential resources and insights, setting the stage for more reliable and better-grounded 3D-LLMs.</i>.
             </p>
           </div>
         </div>
@@ -195,12 +203,17 @@
   <!-- End paper abstract -->
 
   
+  
   <section class="hero is-small">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
+        <h2 class="title is-3">Data Distribution</h2>
+      </div>
+      <div class="container">
+        <div class="columns is-centered">
           <!-- Your image here -->
-          <img src="assets/images/data_overview.png" width="90%" alt="Generalist outputs" />
+          <img src="assets/images/data_overview_2.png" width="90%" alt="Generalist outputs" />
         </div>
       </div>
     </div>
@@ -213,7 +226,7 @@
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
-        <h2 class="title is-3">Data Distribution</h2>
+        <!-- <h2 class="title is-3">Data Distribution</h2> -->
       </div>
         <div class="columns is-centered">
           <iframe src="sankey.html" style="width:100%; height:500px; border:none;"></iframe>
@@ -243,7 +256,7 @@
     </div>
   </section> -->
 
-  <section class="section hero is-light" id="Contribution">
+  <!-- <section class="section hero is-light" id="Contribution">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
@@ -260,9 +273,9 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <section class="hero is-small">
+  <section class="hero is-light">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
