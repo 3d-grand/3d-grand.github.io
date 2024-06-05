@@ -215,6 +215,9 @@
           <!-- Your image here -->
           <img src="assets/images/data_overview_2.png" width="90%" alt="Generalist outputs" />
         </div>
+        <div class="columns is-centered">
+          <iframe src="sankey.html" style="width:200%; height:500px; border:none;"></iframe>
+        </div>
       </div>
     </div>
   </section>
@@ -222,18 +225,18 @@
 
   <!-- End image carousel -->
 
-  <section class="hero is-small">
+  <!-- <section class="hero is-small">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
-        <h2 class="title is-3"></h2>
+        <h2 class="title is-3">Data Distribution</h2>
       </div>
         <div class="columns is-centered">
           <iframe src="sankey.html" style="width:100%; height:500px; border:none;"></iframe>
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- <section class="hero is-small">
     <div class="hero-body">
@@ -275,7 +278,215 @@
     </div>
   </section> -->
 
-  <section class="hero is-light">
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <h2 class="title is-3" style="margin-bottom: 0.5rem;">Compare 3D-GRAND with existing 3D scene datasets <br> (with language annotation)</h2>
+        </div>
+        <div class="columns is-centered has-text-centered">
+            <div class="container">
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <table class="table svelte-1txh5yn" style="width: auto; margin-top: 2rem;">
+                        <thead class="thead svelte-1txh5yn">
+                            <tr slot="thead" class="svelte-1bvc1p0">
+                                <th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-0);">
+                                    <div class="cell-wrap svelte-1txh5yn">
+                                        <span tabindex="-1" role="button" class="svelte-z9gpua">Dataset</span>
+                                    </div>
+                                </th>
+                                <th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-1);">
+                                    <div class="cell-wrap svelte-1txh5yn">
+                                        <span tabindex="-1" role="button" class="svelte-z9gpua">Which part is grounded?</span>
+                                    </div>
+                                </th>
+                                <th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-2);">
+                                    <div class="cell-wrap svelte-1txh5yn">
+                                        <span tabindex="-1" role="button" class="svelte-z9gpua">Language source</span>
+                                    </div>
+                                </th>
+                                <th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-3);">
+                                    <div class="cell-wrap svelte-1txh5yn">
+                                        <span tabindex="-1" role="button" class="svelte-z9gpua"># 3D Scenes</span>
+                                    </div>
+                                </th>
+                                <th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-4);">
+                                    <div class="cell-wrap svelte-1txh5yn">
+                                        <span tabindex="-1" role="button" class="svelte-z9gpua"># Language pairs</span>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody svelte-1txh5yn">
+                            <!-- Table rows will be here -->
+                            <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                              <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" target="_blank" rel="noopener noreferrer">SQA3D</a></p></span></span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">question</span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Human</span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.65K</span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">33.4K</span></div> </td>
+                          </tr>
+                            
+                            <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                              <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" target="_blank" rel="noopener noreferrer">ScanQA</a></p></span></span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">answer</span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Human</span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">41K</span></div> </td>
+                          </tr>
+
+                            <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                              <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" target="_blank" rel="noopener noreferrer">ReferIt3D</a></p></span></span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">obj-refer</span></div> </td>
+                              
+                              <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Human, Template</span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+                              <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">125K</span></div> </td>
+                          </tr>
+
+                          <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                            <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" target="_blank" rel="noopener noreferrer">ScanRefer</a></p></span></span></div> </td>
+                            <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+                            
+                            <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Human</span></div> </td>
+                            <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+                            <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">51K</span></div> </td>
+                        </tr>
+
+                        <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                          <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" target="_blank" rel="noopener noreferrer">Scan2Cap</a></p></span></span></div> </td>
+                          <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+                          <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Human</span></div> </td>
+                          <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+                          <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">51K</span></div> </td>
+                      </tr>
+                      <!-- Repeat the same pattern for all other entries -->
+                      <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                        <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" target="_blank" rel="noopener noreferrer">ScanEnts3D</a></p></span></span></div> </td>
+                          
+                        <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+                          <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Human</span></div> </td>
+                          <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+                          <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">84K</span></div> </td>
+                      </tr>
+
+                      <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                        <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" target="_blank" rel="noopener noreferrer">PhraseRefer</a></p></span></span></div> </td>
+                        <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+                        <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Human</span></div> </td>
+                        <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+                        <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">170K</span></div> </td>
+                    </tr>
+                  <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                      
+                      <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">3D-DenseOG</a></p></span></span></div> </td>
+                      <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+                      <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">scene</span></div> </td>
+                      <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+                      <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">51K</span></div> </td>
+                  </tr>
+                  <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                    <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">3DVQA</a></p></span></span></div> </td>
+                    <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+                    
+                    <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Template</span></div> </td>
+                    <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+                    <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">500K</span></div> </td>
+                </tr>
+                  <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                    <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">CLEVR3D</a></p></span></span></div> </td>  
+                    <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+                      
+                      <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Template</span></div> </td>
+                      <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">8.7K</span></div> </td>
+                      <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">171K</span></div> </td>
+                  </tr>
+                  <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                      <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">3DMV-VQA</a></p></span></span></div> </td>  
+                      <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+                      <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Template</span></div> </td>
+                      <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">4.1K</span></div> </td>
+                      <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">55K</span></div> </td>
+                  </tr>
+                  <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                    <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">M3DBench</a></p></span></span></div> </td>
+                    <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">obj-refer, question</span></div> </td>
+                    <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">LLM</span></div> </td>
+                    <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+                    <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">327K</span></div> </td>
+                </tr>
+                <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                  <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">EmbodiedScan</a></p></span></span></div> </td>
+                  <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+                  <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Template</span></div> </td>
+                  <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">3.4K</span></div> </td>
+                  <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">970K</span></div> </td>
+              </tr>
+              <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+                <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">3D-LLM</a></p></span></span></div> </td>
+                <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+                <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">LLM</span></div> </td>
+                <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.9K</span></div> </td>
+                <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">200K</span></div> </td>
+            </tr>
+            <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+              <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">3DMIT</a></p></span></span></div> </td>
+              <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">-</span></div> </td>
+              <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">LLM</span></div> </td>
+              <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+              <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">75K</span></div> </td>
+          </tr>
+          <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+            <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">LL3DA</a></p></span></span></div> </td>
+            <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">question, answer (partial)</span></div> </td>
+            <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Template, LLM</span></div> </td>
+            <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.9K</span></div> </td>
+            <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">200K</span></div> </td>
+        </tr>
+        <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+          <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">Chat3D-v2</a></p></span></span></div> </td>
+          <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">scene, obj-refer, question, answer</span></div> </td>
+          <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Human, LLM</span></div> </td>
+          <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+          <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">0.7K</span></div> </td>
+      </tr>
+      <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+        <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">ScanScribe</a></p></span></span></div> </td>
+        <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">question</span></div> </td>
+        <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Template,LLM</span></div> </td>
+        <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">3K</span></div> </td>
+        <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">278K</span></div> </td>
+    </tr>
+    <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+      <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">LEO</a></p></span></span></div> </td>
+      <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">question (partial)</span></div> </td>
+      <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">LLM</span></div> </td>
+      <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">3K</span></div> </td>
+      <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">579K</span></div> </td>
+  </tr>
+  <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+    <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer">SceneVerse</a></p></span></span></div> </td>
+    <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">obj-refer</span></div> </td>
+    <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Template,LLM</span></div> </td>
+    <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">62K</span></div> </td>
+    <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">2.5M</span></div> </td>
+</tr>
+<tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;">
+  <td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://yourreferencehere" target="_blank" rel="noopener noreferrer"><strong>3D-GRAND</strong></a></p></span></span></div> </td>
+  <td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><strong>scene, obj-refer, question, answer</strong></span></div> </td>
+  <td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><strong>Template,LLM</strong> </span></div> </td>
+  <td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><strong>40K</strong></span></div> </td>
+  <td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><strong>6.2M</strong></span></div> </td>
+</tr>
+                          </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <section class="hero is-small">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
