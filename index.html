@@ -57,6 +57,12 @@
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
   <script src="https://unpkg.com/three@0.127.0/build/three.module.js"></script>
+  <script type="text/javascript">
+    function switchhtml(path) {
+      console.log('switching')
+      document.getElementById("html-plot").src = path;
+    }
+  </script>
 </head>
 
 <body>
@@ -188,7 +194,7 @@
   </section>
   <!-- End paper abstract -->
 
-
+  
   <section class="hero is-small">
     <div class="hero-body">
       <div class="container">
@@ -206,13 +212,36 @@
   <section class="hero is-small">
     <div class="hero-body">
       <div class="container">
-        <div class="columns-is-centered">
-          <!-- Embedding the Plotly HTML file using iframe -->
-          <iframe src="sankey.html" style="width:100%; height:500px; border:none;"></iframe>
+        <div class="columns is-centered">
+        <h2 class="title is-3">Data Distribution</h2>
       </div>
+        <div class="columns is-centered">
+          <iframe src="sankey.html" style="width:100%; height:500px; border:none;"></iframe>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+        <h2 class="title is-3">Visual</h2>
+        <radio>
+          <input type="radio" name="radio" id="radio1" onclick="switchhtml('scene_no_bbox.html')" checked>
+          <label for="radio1">No bbox</label>
+        </radio>
+        <radio>
+          <input type="radio" name="radio" id="radio2" onclick="switchhtml('scene_with_bbox.html')">
+          <label for="radio2">With bbox</label>
+        </radio>
+      </div>
+        <div class="columns is-centered">
+          <iframe id="html-plot" src="scene_no_bbox.html" style="width:100%; height:500px; border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </section> -->
 
   <section class="section hero is-light" id="Contribution">
     <div class="container is-max-desktop">
@@ -245,6 +274,8 @@
       </div>
     </div>
   </section>
+
+  
   <br>
   <br>
   <section class="hero is-small" id="PointCloudVisualization">
@@ -262,32 +293,32 @@
             </select>
           </div>
 
-          <div class="select is-rounded">
+          <!-- <div class="select is-rounded">
             <select id="caseSelector">
               <option value="case1">Case 1</option>
               <option value="case2">Case 2</option>
               <option value="case3">Case 3</option>
               <option value="case4">Case 4</option>
             </select>
-          </div>
+          </div> -->
 
           <div class="columns is-centered" style="position: relative; margin-top: 20px;">
             <div class="control"
               style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
               <label class="radio">
-                <input value="detection" type="radio" name="task"> <b>3D-Grounded Scene Captioning</b>
+                <input value="captioning" type="radio" name="task" onclick="switchhtml('scene_with_bbox.html')"> <b>3D-Grounded Scene Captioning</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="grounding" type="radio" name="task"> <b>3D Context-Dependent QA</b>
+                <input value="qa" type="radio" name="task" onclick="switchhtml('scene_with_bbox.html')"> <b>3D-Context-Dependent QA</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="captioning" type="radio" name="task"> <b>Conversation</b>
+                <input value="conversation" type="radio" name="task"> <b>Conversation</b>
               </label>
 
               <span style="width:5em"></span>
@@ -319,14 +350,17 @@
         <div style="display: flex; margin-top: 20px;">
           <div style="flex: 3; height: 400px; position: relative;">
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
-            <canvas id="webgl_output" style="width: 100%; height: 100%;"></canvas>
+            <!-- <canvas id="webgl_output" style="width: 100%; height: 100%;"></canvas> -->
+            <!-- <div class="columns is-centered"> -->
+            <iframe id="html-plot" src="scene_no_bbox.html" style="width:100%; height:500px; border:none;"></iframe>
+            <!-- </div> -->
           </div>
           <div id="info" style="flex: 2; font-size: 15px; padding: 10px;">
             <span style="font-size: 25px; border-color: black;">Please select a task.</span>
           </div>
         </div>
 
-        <button id="toggleAnimation">Pause Rotation</button>
+        <!-- <button id="toggleAnimation">Pause Rotation</button> -->
       </div>
     </div>
   </section>
@@ -493,6 +527,47 @@
   <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
   <!-- End of Statcounter Code -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Function to update the info text
+      function updateInfoText(text) {
+      var words = text.split(' '); // Split the text into words
+      words[0] = '<strong>' + words[0] + '</strong>'; // Make the first word bold
+      var formattedText = words.join(' '); // Rejoin the words into a single string
+      var infoDiv = document.getElementById("info");
+      infoDiv.innerHTML = '<span style="font-size: 15px; border-color: black;">' + formattedText + '</span>';  // Adjusted font size from 25px to 20px
+    }
+    
+      // Adding event listeners to all radio buttons
+      var radios = document.querySelectorAll('input[type="radio"][name="task"]');
+      radios.forEach(function(radio) {
+        radio.addEventListener('click', function() {
+          switch (radio.value) {
+            case 'captioning':
+              updateInfoText('Caption: The living Room is a blend of Modern and Vintage styles, with a touch of Minimalist design. The &lt;p&gt;wardrobe&lt;/p&gt;[&lt;wardrobe-0&gt;] in solid wood with a sleek form stands as a vintage statement piece. A set of &lt;p&gt;sofa&lt;/p&gt;[&lt;three-seat/multi-seat sofa-1&gt;] and &lt;p&gt;sofa&lt;/p&gt;[&lt;three-seat/multi-seat sofa-8&gt;], both upholstered in a neutral grey cloth, offer ample seating and a modern touch. In the center, two &lt;p&gt;coffee table&lt;/p&gt;[&lt;coffee table-2&gt;] and &lt;p&gt;coffee table&lt;/p&gt;[&lt;coffee table-3&gt;] with marble tops and black metal frames provide a minimalist aesthetic and surface space. Flanking the sofas, &lt;p&gt;armchair&lt;/p&gt;[&lt;armchair-4&gt;] and &lt;p&gt;armchair&lt;/p&gt;[&lt;armchair-5&gt;] present a modern two-tone look with their rough cloth material. The &lt;p&gt;side table&lt;/p&gt;[&lt;corner/side table-6&gt;] beside the &lt;p&gt;armchair&lt;/p&gt;[&lt;armchair-5&gt;] offers additional surface space with its modern design. Above the central seating area, the &lt;p&gt;pendant lamp&lt;/p&gt;[&lt;pendant lamp-7&gt;] with its Chinoiserie style casts a warm light, enhancing the room\'s inviting atmosphere. This layout promotes socialization and relaxation, with lighting and furniture arranged to create a comfortable and stylish living space.');
+              break;
+            case 'qa':
+              updateInfoText('Ques: Is &lt;p&gt;three-seat sofa&lt;/p&gt; available in this room?<br> <strong>Ans:</strong> Multiple &lt;p&gt;three-seat sofas&lt;/p&gt;[&lt;three-seat/multi-seat sofa-1&gt;, &lt;three-seat/multi-seat sofa-8&gt;] are located here.');
+              break;
+            case 'conversation':
+              updateInfoText('Conversation task selected');
+              break;
+            case 'reasoning':
+              updateInfoText('Complex Reasoning task selected');
+              break;
+            // Uncomment and add cases for other tasks if needed
+            // case 'dialogue':
+            //   updateInfoText('Embodied Dialogue selected');
+            //   break;
+            // case 'planning':
+            //   updateInfoText('Embodied Planning selected');
+            //   break;
+          }
+        });
+      });
+    });
+    </script>
 
 </body>
 
