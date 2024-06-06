@@ -236,21 +236,6 @@
     </div>
 </section>
 
-<section class="hero is-small">
-  <div class="hero-body">
-      <div class="container">
-          <div class="container">
-              
-              <div class="columns is-centered">
-                  <iframe src="sankey.html" style="width:200%; height:500px; border:none;"></iframe>
-                  <img src="assets/images/table_1_.png" style="max-width:65%;" alt="Descriptive alt text" />
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
-
-
 
 
 
@@ -333,8 +318,8 @@
           <h2 class="title is-3">Results Visualization</h2>
           <div class="select is-rounded">
             <select id="pointCloudSelector">
-              <option value="assets/scenes/LivingRoom-3973-3d-front">Scene 1</option>
-              <option value="assets/scene0050_00">Scene 2</option>
+              <option value="scene_no_bbox.html">Scene 1</option>
+              <option value="scene_with_bbox.html">Scene 2</option>
               <option value="assets/scene0426_00">Scene 3</option>
               <option value="assets/scene0086_00">Scene 4</option>
               <option value="assets/scene0144_00">Scene 5</option>
@@ -586,6 +571,19 @@
   <!-- End of Statcounter Code -->
 
   <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var selector = document.getElementById('pointCloudSelector');
+
+      selector.addEventListener('change', function() {
+        var selectedScene = selector.options[selector.selectedIndex].value;
+  
+        switchhtml(selectedScene);
+      });
+    });
+    
+
+
     document.addEventListener("DOMContentLoaded", function() {
       // Function to update the info text
       function updateInfoText(text) {
