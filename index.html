@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG" />
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG" />
-  <meta property="og:url" content="URL OF THE WEBSITE" />
+  <meta name="description" content="Website for 3D-GRAND: Towards Better Grounding and Less Halluciantion for 3D-LLMs">
+  <meta property="og:title" content="3D-GRAND: Towards Better Grounding and Less Halluciantion for 3D-LLMs" />
+  <meta property="og:description" content="Provide access to data, code, paper for 3D-GRAND: Towards Better Grounding and Less Halluciantion for 3D-LLMs" />
+  <meta property="og:url" content="https://3d-grand.github.io/" />
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
   <meta property="og:image" content="static/image/your_banner_image.png" />
   <meta property="og:image:width" content="1200" />
@@ -220,20 +220,26 @@
                     <img src="assets/images/data_info_hub-1.png" width="90%" alt="Generalist outputs" />
                 </div>
                 <br>
-                <div class="columns">
-                    <div class="column is-half">
-                        <iframe src="sankey.html" style="width:100%; height:500px; border:none;"></iframe>
-                    </div>
-                    <div class="column is-half" style="text-align: center;">
-                      <h3 style="color: #555;">
-                        Table 1: Comparison of 3D-GRAND with existing 3D scene datasets with language annotations. 3D-GRAND is the largest language-grounded dataset.
-                      </h3>
-                      <img src="assets/images/table_1_updated.png" width="100%" alt="Descriptive alt text" />
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+      <div class="container">
+          <div class="container">
+              
+              <div class="columns" style="margin-left: -35%;"> <!-- Shift everything in this div to the left -->
+                  <iframe src="sankey.html" style="width:60%; height:550px; border:none; margin-left: -5%;"></iframe>
+                  <figure>
+                    <img src="assets/images/table_1__.png" style="max-height:140%; max-width:180%;" alt="Descriptive alt text" />
+                  </figure>
+              </div>
+          </div>
+      </div>
+  </div>
 </section>
 
 
@@ -339,28 +345,28 @@
             <div class="control"
               style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
               <label class="radio">
-                <input value="captioning" type="radio" name="task" onclick="switchhtml('scene_with_bbox.html')"> <b>3D-Grounded Scene Captioning</b>
+                <input value="captioning" type="radio" name="task" onclick="switchhtml('scene_with__box_caption.html')"> <b>Grounded Scene description</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="qa" type="radio" name="task" onclick="switchhtml('scene_with_bbox.html')"> <b>3D-Context-Dependent QA</b>
+                <input value="qa" type="radio" name="task" onclick="switchhtml('scene_with__box_qa.html')"> <b>Grounded QA</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="conversation" type="radio" name="task"> <b>Conversation</b>
+                <input value="reference" type="radio" name="task" onclick="switchhtml('scene_with__box_reference.html')"> <b>Grounded Object Reference</b>
               </label>
 
               <span style="width:5em"></span>
 
-              <label class="radio">
+              <!-- <label class="radio">
                 <input value="reasoning" type="radio" name="task"> <b>Complex Reasoning</b>
               </label>
 
-              <span style="width:5em"></span>
+              <span style="width:5em"></span> -->
 
               <!-- <label class="radio">
                 <input value="dialogue" type="radio" name="task"> <b>Embodied Dialogue</b>
@@ -385,7 +391,7 @@
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
             <!-- <canvas id="webgl_output" style="width: 100%; height: 100%;"></canvas> -->
             <!-- <div class="columns is-centered"> -->
-            <iframe id="html-plot" src="scene_no_bbox.html" style="width:100%; height:500px; border:none;"></iframe>
+            <iframe id="html-plot" src="scene_default.html" style="width:100%; height:500px; border:none;"></iframe>
             <!-- </div> -->
           </div>
           <div id="info" style="flex: 2; font-size: 15px; padding: 10px;">
@@ -397,53 +403,6 @@
       </div>
     </div>
   </section>
-
-
-  <!-- <section class="section hero is-light" id="Grounded Scene Caption Data">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Grounded Scene Caption Data</h2>
-          <div class="content has-text-justified">
-            <p>
-              We propose an automated grounded language dataset generation process utilizing ChatGPT and 2D
-              vision-language models to create the Grounded Scene Caption dataset (G-SceneCap):
-            <ul>
-              <li><i>Step 1: Bootstrapping object captions with GT label correction.</i> Using 3D real-scan datasets, we
-                annotate each object with the vision-language model CogVLM, using the images of the
-                largest visible areas. Inconsistent annotations are rectified using raw instance labels.
-              </li>
-              <li><i>Step 2: Condensing objects in local scenes into a caption.</i>
-                For each enumerated anchor object, we form an initial object set by randomly selecting a group of nearby
-                objects. Their captions and coordinates (x,y,z) are input into GPT-4 for captioning, which requires
-                referencing objects by their IDs in the format ``[object_phrase object_ID]'' in the caption.
-              </li>
-              <li>
-                <i>Step 3: Adding Rule-Based Relations into Captions.</i>
-                To enrich scene captions, we integrate program-generated spatial relationships from
-                Sr3D. By selecting an anchor object from the set in <i>step 2</i>, we apply the
-                spatial relation rules (e.g., between, supporting, nearest, back) to include related objects. GPT-4 then
-                combines these relationships into the prior caption from <i>step 2</i>.
-              </li>
-            </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-
-  <!-- <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-centered">
-          Your image here
-          <!-- <img src="static/images/datagen_pipeline.jpg" width="80%" alt="Pipeline of Grounded Scene Dataset Curation" />
-        </div>
-      </div>
-    </div>
-  </section> --> -->
 
   <!-- Video carousel -->
 
@@ -600,17 +559,17 @@
         radio.addEventListener('click', function() {
           switch (radio.value) {
             case 'captioning':
-              updateInfoText('Caption: The living Room is a blend of Modern and Vintage styles, with a touch of Minimalist design. The &lt;p&gt;wardrobe&lt;/p&gt;[&lt;wardrobe-0&gt;] in solid wood with a sleek form stands as a vintage statement piece. A set of &lt;p&gt;sofa&lt;/p&gt;[&lt;three-seat/multi-seat sofa-1&gt;] and &lt;p&gt;sofa&lt;/p&gt;[&lt;three-seat/multi-seat sofa-8&gt;], both upholstered in a neutral grey cloth, offer ample seating and a modern touch. In the center, two &lt;p&gt;coffee table&lt;/p&gt;[&lt;coffee table-2&gt;] and &lt;p&gt;coffee table&lt;/p&gt;[&lt;coffee table-3&gt;] with marble tops and black metal frames provide a minimalist aesthetic and surface space. Flanking the sofas, &lt;p&gt;armchair&lt;/p&gt;[&lt;armchair-4&gt;] and &lt;p&gt;armchair&lt;/p&gt;[&lt;armchair-5&gt;] present a modern two-tone look with their rough cloth material. The &lt;p&gt;side table&lt;/p&gt;[&lt;corner/side table-6&gt;] beside the &lt;p&gt;armchair&lt;/p&gt;[&lt;armchair-5&gt;] offers additional surface space with its modern design. Above the central seating area, the &lt;p&gt;pendant lamp&lt;/p&gt;[&lt;pendant lamp-7&gt;] with its Chinoiserie style casts a warm light, enhancing the room\'s inviting atmosphere. This layout promotes socialization and relaxation, with lighting and furniture arranged to create a comfortable and stylish living space.');
+              updateInfoText('Caption: In the master bedroom, the modern decor is accented by the plush &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] as the centerpiece, inviting rest and relaxation. The two &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-1&gt;] and &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-2&gt;], identical in their deep black matte finish, frame the bed, providing balance and convenience. The &lt;p&gt;wardrobe&lt;/p&gt;[&lt;wardrobe-3&gt;], with its matte finish, stands ready to organize clothing and accessories. Across the room, the &lt;p&gt;tv stand&lt;/p&gt;[&lt;tv stand-4&gt;] anchors the entertainment area, while the &lt;p&gt;pendant lamp&lt;/p&gt;[&lt;pendant lamp-6&gt;] above adds a modern touch of lighting. The &lt;p&gt;planter&lt;/p&gt;[&lt;others-5&gt;] introduces a contrasting style, infusing the room with a hint of natural charm. This bedroom is a harmonious blend of modern design and functionality, creating a cohesive and restful space.');
               break;
             case 'qa':
-              updateInfoText('Ques: Is &lt;p&gt;three-seat sofa&lt;/p&gt; available in this room?<br> <strong>Ans:</strong> Multiple &lt;p&gt;three-seat sofas&lt;/p&gt;[&lt;three-seat/multi-seat sofa-1&gt;, &lt;three-seat/multi-seat sofa-8&gt;] are located here.');
+              updateInfoText('Ques: Is &lt;p&gt;nightstand&lt;/p&gt; available in this room?<br><strong>Ans:</strong> Yes, there are &lt;p&gt;nightstands&lt;/p&gt;[&lt;nightstand-1&gt; &lt;nightstand-2&gt;] available.');
               break;
-            case 'conversation':
-              updateInfoText('Conversation task selected');
+            case 'reference':
+              updateInfoText('Ref: This is a &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] with a rich chocolate brown hue and a rectangular silhouette. The &lt;p&gt;bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is upholstered in a smooth, velvety fabric, offering a luxurious sleeping experience. The &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is positioned in the room and is complemented by two &lt;p&gt;black nightstands&lt;/p&gt;[&lt;nightstand-1&gt;, &lt;nightstand-2&gt;].');
               break;
-            case 'reasoning':
-              updateInfoText('Complex Reasoning task selected');
-              break;
+            // case 'reasoning':
+            //   updateInfoText('Complex Reasoning task selected');
+            //   break;
             // Uncomment and add cases for other tasks if needed
             // case 'dialogue':
             //   updateInfoText('Embodied Dialogue selected');
