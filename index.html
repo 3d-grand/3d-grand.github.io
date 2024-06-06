@@ -318,8 +318,8 @@
           <h2 class="title is-3">Results Visualization</h2>
           <div class="select is-rounded">
             <select id="pointCloudSelector">
-              <option value="scene_default.html">Scene 1</option>
-              <option value="scene_with_bbox.html">Scene 2</option>
+              <option value="scene1.html">Scene 1</option>
+              <option value="scene2.html">Scene 2</option>
             </select>
           </div>
 
@@ -373,7 +373,7 @@
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
             <!-- <canvas id="webgl_output" style="width: 100%; height: 100%;"></canvas> -->
             <!-- <div class="columns is-centered"> -->
-            <iframe id="html-plot" src="scene_default.html" style="width:100%; height:500px; border:none;"></iframe>
+            <iframe id="html-plot" src="scene1.html" style="width:100%; height:500px; border:none;"></iframe>
             <!-- </div> -->
           </div>
           <div id="info" style="flex: 2; font-size: 15px; padding: 10px;">
@@ -515,6 +515,16 @@
 
     function changeScene() {
       var scene = document.getElementById('pointCloudSelector').value;
+      if (scene.includes('scene1')) {
+        scene = 'scene1'
+      }
+      else if (scene.includes('scene2')) {
+        scene = 'scene2'
+      }
+      else {
+        console.log('No scene selected or an unrecognized scene was chosen.');
+      }
+      console.log('scene', scene)
   
       var radios = document.querySelectorAll('input[type="radio"][name="task"]');
       var task;
@@ -527,17 +537,67 @@
       }
     
       if (task === 'captioning') {
-        //switchhtml(scene + '_caption.html'); 
-        switchhtml('scene1_with__box_caption.html')
+        switchhtml(scene + '_caption.html'); 
+        //switchhtml('scene1_with__box_caption.html')
       } else if (task === 'qa') {
-        //switchhtml(scene + '_qa.html'); 
-        switchhtml('scene1_with__box_qa.html')
+        switchhtml(scene + '_qa.html'); 
+        //switchhtml('scene1_with__box_qa.html')
       } else if (task === 'reference') {
-        //switchhtml(scene + '_reference.html');
-        switchhtml('scene1_with_box_reference.html')
+        switchhtml(scene + '_reference.html');
+        //switchhtml('scene1_with_box_reference.html')
       } else {
-        console.log('No task selected or an unrecognized task was chosen.');
+        switchhtml(scene + '.html')
       }
+      console.log('Updating text')
+      updateText();
+    }
+
+    function updateInfoText(text) {
+      var words = text.split(' '); // Split the text into words
+      words[0] = '<strong>' + words[0] + '</strong>'; // Make the first word bold
+      var formattedText = words.join(' '); // Rejoin the words into a single string
+      var infoDiv = document.getElementById("info");
+      infoDiv.innerHTML = '<span style="font-size: 15px; border-color: black;">' + formattedText + '</span>';  // Adjusted font size from 25px to 20px
+    }
+
+    function updateText() {
+      // Adding event listeners to all radio buttons
+      var radios = document.querySelectorAll('input[type="radio"][name="task"]');
+      radios.forEach(function(radio) {
+        radio.addEventListener('click', function() {
+          var scene = document.getElementById('pointCloudSelector').value;
+          console.log('scene', scene)
+          switch (radio.value) {
+            case 'captioning':
+              if (scene.includes('scene1')) {
+                var infotext = 'Caption: In the master bedroom, the modern decor is accented by the plush &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] as the centerpiece, inviting rest and relaxation. The two &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-1&gt;] and &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-2&gt;], identical in their deep black matte finish, frame the bed, providing balance and convenience. The &lt;p&gt;wardrobe&lt;/p&gt;[&lt;wardrobe-3&gt;], with its matte finish, stands ready to organize clothing and accessories. Across the room, the &lt;p&gt;tv stand&lt;/p&gt;[&lt;tv stand-4&gt;] anchors the entertainment area, while the &lt;p&gt;pendant lamp&lt;/p&gt;[&lt;pendant lamp-6&gt;] above adds a modern touch of lighting. The &lt;p&gt;planter&lt;/p&gt;[&lt;others-5&gt;] introduces a contrasting style, infusing the room with a hint of natural charm. This bedroom is a harmonious blend of modern design and functionality, creating a cohesive and restful space.'
+              }
+              else if (scene.includes('scene2')) {
+                var infotext = 'Caption scene 2'
+              }
+              updateInfoText(infotext);
+              break;
+            case 'qa':
+              if (scene.includes('scene1')) {
+                var infotext = 'Ques: Is &lt;p&gt;nightstand&lt;/p&gt; available in this room?<br><strong>Ans:</strong> Yes, there are &lt;p&gt;nightstands&lt;/p&gt;[&lt;nightstand-1&gt; &lt;nightstand-2&gt;] available.';
+              }
+              else if (scene.includes('scene2')){
+                var infotext = 'QA Scene 2'
+              }
+              updateInfoText(infotext);
+              break;
+            case 'reference':
+              if (scene.includes('scene1')) {
+                var infotext = 'Ref: This is a &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] with a rich chocolate brown hue and a rectangular silhouette. The &lt;p&gt;bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is upholstered in a smooth, velvety fabric, offering a luxurious sleeping experience. The &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is positioned in the room and is complemented by two &lt;p&gt;black nightstands&lt;/p&gt;[&lt;nightstand-1&gt;, &lt;nightstand-2&gt;].';
+              }
+              else if (scene.includes('scene2')){
+                var infotext = 'Reference Scene 2'
+              }
+              updateInfoText(infotext);
+              break;
+          }
+        });
+      });
     }
     
 
@@ -550,44 +610,9 @@
     });
     
 
-
     document.addEventListener("DOMContentLoaded", function() {
       // Function to update the info text
-      function updateInfoText(text) {
-      var words = text.split(' '); // Split the text into words
-      words[0] = '<strong>' + words[0] + '</strong>'; // Make the first word bold
-      var formattedText = words.join(' '); // Rejoin the words into a single string
-      var infoDiv = document.getElementById("info");
-      infoDiv.innerHTML = '<span style="font-size: 15px; border-color: black;">' + formattedText + '</span>';  // Adjusted font size from 25px to 20px
-    }
-    
-      // Adding event listeners to all radio buttons
-      var radios = document.querySelectorAll('input[type="radio"][name="task"]');
-      radios.forEach(function(radio) {
-        radio.addEventListener('click', function() {
-          switch (radio.value) {
-            case 'captioning':
-              updateInfoText('Caption: In the master bedroom, the modern decor is accented by the plush &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] as the centerpiece, inviting rest and relaxation. The two &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-1&gt;] and &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-2&gt;], identical in their deep black matte finish, frame the bed, providing balance and convenience. The &lt;p&gt;wardrobe&lt;/p&gt;[&lt;wardrobe-3&gt;], with its matte finish, stands ready to organize clothing and accessories. Across the room, the &lt;p&gt;tv stand&lt;/p&gt;[&lt;tv stand-4&gt;] anchors the entertainment area, while the &lt;p&gt;pendant lamp&lt;/p&gt;[&lt;pendant lamp-6&gt;] above adds a modern touch of lighting. The &lt;p&gt;planter&lt;/p&gt;[&lt;others-5&gt;] introduces a contrasting style, infusing the room with a hint of natural charm. This bedroom is a harmonious blend of modern design and functionality, creating a cohesive and restful space.');
-              break;
-            case 'qa':
-              updateInfoText('Ques: Is &lt;p&gt;nightstand&lt;/p&gt; available in this room?<br><strong>Ans:</strong> Yes, there are &lt;p&gt;nightstands&lt;/p&gt;[&lt;nightstand-1&gt; &lt;nightstand-2&gt;] available.');
-              break;
-            case 'reference':
-              updateInfoText('Ref: This is a &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] with a rich chocolate brown hue and a rectangular silhouette. The &lt;p&gt;bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is upholstered in a smooth, velvety fabric, offering a luxurious sleeping experience. The &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is positioned in the room and is complemented by two &lt;p&gt;black nightstands&lt;/p&gt;[&lt;nightstand-1&gt;, &lt;nightstand-2&gt;].');
-              break;
-            // case 'reasoning':
-            //   updateInfoText('Complex Reasoning task selected');
-            //   break;
-            // Uncomment and add cases for other tasks if needed
-            // case 'dialogue':
-            //   updateInfoText('Embodied Dialogue selected');
-            //   break;
-            // case 'planning':
-            //   updateInfoText('Embodied Planning selected');
-            //   break;
-          }
-        });
-      });
+    updateText();
     });
     </script>
 
