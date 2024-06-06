@@ -39,7 +39,7 @@
     }
   </style>
 
-  <title>Grounded 3D-LLM</title>
+  <title>3D-GRAND</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -49,12 +49,6 @@
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css">
-  <style>
-    body {
-      font-family: "Computer Modern Serif", serif;
-    }
-  </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -324,11 +318,8 @@
           <h2 class="title is-3">Results Visualization</h2>
           <div class="select is-rounded">
             <select id="pointCloudSelector">
-              <option value="scene_no_bbox.html">Scene 1</option>
+              <option value="scene_default.html">Scene 1</option>
               <option value="scene_with_bbox.html">Scene 2</option>
-              <option value="assets/scene0426_00">Scene 3</option>
-              <option value="assets/scene0086_00">Scene 4</option>
-              <option value="assets/scene0144_00">Scene 5</option>
             </select>
           </div>
 
@@ -345,19 +336,19 @@
             <div class="control"
               style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
               <label class="radio">
-                <input value="captioning" type="radio" name="task" onclick="switchhtml('scene_with__box_caption.html')"> <b>Grounded Scene description</b>
+                <input value="captioning" type="radio" name="task" onclick="changeScene()"> <b>Grounded Scene description</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="qa" type="radio" name="task" onclick="switchhtml('scene_with__box_qa.html')"> <b>Grounded QA</b>
+                <input value="qa" type="radio" name="task" onclick="changeScene()"> <b>Grounded QA</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="reference" type="radio" name="task" onclick="switchhtml('scene_with__box_reference.html')"> <b>Grounded Object Reference</b>
+                <input value="reference" type="radio" name="task" onclick="changeScene()"> <b>Grounded Object Reference</b>
               </label>
 
               <span style="width:5em"></span>
@@ -531,13 +522,39 @@
 
   <script>
 
+    function changeScene() {
+      var scene = document.getElementById('pointCloudSelector').value;
+  
+      var radios = document.querySelectorAll('input[type="radio"][name="task"]');
+      var task;
+  
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          task = radios[i].value;
+          break;
+        }
+      }
+    
+      if (task === 'captioning') {
+        //switchhtml(scene + '_caption.html'); 
+        switchhtml('scene_with__box_caption.html')
+      } else if (task === 'qa') {
+        //switchhtml(scene + '_qa.html'); 
+        switchhtml('scene_with__box_qa.html')
+      } else if (task === 'reference') {
+        //switchhtml(scene + '_reference.html');
+        switchhtml('scene_with__box_reference.html')
+      } else {
+        console.log('No task selected or an unrecognized task was chosen.');
+      }
+    }
+    
+
     document.addEventListener('DOMContentLoaded', function() {
       var selector = document.getElementById('pointCloudSelector');
 
       selector.addEventListener('change', function() {
-        var selectedScene = selector.options[selector.selectedIndex].value;
-  
-        switchhtml(selectedScene);
+        changeScene()
       });
     });
     
