@@ -340,28 +340,28 @@
             <div class="control"
               style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
               <label class="radio">
-                <input value="captioning" type="radio" name="task" onclick="switchhtml('scene_with_bbox.html')"> <b>3D-Grounded Scene Captioning</b>
+                <input value="captioning" type="radio" name="task" onclick="switchhtml('scene_with_bbox.html')"> <b>Grounded Scene description</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="qa" type="radio" name="task" onclick="switchhtml('scene_with_bbox.html')"> <b>3D-Context-Dependent QA</b>
+                <input value="qa" type="radio" name="task" onclick="switchhtml('scene_with_bbox.html')"> <b>Grounded QA</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="conversation" type="radio" name="task"> <b>Conversation</b>
+                <input value="reference" type="radio" name="task" onclick="switchhtml('scene_with_bbox.html')"> <b>Grounded Object Reference</b>
               </label>
 
               <span style="width:5em"></span>
 
-              <label class="radio">
+              <!-- <label class="radio">
                 <input value="reasoning" type="radio" name="task"> <b>Complex Reasoning</b>
               </label>
 
-              <span style="width:5em"></span>
+              <span style="width:5em"></span> -->
 
               <!-- <label class="radio">
                 <input value="dialogue" type="radio" name="task"> <b>Embodied Dialogue</b>
@@ -593,12 +593,12 @@
             case 'qa':
               updateInfoText('Ques: Is &lt;p&gt;three-seat sofa&lt;/p&gt; available in this room?<br> <strong>Ans:</strong> Multiple &lt;p&gt;three-seat sofas&lt;/p&gt;[&lt;three-seat/multi-seat sofa-1&gt;, &lt;three-seat/multi-seat sofa-8&gt;] are located here.');
               break;
-            case 'conversation':
-              updateInfoText('Conversation task selected');
+            case 'reference':
+              updateInfoText('Ref: This is a wardrobe[&lt;wardrobe-0&gt;] with a warm wooden hue, showcasing a sleek and elongated rectangular form. The wooden wardrobe[&lt;wardrobe-0&gt;] has a smooth and polished wood texture, adding a touch of vintage charm to the living room. The wardrobe[&lt;wardrobe-0&gt;] is positioned behind the grey fabric sofa[&lt;three-seat/multi-seat sofa-1&gt;], coffee tables[&lt;coffee table-2&gt;, &lt;coffee table-3&gt;], and the armchair[&lt;armchair-4&gt;], creating a focal point in the room.');
               break;
-            case 'reasoning':
-              updateInfoText('Complex Reasoning task selected');
-              break;
+            // case 'reasoning':
+            //   updateInfoText('Complex Reasoning task selected');
+            //   break;
             // Uncomment and add cases for other tasks if needed
             // case 'dialogue':
             //   updateInfoText('Embodied Dialogue selected');
