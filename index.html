@@ -206,16 +206,21 @@
   <section class="hero is-small">
     <div class="hero-body">
         <div class="container">
-            <div class="columns is-centered">
+            <!-- <div class="columns is-centered">
                 <h2 class="title is-3">Data Distribution</h2>
-            </div>
+            </div> -->
             <div class="container">
-                <div class="columns is-centered">
-                    <img src="assets/images/data_info_hub-1.png" width="90%" alt="Generalist outputs" />
-                </div>
-                <br>
-                
-            </div>
+              <div class="columns is-centered">
+                  <!-- Your existing image here -->
+                  <div class="column is-12">
+                      <img src="assets/images/data_info_hub-1.png" width="90%" alt="Generalist outputs">
+                      <p class="subtitle is-5 has-text-centered" style="font-size: 20px;"><strong>Fig: Data Overview</strong></p>
+
+                  </div>
+                  <!-- Your new image here -->
+              </div>
+              <br>
+          </div>
         </div>
     </div>
 </section>
@@ -336,19 +341,19 @@
             <div class="control"
               style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
               <label class="radio">
-                <input value="captioning" type="radio" name="task" onclick="changeScene()"> <b>Grounded Scene description</b>
+                <input value="captioning" type="radio" name="task" onclick="switchhtml('scene_with__box_caption.html')"> <b>Grounded Scene description</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="qa" type="radio" name="task" onclick="changeScene()"> <b>Grounded QA</b>
+                <input value="qa" type="radio" name="task" onclick="switchhtml('scene_with__box_qa.html')"> <b>Grounded QA</b>
               </label>
 
               <span style="width:5em"></span>
 
               <label class="radio">
-                <input value="reference" type="radio" name="task" onclick="changeScene()"> <b>Grounded Object Reference</b>
+                <input value="reference" type="radio" name="task" onclick="switchhtml('scene_with__box_reference.html')"> <b>Grounded Object Reference</b>
               </label>
 
               <span style="width:5em"></span>
@@ -382,7 +387,7 @@
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
             <!-- <canvas id="webgl_output" style="width: 100%; height: 100%;"></canvas> -->
             <!-- <div class="columns is-centered"> -->
-            <iframe id="html-plot" src="scene_default.html" style="width:100%; height:500px; border:none;"></iframe>
+            <iframe id="html-plot" src="scene1_wo_box.html" style="width:100%; height:500px; border:none;"></iframe>
             <!-- </div> -->
           </div>
           <div id="info" style="flex: 2; font-size: 15px; padding: 10px;">
