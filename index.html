@@ -242,8 +242,8 @@
           <h2 class="title is-3">Results Visualization</h2>
           <div class="select is-rounded">
             <select id="pointCloudSelector">
-              <option value="scene1.html">Scene 1</option>
-              <option value="scene2.html">Scene 2</option>
+              <option value="assets/scene1.html">Scene 1</option>
+              <option value="assets/scene2.html">Scene 2</option>
             </select>
           </div>
 
@@ -279,7 +279,10 @@
         <div style="display: flex; margin-top: 20px;">
           <div style="flex: 3; height: 400px; position: relative;">
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
-            <iframe id="html-plot" src="scene1.html" style="width:100%; height:500px; border:none;"></iframe>
+            <!-- <canvas id="webgl_output" style="width: 100%; height: 100%;"></canvas> -->
+            <!-- <div class="columns is-centered"> -->
+            <iframe id="html-plot" src="assets/scene1.html" style="width:100%; height:500px; border:none;"></iframe>
+            <!-- </div> -->
           </div>
           <div id="info" style="flex: 2; font-size: 15px; padding: 10px;">
             <span style="font-size: 25px; border-color: black;">Please select a task.</span>
@@ -400,16 +403,16 @@
       }
     
       if (task === 'captioning') {
-        switchhtml(scene + '_caption.html'); 
+        switchhtml("assets/"+scene + '_caption.html'); 
         //switchhtml('scene1_with__box_caption.html')
       } else if (task === 'qa') {
-        switchhtml(scene + '_qa.html'); 
+        switchhtml("assets/"+scene + '_qa.html'); 
         //switchhtml('scene1_with__box_qa.html')
       } else if (task === 'reference') {
-        switchhtml(scene + '_reference.html');
+        switchhtml("assets/"+scene + '_reference.html');
         //switchhtml('scene1_with_box_reference.html')
       } else {
-        switchhtml(scene + '.html')
+        switchhtml("assets/"+scene + '.html')
       }
       var radios = document.querySelectorAll('input[type="radio"][name="task"]');
       radios.forEach(function(radio) {
