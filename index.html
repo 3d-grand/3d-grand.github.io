@@ -385,18 +385,18 @@
       var taskRadios = document.querySelectorAll('input[type="radio"][name="task"]');
       taskRadios.forEach(radio => {
           radio.addEventListener('click', function() {
-              updateText(radio); // Ensuring correct context and parameters are passed
+              updateText(radio); 
           });
       });
   
-      loadJsonData(); // Call this function to load JSON when the document is ready
+      loadJsonData(); 
   });
   
   function loadJsonData() {
-      fetch('assets/data.json') // Replace with the path to your JSON file
+      fetch('assets/data.json')
           .then(response => response.json())
           .then(data => {
-              window.scenesData = data; // Make the data globally available
+              window.scenesData = data; 
           })
           .catch(error => console.error('Error loading the JSON data:', error));
   }
@@ -404,15 +404,15 @@
   function changeScene() {
       var scene = document.getElementById('pointCloudSelector').value;
       var task = document.querySelector('input[type="radio"][name="task"]:checked')?.value;
-      updateContent(scene, task); // Update content upon scene change
-      switchContent(scene, task); // Update the HTML file displayed
+      updateContent(scene, task); 
+      switchContent(scene, task); 
   }
   
   function updateText(radio) {
       var scene = document.getElementById('pointCloudSelector').value;
       var task = radio.value;
-      updateContent(scene, task); // Refactored to reduce redundancy
-      switchContent(scene, task); // Switch the HTML content based on the radio selection
+      updateContent(scene, task); 
+      switchContent(scene, task); 
   }
   
   function updateContent(scene, task) {
@@ -436,19 +436,19 @@
           return;
       }
       if (!task) {
-        var htmlFile = `assets/${scene}.html`; // Construct the file path
+        var htmlFile = `assets/${scene}.html`; 
       }
       else {
-        var htmlFile = `assets/${scene}_${task}.html`; // Construct the file path
+        var htmlFile = `assets/${scene}_${task}.html`; 
       }
-      switchhtml(htmlFile); // Call your pre-defined function to switch the HTML content
+      switchhtml(htmlFile); 
   }
   
   function updateInfoText(text, fontSize) {
       if (text) {
-          text = escapeHtml(text); // Ensure text is defined before escaping HTML
+          text = escapeHtml(text);
       } else {
-          text = "No information available"; // Provide default text if undefined
+          text = "No information available"; 
       }
       var infoDiv = document.getElementById("info");
       infoDiv.innerHTML = `<span style="font-size: ${fontSize}px; border-color: black;">${text}</span>`;
