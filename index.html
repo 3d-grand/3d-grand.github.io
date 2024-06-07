@@ -242,8 +242,8 @@
           <h2 class="title is-3">Results Visualization</h2>
           <div class="select is-rounded">
             <select id="pointCloudSelector">
-              <option value="assets/scene1.html">Scene 1</option>
-              <option value="assets/scene2.html">Scene 2</option>
+              <option value="scene1">Scene 1</option>
+              <option value="scene2">Scene 2</option>
             </select>
           </div>
 
@@ -251,7 +251,7 @@
             <div class="control"
               style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
               <label class="radio">
-                <input value="captioning" type="radio" name="task" onclick="changeScene()"> <b>Grounded Scene description</b>
+                <input value="caption" type="radio" name="task" onclick="changeScene()"> <b>Grounded Scene description</b>
               </label>
 
               <span style="width:5em"></span>
@@ -378,101 +378,89 @@
   </footer>
 
   <script>
-
-    function changeScene() {
+    document.addEventListener("DOMContentLoaded", function() {
+      var selector = document.getElementById('pointCloudSelector');
+      selector.addEventListener('change', changeScene);
+  
+      var taskRadios = document.querySelectorAll('input[type="radio"][name="task"]');
+      taskRadios.forEach(radio => {
+          radio.addEventListener('click', function() {
+              updateText(radio); // Ensuring correct context and parameters are passed
+          });
+      });
+  
+      loadJsonData(); // Call this function to load JSON when the document is ready
+  });
+  
+  function loadJsonData() {
+      fetch('assets/data.json') // Replace with the path to your JSON file
+          .then(response => response.json())
+          .then(data => {
+              window.scenesData = data; // Make the data globally available
+          })
+          .catch(error => console.error('Error loading the JSON data:', error));
+  }
+  
+  function changeScene() {
       var scene = document.getElementById('pointCloudSelector').value;
-      if (scene.includes('scene1')) {
-        scene = 'scene1'
+      var task = document.querySelector('input[type="radio"][name="task"]:checked')?.value;
+      updateContent(scene, task); // Update content upon scene change
+      switchContent(scene, task); // Update the HTML file displayed
+  }
+  
+  function updateText(radio) {
+      var scene = document.getElementById('pointCloudSelector').value;
+      var task = radio.value;
+      updateContent(scene, task); // Refactored to reduce redundancy
+      switchContent(scene, task); // Switch the HTML content based on the radio selection
+  }
+  
+  function updateContent(scene, task) {
+      var infotext = window.scenesData && window.scenesData[scene] ? window.scenesData[scene][task] : 'Please select a task.';
+      if (!infotext) {
+        return;
       }
-      else if (scene.includes('scene2')) {
-        scene = 'scene2'
+      if (infotext.includes('select a task.')) {
+        var fontSize = 25;
       }
       else {
-        console.log('No scene selected or an unrecognized scene was chosen.');
+        var fontSize = 15;
       }
-      console.log('scene', scene)
+      console.log('scene', scene, 'task', task, 'infotext', infotext, 'fontSize', fontSize); // Debugging
+      updateInfoText(infotext, fontSize);
+  }
   
-      var radios = document.querySelectorAll('input[type="radio"][name="task"]');
-      var task;
-  
-      for (var i = 0; i < radios.length; i++) {
-        if (radios[i].checked) {
-          task = radios[i].value;
-          break;
-        }
+  function switchContent(scene, task) {
+      if (!scene) {
+          console.log("Scene not defined, cannot switch HTML content.");
+          return;
       }
-    
-      if (task === 'captioning') {
-        switchhtml("assets/"+scene + '_caption.html'); 
-        //switchhtml('scene1_with__box_caption.html')
-      } else if (task === 'qa') {
-        switchhtml("assets/"+scene + '_qa.html'); 
-        //switchhtml('scene1_with__box_qa.html')
-      } else if (task === 'reference') {
-        switchhtml("assets/"+scene + '_reference.html');
-        //switchhtml('scene1_with_box_reference.html')
+      if (!task) {
+        var htmlFile = `assets/${scene}.html`; // Construct the file path
+      }
+      else {
+        var htmlFile = `assets/${scene}_${task}.html`; // Construct the file path
+      }
+      switchhtml(htmlFile); // Call your pre-defined function to switch the HTML content
+  }
+  
+  function updateInfoText(text, fontSize) {
+      if (text) {
+          text = escapeHtml(text); // Ensure text is defined before escaping HTML
       } else {
-        switchhtml("assets/"+scene + '.html')
+          text = "No information available"; // Provide default text if undefined
       }
-      var radios = document.querySelectorAll('input[type="radio"][name="task"]');
-      radios.forEach(function(radio) {
-        radio.addEventListener('click', updateText(radio));
-      });
-    }
-
-    function updateInfoText(text) {
-      var words = text.split(' '); // Split the text into words
-      words[0] = '<strong>' + words[0] + '</strong>'; // Make the first word bold
-      var formattedText = words.join(' '); // Rejoin the words into a single string
       var infoDiv = document.getElementById("info");
-      infoDiv.innerHTML = '<span style="font-size: 15px; border-color: black;">' + formattedText + '</span>';  // Adjusted font size from 25px to 20px
-    }
+      infoDiv.innerHTML = `<span style="font-size: ${fontSize}px; border-color: black;">${text}</span>`;
+  }
+  
+  function escapeHtml(text) {
+      return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  
+  
+</script>
 
-    function updateText(radio) {
-      console.log('updating text')
-        scene = document.getElementById('pointCloudSelector').value;
-        console.log('scene', scene)
-        switch (radio.value) {
-          case 'captioning':
-            if (scene.includes('scene1')) {
-              var infotext = 'Caption: In the master bedroom, the modern decor is accented by the plush &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] as the centerpiece, inviting rest and relaxation. The two &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-1&gt;] and &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-2&gt;], identical in their deep black matte finish, frame the bed, providing balance and convenience. The &lt;p&gt;wardrobe&lt;/p&gt;[&lt;wardrobe-3&gt;], with its matte finish, stands ready to organize clothing and accessories. Across the room, the &lt;p&gt;tv stand&lt;/p&gt;[&lt;tv stand-4&gt;] anchors the entertainment area, while the &lt;p&gt;pendant lamp&lt;/p&gt;[&lt;pendant lamp-6&gt;] above adds a modern touch of lighting. The &lt;p&gt;planter&lt;/p&gt;[&lt;others-5&gt;] introduces a contrasting style, infusing the room with a hint of natural charm. This bedroom is a harmonious blend of modern design and functionality, creating a cohesive and restful space.'
-            }
-            else if (scene.includes('scene2')) {
-              var infotext = 'Caption scene 2'
-            }
-            updateInfoText(infotext);
-            break;
-          case 'qa':
-            if (scene.includes('scene1')) {
-              var infotext = 'Ques: Is &lt;p&gt;nightstand&lt;/p&gt; available in this room?<br><strong>Ans:</strong> Yes, there are &lt;p&gt;nightstands&lt;/p&gt;[&lt;nightstand-1&gt; &lt;nightstand-2&gt;] available.';
-            }
-            else if (scene.includes('scene2')){
-              var infotext = 'QA Scene 2'
-            }
-            updateInfoText(infotext);
-            break;
-          case 'reference':
-            if (scene.includes('scene1')) {
-              var infotext = 'Ref: This is a &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] with a rich chocolate brown hue and a rectangular silhouette. The &lt;p&gt;bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is upholstered in a smooth, velvety fabric, offering a luxurious sleeping experience. The &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is positioned in the room and is complemented by two &lt;p&gt;black nightstands&lt;/p&gt;[&lt;nightstand-1&gt;, &lt;nightstand-2&gt;].';
-            }
-            else if (scene.includes('scene2')){
-              var infotext = 'Reference Scene 2'
-            }
-            updateInfoText(infotext);
-            break;
-        }
-      };
-
-      document.addEventListener("DOMContentLoaded", function() {
-        var selector = document.getElementById('pointCloudSelector');
-        selector.addEventListener('change', changeScene);
-      
-        var radios = document.querySelectorAll('input[type="radio"][name="task"]');
-        radios.forEach(radio => {
-          radio.addEventListener('click', () => updateText(radio));
-        });
-      });
-    </script>
 
 </body>
 
