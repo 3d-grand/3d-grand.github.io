@@ -55,8 +55,8 @@
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
-  <script src="https://unpkg.com/three@0.127.0/build/three.module.js"></script>
+  <!-- <script src="static/js/index.js"></script> -->
+  <!-- <script src="https://unpkg.com/three@0.127.0/build/three.module.js"></script> -->
   <script type="text/javascript">
     function switchhtml(path) {
       console.log('switching')
@@ -157,23 +157,6 @@
     </div>
   </section>
 
-
-  <!-- Teaser video-->
-  <!-- <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <video poster="" id="tree" autoplay controls muted loop height="100%">
-          <source src="static/videos/banner_video.mp4" type="video/mp4">
-        </video>
-        <h2 class="subtitle has-text-centered">
-          Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat
-          pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus.
-        </h2>
-      </div>
-    </div>
-  </section> -->
-  <!-- End teaser video -->
-
   <section class="hero is-small">
     <div class="hero-body">
       <div class="container">
@@ -236,65 +219,6 @@
   </div>
 </section>
 
-
-
-
-  <!-- End image carousel -->
-
-  <!-- <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-centered">
-        <h2 class="title is-3">Data Distribution</h2>
-      </div>
-        <div class="columns is-centered">
-          <iframe src="sankey.html" style="width:100%; height:500px; border:none;"></iframe>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-centered">
-        <h2 class="title is-3">Visual</h2>
-        <radio>
-          <input type="radio" name="radio" id="radio1" onclick="switchhtml('scene_no_bbox.html')" checked>
-          <label for="radio1">No bbox</label>
-        </radio>
-        <radio>
-          <input type="radio" name="radio" id="radio2" onclick="switchhtml('scene_with_bbox.html')">
-          <label for="radio2">With bbox</label>
-        </radio>
-      </div>
-        <div class="columns is-centered">
-          <iframe id="html-plot" src="scene_no_bbox.html" style="width:100%; height:500px; border:none;"></iframe>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- <section class="section hero is-light" id="Contribution">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Method</h2>
-          <div class="content has-text-justified">
-            <p>
-              The training process for Grounded 3D-LLM is divided into two key steps. Firstly, CLASP utilizes extensive
-              scene-text annotations (at the phrase level) to pre-train a 3D point cloud encoder and a cross-modal
-              interactor. The subsequent step involves multi-task instruction tuning, which interlaces <i>referent</i>
-              tokens within the instructions and responses, thereby facilitating flexible 3D scene understanding tasks.
-            </p>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-
   <section class="hero is-light">
     <div class="hero-body">
       <div class="container">
@@ -344,22 +268,6 @@
 
               <span style="width:5em"></span>
 
-              <!-- <label class="radio">
-                <input value="reasoning" type="radio" name="task"> <b>Complex Reasoning</b>
-              </label>
-
-              <span style="width:5em"></span> -->
-
-              <!-- <label class="radio">
-                <input value="dialogue" type="radio" name="task"> <b>Embodied Dialogue</b>
-              </label>
-
-              <span style="width:5em"></span>
-
-              <label class="radio">
-                <input value="planning" type="radio" name="task"> <b>Embodied Planning</b>
-              </label> -->
-
             </div>
           </div>
         </div>
@@ -371,22 +279,15 @@
         <div style="display: flex; margin-top: 20px;">
           <div style="flex: 3; height: 400px; position: relative;">
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
-            <!-- <canvas id="webgl_output" style="width: 100%; height: 100%;"></canvas> -->
-            <!-- <div class="columns is-centered"> -->
             <iframe id="html-plot" src="scene1.html" style="width:100%; height:500px; border:none;"></iframe>
-            <!-- </div> -->
           </div>
           <div id="info" style="flex: 2; font-size: 15px; padding: 10px;">
             <span style="font-size: 25px; border-color: black;">Please select a task.</span>
           </div>
         </div>
-
-        <!-- <button id="toggleAnimation">Pause Rotation</button> -->
       </div>
     </div>
   </section>
-
-  <!-- Video carousel -->
 
   
   <section class="section hero is-light">
@@ -431,39 +332,7 @@
       </div>
     </div>
   </section>
-  <!-- End video carousel -->
 
-  <!-- Youtube video -->
-  <!-- <section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <div class="publication-video">
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-  <!-- End youtube video -->
-
-
-  <!-- Paper poster -->
-  <!-- <section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section> -->
-  <!--End paper poster -->
 
 
   <!--BibTex citation -->
@@ -505,12 +374,6 @@
     </div>
   </footer>
 
-  <!-- Statcounter tracking code -->
-
-  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-  <!-- End of Statcounter Code -->
-
   <script>
 
     function changeScene() {
@@ -548,8 +411,10 @@
       } else {
         switchhtml(scene + '.html')
       }
-      console.log('Updating text')
-      updateText();
+      var radios = document.querySelectorAll('input[type="radio"][name="task"]');
+      radios.forEach(function(radio) {
+        radio.addEventListener('click', updateText(radio));
+      });
     }
 
     function updateInfoText(text) {
@@ -560,316 +425,52 @@
       infoDiv.innerHTML = '<span style="font-size: 15px; border-color: black;">' + formattedText + '</span>';  // Adjusted font size from 25px to 20px
     }
 
-    function updateText() {
-      // Adding event listeners to all radio buttons
-      var radios = document.querySelectorAll('input[type="radio"][name="task"]');
-      radios.forEach(function(radio) {
-        radio.addEventListener('click', function() {
-          var scene = document.getElementById('pointCloudSelector').value;
-          console.log('scene', scene)
-          switch (radio.value) {
-            case 'captioning':
-              if (scene.includes('scene1')) {
-                var infotext = 'Caption: In the master bedroom, the modern decor is accented by the plush &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] as the centerpiece, inviting rest and relaxation. The two &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-1&gt;] and &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-2&gt;], identical in their deep black matte finish, frame the bed, providing balance and convenience. The &lt;p&gt;wardrobe&lt;/p&gt;[&lt;wardrobe-3&gt;], with its matte finish, stands ready to organize clothing and accessories. Across the room, the &lt;p&gt;tv stand&lt;/p&gt;[&lt;tv stand-4&gt;] anchors the entertainment area, while the &lt;p&gt;pendant lamp&lt;/p&gt;[&lt;pendant lamp-6&gt;] above adds a modern touch of lighting. The &lt;p&gt;planter&lt;/p&gt;[&lt;others-5&gt;] introduces a contrasting style, infusing the room with a hint of natural charm. This bedroom is a harmonious blend of modern design and functionality, creating a cohesive and restful space.'
-              }
-              else if (scene.includes('scene2')) {
-                var infotext = 'Caption scene 2'
-              }
-              updateInfoText(infotext);
-              break;
-            case 'qa':
-              if (scene.includes('scene1')) {
-                var infotext = 'Ques: Is &lt;p&gt;nightstand&lt;/p&gt; available in this room?<br><strong>Ans:</strong> Yes, there are &lt;p&gt;nightstands&lt;/p&gt;[&lt;nightstand-1&gt; &lt;nightstand-2&gt;] available.';
-              }
-              else if (scene.includes('scene2')){
-                var infotext = 'QA Scene 2'
-              }
-              updateInfoText(infotext);
-              break;
-            case 'reference':
-              if (scene.includes('scene1')) {
-                var infotext = 'Ref: This is a &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] with a rich chocolate brown hue and a rectangular silhouette. The &lt;p&gt;bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is upholstered in a smooth, velvety fabric, offering a luxurious sleeping experience. The &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is positioned in the room and is complemented by two &lt;p&gt;black nightstands&lt;/p&gt;[&lt;nightstand-1&gt;, &lt;nightstand-2&gt;].';
-              }
-              else if (scene.includes('scene2')){
-                var infotext = 'Reference Scene 2'
-              }
-              updateInfoText(infotext);
-              break;
-          }
+    function updateText(radio) {
+      console.log('updating text')
+        scene = document.getElementById('pointCloudSelector').value;
+        console.log('scene', scene)
+        switch (radio.value) {
+          case 'captioning':
+            if (scene.includes('scene1')) {
+              var infotext = 'Caption: In the master bedroom, the modern decor is accented by the plush &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] as the centerpiece, inviting rest and relaxation. The two &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-1&gt;] and &lt;p&gt;nightstand&lt;/p&gt;[&lt;nightstand-2&gt;], identical in their deep black matte finish, frame the bed, providing balance and convenience. The &lt;p&gt;wardrobe&lt;/p&gt;[&lt;wardrobe-3&gt;], with its matte finish, stands ready to organize clothing and accessories. Across the room, the &lt;p&gt;tv stand&lt;/p&gt;[&lt;tv stand-4&gt;] anchors the entertainment area, while the &lt;p&gt;pendant lamp&lt;/p&gt;[&lt;pendant lamp-6&gt;] above adds a modern touch of lighting. The &lt;p&gt;planter&lt;/p&gt;[&lt;others-5&gt;] introduces a contrasting style, infusing the room with a hint of natural charm. This bedroom is a harmonious blend of modern design and functionality, creating a cohesive and restful space.'
+            }
+            else if (scene.includes('scene2')) {
+              var infotext = 'Caption scene 2'
+            }
+            updateInfoText(infotext);
+            break;
+          case 'qa':
+            if (scene.includes('scene1')) {
+              var infotext = 'Ques: Is &lt;p&gt;nightstand&lt;/p&gt; available in this room?<br><strong>Ans:</strong> Yes, there are &lt;p&gt;nightstands&lt;/p&gt;[&lt;nightstand-1&gt; &lt;nightstand-2&gt;] available.';
+            }
+            else if (scene.includes('scene2')){
+              var infotext = 'QA Scene 2'
+            }
+            updateInfoText(infotext);
+            break;
+          case 'reference':
+            if (scene.includes('scene1')) {
+              var infotext = 'Ref: This is a &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] with a rich chocolate brown hue and a rectangular silhouette. The &lt;p&gt;bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is upholstered in a smooth, velvety fabric, offering a luxurious sleeping experience. The &lt;p&gt;king-size bed&lt;/p&gt;[&lt;king-size bed-0&gt;] is positioned in the room and is complemented by two &lt;p&gt;black nightstands&lt;/p&gt;[&lt;nightstand-1&gt;, &lt;nightstand-2&gt;].';
+            }
+            else if (scene.includes('scene2')){
+              var infotext = 'Reference Scene 2'
+            }
+            updateInfoText(infotext);
+            break;
+        }
+      };
+
+      document.addEventListener("DOMContentLoaded", function() {
+        var selector = document.getElementById('pointCloudSelector');
+        selector.addEventListener('change', changeScene);
+      
+        var radios = document.querySelectorAll('input[type="radio"][name="task"]');
+        radios.forEach(radio => {
+          radio.addEventListener('click', () => updateText(radio));
         });
       });
-    }
-    
-
-    document.addEventListener('DOMContentLoaded', function() {
-      var selector = document.getElementById('pointCloudSelector');
-
-      selector.addEventListener('change', function() {
-        changeScene()
-      });
-    });
-    
-
-    document.addEventListener("DOMContentLoaded", function() {
-      // Function to update the info text
-    updateText();
-    });
     </script>
 
 </body>
-
-<script type="module">
-  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.114.0/build/three.module.js';
-  import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.114.0/examples/jsm/controls/OrbitControls.js';
-  import { PLYLoader } from 'https://cdn.jsdelivr.net/npm/three@0.114.0/examples/jsm/loaders/PLYLoader.js';
-
-  let loader = new PLYLoader();
-
-  let scene = new THREE.Scene();
-  let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  let canvas1 = document.querySelector('#webgl_output'); // Make sure this selector is correct
-  let canvas2 = document.querySelector('#webgl_output_dataset'); // Make sure this selector is correct
-  let renderer = new THREE.WebGLRenderer({
-    canvas: canvas1,
-    alpha: true,
-    antialias: true
-  });
-  renderer.setClearColor(0xffffff, 1); // Ensure white background with full opacity
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio * 2, 50)); // Adjust pixel ratio for high resolution
-  camera.position.y = 4;
-  let light = new THREE.AmbientLight(0x404040); // Example light
-  scene.add(light);
-  // let grid1 = new THREE.GridHelper(30, 30);
-  // scene.add(grid1);
-
-  let animateId = null;
-  let isAnimating = false;
-
-
-  function animate() {
-
-    animateId = requestAnimationFrame(animate);
-
-    // Rotate the camera only if isAnimating is true
-    if (isAnimating) {
-      var time = Date.now() * 0.001; // current time in seconds
-      camera.position.x = Math.sin(time) * 2; // 10 is the radius of the orbit
-      camera.position.z = Math.cos(time) * 2;
-      camera.lookAt(scene.position);
-    }
-    renderer.clear(); // Clear the canvas before rendering the scene
-    renderer.render(scene, camera);
-  }
-
-  // Start the animation loop
-  animate();
-
-  // Listen for button clicks to toggle animation
-  document.getElementById('toggleAnimation').addEventListener('click', function () {
-    isAnimating = !isAnimating; // Toggle the isAnimating state
-
-    // Update button text based on the animation state
-    if (isAnimating) {
-      this.textContent = 'Pause Rotation';
-      if (!animateId) {
-        animate(); // Restart animation if it was paused
-      }
-    } else {
-      this.textContent = 'Resume Rotation';
-      renderer.setAnimationLoop(() => {
-        renderer.clear(); // Clear the canvas before rendering the scene
-        renderer.render(scene, camera);
-      });
-    }
-  });
-
-
-  async function loadPointCloud(rootDirectory, filenames, clearAll) {
-    if (clearAll) {
-      scene.children = scene.children.filter(child => !(child instanceof THREE.Points));
-    } else {
-      scene.children = scene.children.filter(child => !(child instanceof THREE.Points && child.name !== 'instance_raw'));
-    }
-
-
-    try {
-      const geometry = await new Promise((resolve, reject) => {
-        loader.load(rootDirectory + '/output.ply', resolve, undefined, reject);
-      });
-
-      geometry.computeVertexNormals();
-
-      const pointsMaterial = new THREE.PointsMaterial({
-        size: 0.08,
-        vertexColors: true,
-        color: 0xffffff
-      });
-
-      const points = new THREE.Points(geometry, pointsMaterial);
-      points.rotation.x = -Math.PI / 2;
-      points.name = 'instance_raw';
-
-      scene.add(points);
-      console.log('instance_raw.ply loaded');
-    } catch (error) {
-      console.log('An error happened while loading instance_raw.ply:', error);
-    }
-    for (const filename of filenames) {
-      try {
-        const geometry = await new Promise((resolve, reject) => {
-          const fullPath = rootDirectory + '/' + filename;
-          loader.load(fullPath, resolve, undefined, reject);
-        });
-
-        geometry.computeVertexNormals();
-
-        const pointsMaterial = new THREE.PointsMaterial({
-          size: 0.08,
-          vertexColors: true,
-          color: 0xffffff
-        });
-
-        const points = new THREE.Points(geometry, pointsMaterial);
-        points.rotation.x = -Math.PI / 2;
-        points.name = 'pcd_' + filenames.indexOf(filename);
-
-        scene.add(points);
-        console.log(filename + ' loaded');
-      } catch (error) {
-        console.log('An error happened while loading ' + filename + ':', error);
-      }
-    }
-  }
-  let lastLoadedScene = "assets/LivingRoom-3973-3d-front";
-  document.addEventListener('DOMContentLoaded', function () {
-
-    const taskRadios = document.querySelectorAll('input[name="task"]');
-    const caseSelector = document.getElementById('caseSelector');
-
-    function updateCases(task) {
-      const optionsMap = {
-        'detection': [{ text: 'Case 1', value: 'case1' }, { text: 'Case 2', value: 'case2' }, { text: 'Case 3', value: 'case3' }, { text: 'Case 4', value: 'case4' }],
-        'grounding': [{ text: 'Case 1', value: 'case1' }, { text: 'Case 2', value: 'case2' }, { text: 'Case 3', value: 'case3' }, { text: 'Case 4', value: 'case4' }],
-        'captioning': [{ text: 'Case 1', value: 'case1' }, { text: 'Case 2', value: 'case2' }, { text: 'Case 3', value: 'case3' }, { text: 'Case 4', value: 'case4' }],
-        'reasoning': [{ text: 'Case 1', value: 'case1' }, { text: 'Case 2', value: 'case2' }, { text: 'Case 3', value: 'case3' }, { text: 'Case 4', value: 'case4' }],
-        'dialogue': [{ text: 'Case 1', value: 'case1' }],
-        'planning': [{ text: 'Case 1', value: 'case1' }]
-      };
-
-      let cases = optionsMap[task] || [];
-      caseSelector.innerHTML = ''; // Clear existing options
-      cases.forEach(function (c) {
-        let option = new Option(c.text, c.value);
-        caseSelector.add(option);
-      });
-    }
-
-    taskRadios.forEach(function (radio) {
-      radio.addEventListener('change', function () {
-        if (this.checked) {
-          updateCases(this.value);
-        }
-      });
-    });
-  });
-  function updateInfo() {
-    const scene = document.getElementById("pointCloudSelector").value;
-    const caseValue = document.getElementById("caseSelector").value;
-    console.log(scene)
-    // Collect the value of the checked radio button in 'task'
-    const taskRadios = document.querySelectorAll('input[name="task"]');
-    let taskValue = "";
-    for (const radio of taskRadios) {
-      if (radio.checked) {
-        taskValue = radio.value;
-        break;
-      }
-    }
-
-    // Fetch the JSON data once
-    fetch('assets/info.json')
-      .then(response => response.json())
-      .then(data => {
-        // Extract necessary data from the response
-        const rootDirectory = scene;
-        const filenames = data[scene][taskValue][caseValue]["ids"];
-        const text = data[scene][taskValue][caseValue]["text"];
-        const clearAll = (scene !== lastLoadedScene);
-        lastLoadedScene = scene;
-        // Update point cloud
-        loadPointCloud(rootDirectory, filenames, clearAll);
-
-        // Update additional information
-        document.getElementById("info").innerHTML = text;
-      })
-      .catch(error => {
-        console.error('Error fetching JSON:', error);
-      });
-  }
-
-  // Initially update the info based on the default selected options
-  updateInfo();
-
-  document.addEventListener('DOMContentLoaded', () => {
-    // Add event listeners that call updateInfo
-    document.getElementById("pointCloudSelector").addEventListener("change", updateInfo);
-    document.querySelectorAll('input[name="task"]').forEach(radio => {
-      radio.addEventListener("change", updateInfo);
-    });
-    document.getElementById("caseSelector").addEventListener("change", updateInfo);
-
-    // Initially update the info based on the default selected options
-    updateInfo();
-  });
-
-  let controls1 = new OrbitControls(camera, canvas1)
-  controls1.enableZoom = true
-  // controls2.enableDamping = true
-  controls1.object.position.set(camera.position.x, camera.position.y, camera.position.z)
-  controls1.target = new THREE.Vector3(0, 0, 0)
-  controls1.update()
-
-  loadPointCloud('assets/scenes/LivingRoom-3973-3d-front', ["output.ply"]); // Load the first point cloud by default
-
-  console.log("Script loaded and executing.");
-  window.addEventListener('resize', () => {
-    renderer.setSize(window.innerWidth * 0.7, 400);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-  });
-</script>
-
-<script>
-
-  document.addEventListener('DOMContentLoaded', function() {
-      const table = document.querySelector('.table'); // Assuming your table has a class called 'table'
-      const headers = table.querySelectorAll('th');
-      const tableBody = table.querySelector('tbody');
-      const rows = Array.from(tableBody.querySelectorAll('tr'));
-  
-      const getCellValue = (row, index) => row.children[index].innerText || row.children[index].textContent;
-  
-      const comparer = (index, asc) => (a, b) => {
-          const valA = getCellValue(a, index);
-          const valB = getCellValue(b, index);
-  
-          return ((v1, v2) => {
-              return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2);
-          })(asc ? valA : valB, asc ? valB : valA);
-      };
-  
-      headers.forEach((header, index) => {
-          header.addEventListener('click', () => {
-              const asc = !header.classList.contains('asc');
-              headers.forEach(th => th.classList.remove('asc', 'desc'));
-              header.classList.toggle('asc', asc);
-              header.classList.toggle('desc', !asc);
-  
-              rows.sort(comparer(index, asc)).forEach(row => tableBody.appendChild(row));
-          });
-      });
-  });
-    
-  </script>
 
 </html>
