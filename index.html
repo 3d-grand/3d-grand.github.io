@@ -220,41 +220,45 @@
 </section> --> -->
 
 <style>
-  .custom-hero .columns {
+  .centered-content {
+    position: relative; /* Needed for absolute positioning inside */
+    left: 50%; /* Center the div relative to its normal position */
+    transform: translateX(-50%); /* Perfectly center the div */
+    width: 150%;
     display: flex;
-    flex-wrap: nowrap;
-    align-items: stretch;
-    width: 100%;
-  }
-  .custom-hero iframe {
-    flex: 0 1 40%; /* 40% width */
+    justify-content: space-around; /* Distribute extra space around items */
+    align-items: center;
     height: 550px;
+  }
+
+  .centered-content iframe {
+    flex: 0 1 40%; /* Take up 40% of the parent container */
     border: none;
+    height: 100%;
     aspect-ratio: 16/9;
   }
-  .custom-hero figure {
-    flex: 0 1 60%; /* 60% width */
-    padding: 10px;
+
+  .centered-content figure {
+    flex: 0 1 60%; /* Take up 60% of the parent container */
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .custom-hero img {
-    height: 100%;
+
+  .centered-content img {
+    max-height: 100%;
     width: auto;
   }
 </style>
 
-<section class="hero is-small custom-hero">
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <div class="container">
-        <div class="columns">
-          <iframe src="sankey.html"></iframe>
-          <figure>
-            <img src="assets/images/table_1__.png" alt="Descriptive alt text" />
-          </figure>
-        </div>
+      <div class="centered-content">
+        <iframe src="sankey.html"></iframe>
+        <figure>
+          <img src="assets/images/table_1__.png" alt="Descriptive alt text" />
+        </figure>
       </div>
     </div>
   </div>
