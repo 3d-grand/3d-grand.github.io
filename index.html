@@ -415,22 +415,25 @@
     </div>
     <div class="hero-body">
       <div class="container">
-        <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px; width: 100%;">
-          <div style="width: 100%; position: relative; display: flex; justify-content: center; align-items: center; height: 500px;">
-            <div id="pose_loading" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"></div>
-            <iframe id="html-plot" src="assets/scene1.html" style="width: 100%; height: 100%; border: none;"></iframe>
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-12" style="height: 500px; position: relative;">
+            <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
+            <iframe id="html-plot" src="assets/scene1.html" style="width:100%; height:100%; border: 2px solid #d3d3d3; border-radius: 10px;"></iframe>
           </div>
-          <div id="info" style="width: 100%; font-size: 15px; padding: 10px; text-align: center;">
-            <span style="font-size: 25px; border-color: black;">Please select a task.</span>
+          <div id="info" class="col-xl-6 col-lg-6 col-md-12" style="width: 50%; font-size: 15px; padding: 10px; border: 2px solid #d3d3d3; border-radius: 10px;">
+            <span style="font-size: 25px;">Please select a task.</span>
           </div>
         </div>
       </div>
+    </div>
+    
+    
     
 
   </section>
 
 
-  <section class="section hero is-small">
+  <section class="section hero is-small is-light">
     <div class="container is-max-desktop">
         <div class="columns is-centered">
             <h2 class="title is-3" style="margin-bottom: 0.5rem;">Evaluating Hallucination for 3D-LLMs</h2>
@@ -580,8 +583,26 @@
           for (const key in content) {
               if (content.hasOwnProperty(key)) {
                   const color = content[key] || 'black';
-                  const replacement = `<span style="color: ${color};">${key}</span>`;
-                let lastIndex = text.lastIndexOf(key);
+                  if (key.startsWith("<p>")) {
+                      var replaceKey = key.replace("<p>", "").replace("</p>", "");
+                      var replacement = `<p><span style="color: ${color};">${replaceKey}</span></p>`
+                  }
+                  else if (key.startsWith("[") && key.endsWith("]")) {
+                      var replaceKey = key.replace("[", "").replace("]", "");
+                      var replacement = `<b>[<span style="color: ${color};">${replaceKey}</span>]</b>`
+                  }
+                  else if (key.startsWith("[")) {
+                      var replaceKey = key.replace("[", "");
+                      var replacement = `<b>[<span style="color: ${color};">${replaceKey}</span>`
+                  }
+                  else if (key.endsWith("]")) {
+                      var replaceKey = key.replace("]", "");
+                      var replacement = `<span style="color: ${color};">${replaceKey}</span>]</b>`
+                  }
+                  else {
+                      var replacement = `<b><span style="color: ${color};">${key}</span></b>`;
+                  }
+                  let lastIndex = text.lastIndexOf(key);
 
                 // replace only the last occurrence of the key in the text with the colored span
                 if (lastIndex !== -1) {
