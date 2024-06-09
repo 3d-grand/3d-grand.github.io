@@ -3,23 +3,46 @@
 
 <head>
   <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
   <meta name="description" content="Website for 3D-GRAND: Towards Better Grounding and Less Hallucination for 3D-LLMs">
   <meta property="og:title" content="3D-GRAND: Towards Better Grounding and Less Hallucination for 3D-LLMs" />
   <meta property="og:description" content="Provide access to data, code, paper for 3D-GRAND: Towards Better Grounding and Less Hallucination for 3D-LLMs" />
   <meta property="og:url" content="https://3d-grand.github.io/" />
-  <meta property="og:image" content="static/images/your_banner_image.png" />
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="s  tatic/image/your_banner_image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+
+
   <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
   <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
   <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    #info {
+      width: 300px;
+      /* 固定宽度 */
+      height: 400px;
+      /* 固定高度 */
+      overflow: auto;
+      /* 内容超出时自动显示滚动条 */
+      padding: 10px;
+      /* 内边距 */
+      font-size: 20px;
+      /* 文字大小 */
+    }
+  </style>
 
   <title>3D-GRAND</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="static/css/bulma-slider.min.css">
@@ -32,144 +55,112 @@
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
+  <!-- <script src="static/js/index.js"></script> -->
+  <!-- <script src="https://unpkg.com/three@0.127.0/build/three.module.js"></script> -->
   <script type="text/javascript">
     function switchhtml(path) {
       console.log('switching')
       document.getElementById("html-plot").src = path;
     }
   </script>
-
-  <style>
-    #info {
-      width: 100%;
-      max-width: 300px;
-      height: 400px;
-      overflow: auto;
-      padding: 10px;
-      font-size: 20px;
-    }
-
-    .centered-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-    
-    .centered-content iframe,
-    .centered-content figure {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-    
-    @media (min-width: 768px) {
-      .centered-content {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    
-      .centered-content iframe {
-        flex: 0 1 70%;
-        height: 550px;
-      }
-    
-      .centered-content figure {
-        flex: 0 1 30%;
-        height: 550px;
-      }
-    }
-    
-    .columns.is-centered.is-vcentered {
-      align-items: center;
-    }
-    
-    .column.is-8,
-    .column.is-4 {
-      padding: 0;
-    }
-    
-    .column.is-8 iframe {
-      height: 100%;
-    }
-    
-    .column.is-4 figure img {
-      height: auto;
-    }
-    
-  </style>
 </head>
 
 <body>
   <section class="hero">
     <div class="hero-body">
-      <div class="container">
+      <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">
               <span style="font-weight: bold;">3D-GRAND</span>: Towards Better Grounding and Less Hallucination for 3D-LLMs
-            </h1>
+          </h1>
             <div class="is-size-5 publication-authors">
-              <span class="author-block">
-                <a href="https://jedyang.com/">Jianing (Jed) Yang</a><sup>*,1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://xuweiyichen.github.io/">Xuweiyi Chen</a><sup>*,1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://madaan-nikhil.github.io/">Nikhil Madaan</a>,
-              </span>
-              <span class="author-block">
-                <a href="https://madhavaniyengar.github.io/">Madhavan Iyengar</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://jasonqsy.github.io/">Shengyi Qian</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://web.eecs.umich.edu/~fouhey/">David Fouhey</a><sup>1,2</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://web.eecs.umich.edu/~chaijy/">Joyce Y. Chai</a><sup>1</sup>,
-              </span>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://jedyang.com/">Jianing (Jed) Yang</a><sup>*,1</sup>,</span>
+                <span class="author-block">
+                  <a href="https://xuweiyichen.github.io/">Xuweiyi Chen</a><sup>*,1</sup>,</span>
+                <span class="author-block">
+                  <a href="https://madaan-nikhil.github.io/">Nikhil Madaan</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://madhavaniyengar.github.io/">Madhavan Iyengar</a><sup>1</sup>,
+                </span>
+                <div class="is-size-5 publication-authors">
+                  <span class="author-block">
+                    <a href="https://jasonqsy.github.io/">Shengyi Qian</a><sup>1</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://web.eecs.umich.edu/~fouhey/">David Fouhey</a><sup>1,2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://web.eecs.umich.edu/~chaijy/">Joyce Y. Chai</a><sup>1</sup>,
+                  </span>
+                </div>
+              </div>
             </div>
+
             <div class="is-size-5 publication-authors">
               <span class="author-block"><sup>1</sup>University of Michigan <sup>2</sup>New York University</span>
             </div>
             <div class="is-size-7 publication-authors">
               <span class="author-block"><sup>*</sup>Denotes Equal Contribution</span>
-            </div>
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="" target="_blank" class="external-link button is-normal is-rounded">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
+
+            <div class="column has-text-centered">
+               <div class="publication-links">
+                <!-- Arxiv PDF link -->
+                <!-- <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span> -->
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                <!-- Dataset abstract Link -->
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>3D-GRAND Data</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>3D-POPE Data</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="" target="_blank" class="external-link button is-normal is-rounded">
+                      <span class="icon">
+                          <i class="fas fa-trophy"></i> <!-- Using a trophy icon for the leaderboard -->
+                      </span>
+                      <span>Leaderboard</span> <!-- Label text for the button -->
+                  </a>
               </span>
-              <span class="link-block">
-                <a href="" target="_blank" class="external-link button is-normal is-rounded">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>3D-GRAND Data</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="" target="_blank" class="external-link button is-normal is-rounded">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>3D-POPE Data</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="" target="_blank" class="external-link button is-normal is-rounded">
-                  <span class="icon">
-                    <i class="fas fa-trophy"></i>
-                  </span>
-                  <span>Leaderboard</span>
-                </a>
-              </span>
+
+              </div>
             </div>
           </div>
         </div>
@@ -181,63 +172,100 @@
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
+          <!-- Your image here -->
           <img src="assets/images/teaser-1.png" width="90%" alt="Generalist outputs" />
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Paper abstract -->
   <section class="section hero is-light">
-    <div class="container">
+    <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              The integration of language and 3D perception is crucial for developing embodied agents and robots that comprehend and interact with the physical world. While large language models (LLMs) have demonstrated impressive language understanding and generation capabilities, their adaptation to 3D environments (3D-LLMs) remains in its early stages. A primary challenge is the absence of large-scale datasets that provide dense grounding between language and 3D scenes. In this paper, we introduce 3D-GRAND, a pioneering large-scale dataset comprising 40,087 household scenes paired with 6.2 million densely-grounded scene-language instructions. Our results show that instruction tuning with 3D-GRAND significantly reduces hallucinations and enhances the grounding capabilities of 3D-LLMs compared to models trained without dense grounding. As part of our contributions, we propose a comprehensive benchmark 3D-POPE to systematically evaluate hallucination in 3D-LLMs, enabling fair comparisons among future models. Our experiments underscore a scaling effect between dataset size and 3D-LLM performance, emphasizing the critical role of large-scale 3D-text datasets in advancing embodied AI research. Through 3D-GRAND and 3D-POPE, we aim to equip the embodied AI community with essential resources and insights, setting the stage for more reliable and better-grounded 3D-LLMs.
+              The integration of language and 3D perception is crucial for developing embodied agents and robots that comprehend and interact with the physical world. While large language models (LLMs) have demonstrated impressive language understanding and generation capabilities, their adaptation to 3D environments (3D-LLMs) remains in its early stages. A primary challenge is the absence of large-scale datasets that provide dense grounding between language and 3D scenes. In this paper, we introduce 3D-GRAND, a pioneering large-scale dataset comprising 40,087 household scenes paired with 6.2 million densely-grounded scene-language instructions. Our results show that instruction tuning with 3D-GRAND significantly reduces hallucinations and enhances the grounding capabilities of 3D-LLMs compared to models trained without dense grounding. As part of our contributions, we propose a comprehensive benchmark 3D-POPE to systematically evaluate hallucination in 3D-LLMs, enabling fair comparisons among future models. Our experiments underscore a scaling effect between dataset size and 3D-LLM performance, emphasizing the critical role of large-scale 3D-text datasets in advancing embodied AI research. Through 3D-GRAND and 3D-POPE, we aim to equip the embodied AI community with essential resources and insights, setting the stage for more reliable and better-grounded 3D-LLMs.</i>.
             </p>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <!-- End paper abstract -->
 
+  
   <section class="hero is-small">
     <div class="hero-body">
-      <div class="container">
-        <div class="columns is-centered">
-          <h2 class="title is-3">Data Distribution</h2>
+        <div class="container">
+            <div class="columns is-centered">
+                <h2 class="title is-3">Data Distribution</h2>
+            </div>
+            <div class="container">
+                <div class="columns is-centered">
+                    <img src="assets/images/data_info_hub-1.png" width="90%" alt="Generalist outputs" />
+                </div>
+                <br>
+                
+            </div>
         </div>
-        <div class="columns is-centered">
-          <img src="assets/images/data_info_hub-1.png" width="90%" alt="Generalist outputs" />
-        </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-centered is-vcentered">
-          <div class="column is-8">
-            <iframe src="sankey.html" style="width: 100%; height: 550px; border: none;"></iframe>
-          </div>
-          <div class="column is-4">
-            <figure>
-              <img src="assets/images/Table_1.png" alt="Descriptive alt text" style="width: 100%;" />
-            </figure>
-          </div>
-        </div>
+
+<style>
+  .centered-content {
+    position: relative; /* Needed for absolute positioning inside */
+    left: 50%; /* Center the div relative to its normal position */
+    transform: translateX(-50%); /* Perfectly center the div */
+    width: 150%;
+    display: flex;
+    justify-content: space-around; /* Distribute extra space around items */
+    align-items: center;
+    height: 550px;
+  }
+
+  .centered-content iframe {
+    flex: 0 1 30%; /* Take up 40% of the parent container */
+    border: none;
+    height: 100%;
+    aspect-ratio: 14/9;
+  }
+
+  .centered-content figure {
+    flex: 0 1 60%; /* Take up 60% of the parent container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .centered-content img {
+    max-height: 100%;
+    width: auto;
+  }
+</style>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="centered-content">
+        <iframe src="sankey.html"></iframe>
+        <figure>
+          <img src="assets/images/Table_1.png" alt="Descriptive alt text" />
+        </figure>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section class="hero is-light">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
-          <h2 class="title is-3">Data Curation Pipeline</h2>
-        </div>
+        <h2 class="title is-3">Data Curation Pipeline</h2>
+      </div>
         <div class="columns is-centered">
           <img src="assets/images/data_curation_pipeline-1.png" width="80%" alt="Our Framework" />
         </div>
@@ -245,6 +273,9 @@
     </div>
   </section>
 
+  
+  <br>
+  <br>
   <section class="hero is-small" id="PointCloudVisualization">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -258,7 +289,8 @@
           </div>
 
           <div class="columns is-centered" style="position: relative; margin-top: 20px;">
-            <div class="control" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+            <div class="control"
+              style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
               <label class="radio">
                 <input value="caption" type="radio" name="task" onclick="changeScene()"> <b>Grounded Scene description</b>
               </label>
@@ -285,12 +317,15 @@
     </div>
     <div class="hero-body">
       <div class="container">
-        <div style="display: flex; flex-wrap: wrap; margin-top: 20px;">
-          <div style="flex: 3; height: 400px; position: relative; width: 100%;">
+        <div style="display: flex; margin-top: 20px;">
+          <div style="flex: 3; height: 400px; position: relative;">
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
+            <!-- <canvas id="webgl_output" style="width: 100%; height: 100%;"></canvas> -->
+            <!-- <div class="columns is-centered"> -->
             <iframe id="html-plot" src="assets/scene1.html" style="width:100%; height:500px; border:none;"></iframe>
+            <!-- </div> -->
           </div>
-          <div id="info" style="flex: 2; font-size: 15px; padding: 10px; width: 100%;">
+          <div id="info" style="flex: 2; font-size: 15px; padding: 10px;">
             <span style="font-size: 25px; border-color: black;">Please select a task.</span>
           </div>
         </div>
@@ -298,19 +333,25 @@
     </div>
   </section>
 
-  <section class="section hero is-small">
-    <div class="container">
-      <div class="columns is-centered">
-        <h2 class="title is-3" style="margin-bottom: 0.5rem;">Evaluating Hallucination for 3D-LLMs</h2>
-      </div>
-      <div class="columns is-centered">
-        <div class="container iframe-container" style="width: 100%;">
-          <iframe src="assets/Precision.html" style="width: 100%; min-width: 300px; height: 500px;"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
 
+  <section class="section hero is-small">
+    <div class="container is-max-desktop">
+        <div class="container">
+            <div class="columns is-centered">
+                <h2 class="title is-3" style="margin-bottom: 0.5rem;">Evaluating Hallucination for 3D-LLMs</h2>
+            </div>
+            <div class="columns is-centered">
+                <div class="container iframe-container" style="width: 100%;"> <!-- Increase the width as needed -->
+                    <iframe src="assets/Precision.html" style="width: 100%; min-width: 800px; height: 500px;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">Citation</h2>
@@ -321,18 +362,28 @@
         eprint={2309.12311},
         archivePrefix={arXiv},
         primaryClass={cs.CV}
-      }</code></pre>
+  }</code></pre>
     </div>
   </section>
+  <!--End BibTex citation -->
+
 
   <footer class="footer">
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-8">
           <div class="content">
+
             <p>
-              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page. You are free to borrow the design of this website, we just ask that you link back to this page in the footer. This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the of this website, we just ask that you link back to this page in the footer.
+              <br> This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
             </p>
+
           </div>
         </div>
       </div>
@@ -346,77 +397,84 @@
   
       var taskRadios = document.querySelectorAll('input[type="radio"][name="task"]');
       taskRadios.forEach(radio => {
-        radio.addEventListener('click', function() {
-          updateText(radio); 
-        });
+          radio.addEventListener('click', function() {
+              updateText(radio); 
+          });
       });
   
       loadJsonData(); 
-    });
+  });
   
-    function loadJsonData() {
+  function loadJsonData() {
       fetch('assets/data.json')
-        .then(response => response.json())
-        .then(data => {
-          window.scenesData = data; 
-        })
-        .catch(error => console.error('Error loading the JSON data:', error));
-    }
+          .then(response => response.json())
+          .then(data => {
+              window.scenesData = data; 
+          })
+          .catch(error => console.error('Error loading the JSON data:', error));
+  }
   
-    function changeScene() {
+  function changeScene() {
       var scene = document.getElementById('pointCloudSelector').value;
       var task = document.querySelector('input[type="radio"][name="task"]:checked')?.value;
       updateContent(scene, task); 
       switchContent(scene, task); 
-    }
+  }
   
-    function updateText(radio) {
+  function updateText(radio) {
       var scene = document.getElementById('pointCloudSelector').value;
       var task = radio.value;
       updateContent(scene, task); 
       switchContent(scene, task); 
-    }
+  }
   
-    function updateContent(scene, task) {
+  function updateContent(scene, task) {
       var infotext = window.scenesData && window.scenesData[scene] ? window.scenesData[scene][task] : 'Please select a task.';
       if (!infotext) {
         return;
       }
       if (infotext.includes('select a task.')) {
         var fontSize = 25;
-      } else {
+      }
+      else {
         var fontSize = 15;
       }
       console.log('scene', scene, 'task', task, 'infotext', infotext, 'fontSize', fontSize); // Debugging
       updateInfoText(infotext, fontSize);
-    }
+  }
   
-    function switchContent(scene, task) {
+  function switchContent(scene, task) {
       if (!scene) {
-        console.log("Scene not defined, cannot switch HTML content.");
-        return;
+          console.log("Scene not defined, cannot switch HTML content.");
+          return;
       }
       if (!task) {
         var htmlFile = `assets/${scene}.html`; 
-      } else {
+      }
+      else {
         var htmlFile = `assets/${scene}_${task}.html`; 
       }
       switchhtml(htmlFile); 
-    }
+  }
   
-    function updateInfoText(text, fontSize) {
+  function updateInfoText(text, fontSize) {
       if (text) {
-        text = escapeHtml(text);
+          text = escapeHtml(text);
       } else {
-        text = "No information available"; 
+          text = "No information available"; 
       }
       var infoDiv = document.getElementById("info");
       infoDiv.innerHTML = `<span style="font-size: ${fontSize}px; border-color: black;">${text}</span>`;
-    }
-  f
-    function escapeHtml(text) {
+  }
+  
+  function escapeHtml(text) {
       return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    }
-  </script>
+  }
+  
+  
+</script>
+
+
 </body>
+
 </html>
