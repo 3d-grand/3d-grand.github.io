@@ -55,29 +55,47 @@
       align-items: center;
       width: 100%;
     }
-
+    
     .centered-content iframe,
     .centered-content figure {
       width: 100%;
       margin-bottom: 20px;
     }
-
-    .centered-content iframe {
-      height: 300px;
-    }
-
+    
     @media (min-width: 768px) {
       .centered-content {
         flex-direction: row;
         justify-content: space-between;
       }
-
-      .centered-content iframe,
+    
+      .centered-content iframe {
+        flex: 0 1 70%;
+        height: 550px;
+      }
+    
       .centered-content figure {
-        width: 48%;
+        flex: 0 1 30%;
         height: 550px;
       }
     }
+    
+    .columns.is-centered.is-vcentered {
+      align-items: center;
+    }
+    
+    .column.is-8,
+    .column.is-4 {
+      padding: 0;
+    }
+    
+    .column.is-8 iframe {
+      height: 100%;
+    }
+    
+    .column.is-4 figure img {
+      height: auto;
+    }
+    
   </style>
 </head>
 
@@ -200,11 +218,15 @@
   <section class="hero is-small">
     <div class="hero-body">
       <div class="container">
-        <div class="centered-content">
-          <iframe src="sankey.html"></iframe>
-          <figure>
-            <img src="assets/images/Table_1.png" alt="Descriptive alt text" />
-          </figure>
+        <div class="columns is-centered is-vcentered">
+          <div class="column is-8">
+            <iframe src="sankey.html" style="width: 100%; height: 550px; border: none;"></iframe>
+          </div>
+          <div class="column is-4">
+            <figure>
+              <img src="assets/images/Table_1.png" alt="Descriptive alt text" style="width: 100%;" />
+            </figure>
+          </div>
         </div>
       </div>
     </div>
@@ -391,7 +413,7 @@
       var infoDiv = document.getElementById("info");
       infoDiv.innerHTML = `<span style="font-size: ${fontSize}px; border-color: black;">${text}</span>`;
     }
-  
+  f
     function escapeHtml(text) {
       return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
