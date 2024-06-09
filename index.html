@@ -578,8 +578,26 @@
           for (const key in content) {
               if (content.hasOwnProperty(key)) {
                   const color = content[key] || 'black';
-                  const replacement = `<span style="color: ${color};">${key}</span>`;
-                let lastIndex = text.lastIndexOf(key);
+                  if (key.startsWith("<p>")) {
+                      var replaceKey = key.replace("<p>", "").replace("</p>", "");
+                      var replacement = `<p><span style="color: ${color};">${replaceKey}</span></p>`
+                  }
+                  else if (key.startsWith("[") && key.endsWith("]")) {
+                      var replaceKey = key.replace("[", "").replace("]", "");
+                      var replacement = `<b>[<span style="color: ${color};">${replaceKey}</span>]</b>`
+                  }
+                  else if (key.startsWith("[")) {
+                      var replaceKey = key.replace("[", "");
+                      var replacement = `<b>[<span style="color: ${color};">${replaceKey}</span>`
+                  }
+                  else if (key.endsWith("]")) {
+                      var replaceKey = key.replace("]", "");
+                      var replacement = `<span style="color: ${color};">${replaceKey}</span>]</b>`
+                  }
+                  else {
+                      var replacement = `<b><span style="color: ${color};">${key}</span></b>`;
+                  }
+                  let lastIndex = text.lastIndexOf(key);
 
                 // replace only the last occurrence of the key in the text with the colored span
                 if (lastIndex !== -1) {

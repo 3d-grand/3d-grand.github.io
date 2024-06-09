@@ -2,9 +2,12 @@
   "scene1": {
     "reference": {
       "text": "This is a <p>dining chair</p>[<dining chair-2>] with a dark wooden frame and a deep green cushioned seat. The chair exudes classic elegance and is positioned <p>next to the dining table</p>[<dining table-1>]. It is placed <p>below the pendant lamp</p>[<pendant lamp-6>].",
-      "<p>dining chair</p>[<dining chair-2>]": "red",
-      "<p>next to the dining table</p>[<dining table-1>]": "green",
-      "<p>below the pendant lamp</p>[<pendant lamp-6>]": "purple"
+      "<p>dining chair</p>": "red",
+      "[<dining chair-2>]": "red",
+      "<p>next to the dining table</p>": "green",
+      "[<dining table-1>]": "green",
+      "<p>below the pendant lamp</p>": "purple",
+      "[<pendant lamp-6>]": "purple"
     },
     "caption": {
       "text": "'The living room is a multifunctional space that seamlessly blends dining and living areas with a mix of styles. At its heart, the <p>dining table</p>[<dining table-1>] stands with its rich walnut color, inviting gatherings for meals. Surrounding it are four <p>dining chair</p>[<dining chair-2>], <p>dining chair</p>[<dining chair-3>], <p>dining chair</p>[<dining chair-4>], and <p>dining chair</p>[<dining chair-5>], all with deep green cushioned seats and dark wooden frames, offering comfortable seating. Above the dining area, the <p>pendant lamp</p>[<pendant lamp-6>] in a soft beige color casts a warm glow over the table.\n\nIn the living area, the <p>three-seat sofa</p>[<three-seat/multi-seat sofa-7>] with its neutral grey tone and straight-lined shape provides a spot for relaxation and socializing. Nearby, the <p>tv stand</p>[<tv stand-8>] features a sleek black finish and supports entertainment activities. The <p>coffee table</p>[<coffee table-11>] is centrally placed in front of the sofa, its modern black hue and glossy finish complementing the minimalist sofa. Above the coffee table, the <p>pendant lamp</p>[<pendant lamp-12>] with its golden hue and metallic finish adds a touch of modern elegance.\n\nAdditional storage and utility are provided by the <p>sideboard</p>[<sideboard/side cabinet/console table-9>] with its dark grey hue, located near the dining area, and the <p>drawer chest</p>[<drawer chest/corner cabinet-10>] with its black matte finish, which could serve as a decorative feature or storage. The <p>washing machine</p>[<others-0>], a sleek and glossy washing machine, is an unusual but practical addition to the space, suggesting a compact living situation where functionality is maximized. The combination of different styles and the arrangement of furniture create a harmonious and comfortable environment for dining, lounging, and daily activities.'"
