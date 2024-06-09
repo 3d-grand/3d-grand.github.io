@@ -58,8 +58,14 @@
   <!-- <script src="static/js/index.js"></script> -->
   <!-- <script src="https://unpkg.com/three@0.127.0/build/three.module.js"></script> -->
   <script type="text/javascript">
-    function switchhtml(path) {
+    function switchhtml(path, task) {
       console.log('switching')
+      if (!task) {
+        path = `assets/${path}.html`;
+      }
+      else {
+      path = `assets/${path}_${task}.html`;
+      }
       document.getElementById("html-plot").src = path;
     }
   </script>
@@ -390,77 +396,113 @@
       });
   
       loadJsonData(); 
-  });
+    });
   
-  function loadJsonData() {
+    function loadJsonData() {
       fetch('assets/data.json')
           .then(response => response.json())
           .then(data => {
               window.scenesData = data; 
           })
           .catch(error => console.error('Error loading the JSON data:', error));
-  }
+    }
   
-  function changeScene() {
+    function changeScene() {
       var scene = document.getElementById('pointCloudSelector').value;
       var task = document.querySelector('input[type="radio"][name="task"]:checked')?.value;
       updateContent(scene, task); 
-      switchContent(scene, task); 
-  }
+      switchhtml(scene, task); 
+    }
   
-  function updateText(radio) {
+    function updateText(radio) {
       var scene = document.getElementById('pointCloudSelector').value;
       var task = radio.value;
       updateContent(scene, task); 
-      switchContent(scene, task); 
-  }
+      switchhtml(scene, task); 
+    }
   
-  function updateContent(scene, task) {
-      var infotext = window.scenesData && window.scenesData[scene] ? window.scenesData[scene][task] : 'Please select a task.';
-      if (!infotext) {
+    function updateContent(scene, task) {
+      var content = window.scenesData && window.scenesData[scene] ? window.scenesData[scene][task] : 'Please select a task.';
+      if (!content) {
         return;
       }
-      if (infotext.includes('select a task.')) {
+      console.log('content', content)
+      if (content['text'].includes('select a task.')) {
         var fontSize = 25;
-      }
-      else {
+      } else {
         var fontSize = 15;
       }
-      console.log('scene', scene, 'task', task, 'infotext', infotext, 'fontSize', fontSize); // Debugging
-      updateInfoText(infotext, fontSize);
-  }
-  
-  function switchContent(scene, task) {
-      if (!scene) {
-          console.log("Scene not defined, cannot switch HTML content.");
-          return;
-      }
-      if (!task) {
-        var htmlFile = `assets/${scene}.html`; 
-      }
-      else {
-        var htmlFile = `assets/${scene}_${task}.html`; 
-      }
-      switchhtml(htmlFile); 
-  }
-  
-  function updateInfoText(text, fontSize) {
-      if (text) {
-          text = escapeHtml(text);
-      } else {
-          text = "No information available"; 
-      }
-      var infoDiv = document.getElementById("info");
-      infoDiv.innerHTML = `<span style="font-size: ${fontSize}px; border-color: black;">${text}</span>`;
-  }
-  
-  function escapeHtml(text) {
-      return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  }
-  
-  
-</script>
+      updateInfoText(content['text'], fontSize, content, task);
+    }
 
+    function extractBracketContents(input) {
+      const regex = /\[([^\[\]]+)\]/;
+      const match = input.match(regex);
+      if (match && match[1]) {
+          // Split the matched group by commas and trim whitespace around items
+          return match[1].split(',').map(item => item.trim());
+      }
+      return []; // Return an empty array if no match is found
+  }
+
+    function formatQA(inputString) {
+      // Bold the "Q:" and add "A:" in bold with a line break before it
+      let formattedString = inputString.replace("Q:", "<b>Q:</b>").replace(" A:", "<br><b>A:</b>");
+
+      return formattedString;
+    }
+  
+    function updateInfoText(text, fontSize, content, task) {
+      if (text) {
+          // Iterate over each key in the content object to replace occurrences in the text
+          for (const key in content) {
+              if (content.hasOwnProperty(key)) {
+                  const color = content[key] || 'black'; // Default color is black if not specified
+                  // We include angle brackets in the actual key replacement to match how they appear in the text
+                  //const fullKey = `<${key}>`; // Assume keys in JSON are stored without angle brackets
+                  const replacement = `<span style="color: ${color};">${key}</span>`;
+                // Locate the last occurrence of the full key (with brackets)
+                let lastIndex = text.lastIndexOf(key);
+
+                // Replace only the last occurrence of the key in the text with the colored span
+                if (lastIndex !== -1) {
+                    text = text.substring(0, lastIndex) + replacement + text.substring(lastIndex + key.length);
+                }
+              }
+          }
+      } else {
+          text = "No information available";
+      }
+  
+      if (task === 'qa') {
+          text = formatQA(text);
+      }
+
+      var infoDiv = document.getElementById("info");
+      console.log('text',text)
+      //infoDiv.innerHTML = `<span style="font-size: ${fontSize}px;">${text}</span>`;
+      infoDiv.innerHTML = escapeHTML(text);
+  }
+  
+  // escape all html tags except for span, b, br
+  function escapeHTML(str) {
+    return str.replace(/<(?!\/?(span|b)(?=>|\s.*>)|br\s*\/?>)/gi, function(match) {
+        return match.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    });
+}
+
+    function escapeHtml(text) {
+      let textWithoutTags = text.replace(/<([^>]+)>/g, function(match, tag) {
+        // Allow <p> tags but escape others
+        if (tag.match(/^p style="color: [^"]+;"$/)) {
+          return match; // do not escape
+        } else {
+          return `&lt;${tag}&gt;`;
+        }
+      });
+      return textWithoutTags.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+  </script>
 
 </body>
 
