@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="Website for 3D-GRAND: Towards Better Grounding and Less Halluciantion for 3D-LLMs">
-  <meta property="og:title" content="3D-GRAND: Towards Better Grounding and Less Halluciantion for 3D-LLMs" />
-  <meta property="og:description" content="Provide access to data, code, paper for 3D-GRAND: Towards Better Grounding and Less Halluciantion for 3D-LLMs" />
+  <meta name="description" content="Website for 3D-GRAND: Towards Better Grounding and Less Hallucination for 3D-LLMs">
+  <meta property="og:title" content="3D-GRAND: Towards Better Grounding and Less Hallucination for 3D-LLMs" />
+  <meta property="og:description" content="3D-GRAND is the first million-scale, densely-grounded 3D-text dataset for 3D-LLMs. The dataset is effective in enhencing grounding capability and reduce hallucinations for 3D-LLMs." />
   <meta property="og:url" content="https://3d-grand.github.io/" />
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
   <meta property="og:image" content="s  tatic/image/your_banner_image.png" />
@@ -37,6 +37,43 @@
       font-size: 20px;
       /* 文字大小 */
     }
+    .link-container {
+    display: flex; /* Sets the container to flex to align children inline */
+    justify-content: center; /* Centers the buttons horizontally */
+    flex-wrap: wrap; /* Allows the buttons to wrap on small screens */
+    gap: 10px; /* Adds space between the buttons */
+  }
+
+  .external-link {
+    text-decoration: none; /* Removes underline from the button text */
+    display: block;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+  }
+
+  .external-link:hover {
+    background-color: #ddd; /* Changes background on hover */
+  }
+
+  .icon {
+    margin-right: 8px; /* Space between icon and text */
+  }
+
+  .iframe-container {
+    width: 100%; /* Ensures the container takes the full width of its parent */
+    height: 500px; /* Set a fixed height or adjust as needed */
+    border: none;
+  }
+.iframe-container iframe {
+    width: 100%; /* Makes the iframe take the full width of its container */
+    height: 100%; /* And full height */
+    border: none; /* Removes border */
+  }
   </style>
 
   <title>3D-GRAND</title>
@@ -48,6 +85,7 @@
   <link rel="stylesheet" href="static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="static/css/index.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -72,60 +110,106 @@
 </head>
 
 <body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <style>
+      .navbar a { /* Targets all anchor tags within .navbar */
+        text-decoration: none; /* Removes underline from links */
+      }
+    </style>
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" target="_blank" href="https://chat-with-nerf.github.io/">
+              LLM-Grounder
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">3D-GRAND: Towards Better Grounding and Less Halluciantion for 3D-LLMs
-            </h1>
+            <h1 class="title is-1 publication-title">
+              <span style="font-weight: bold;">3D-GRAND</span>: Towards Better Grounding and Less Hallucination for 3D-LLMs
+          </h1>
+          <div class="is-size-5 publication-authors">
             <div class="is-size-5 publication-authors">
-              <div class="is-size-5 publication-authors">
                 <span class="author-block">
-                  <a href="https://jedyang.com/">Jianing (Jed) Yang</a><sup>*,1</sup>,</span>
-                <span class="author-block">
-                  <a href="https://xuweiyichen.github.io/">Xuweiyi Chen</a><sup>*,1</sup>,</span>
-                <span class="author-block">
-                  <a href="https://madaan-nikhil.github.io/">Nikhil Madaan</a>,
+                    <a href="https://jedyang.com/" class="author-link">Jianing (Jed) Yang</a><sup>*,1</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://madhavaniyengar.github.io/">Madhavan Iyengar</a><sup>1</sup>,
+                    <a href="https://xuweiyichen.github.io/" class="author-link">Xuweiyi Chen</a><sup>*,1</sup>,
                 </span>
                 <span class="author-block">
-                  <a href="https://jasonqsy.github.io/">Shengyi Qian</a><sup>1</sup>,
+                    <a href="https://madaan-nikhil.github.io/" class="author-link">Nikhil Madaan</a>,
                 </span>
                 <span class="author-block">
-                  <a href="https://web.eecs.umich.edu/~fouhey/">David Fouhey</a><sup>1,2</sup>,
+                    <a href="https://madhavaniyengar.github.io/" class="author-link">Madhavan Iyengar</a><sup>1</sup>,
                 </span>
-                <span class="author-block">
-                  <a href="https://web.eecs.umich.edu/~chaijy/">Joyce Y. Chai</a><sup>1</sup>,
-                </span>
-              </div>
+                <div class="is-size-5 publication-authors">
+                    <span class="author-block">
+                        <a href="https://jasonqsy.github.io/" class="author-link">Shengyi Qian</a><sup>1</sup>,
+                    </span>
+                    <span class="author-block">
+                        <a href="https://web.eecs.umich.edu/~fouhey/" class="author-link">David Fouhey</a><sup>1,2</sup>,
+                    </span>
+                    <span class="author-block">
+                        <a href="https://web.eecs.umich.edu/~chaijy/" class="author-link">Joyce Y. Chai</a><sup>1</sup>,
+                    </span>
+                </div>
             </div>
+        </div>
+        
+        <style>
+            .author-link {
+                text-decoration: none; /* Removes underline */
+                color: inherit; /* Keeps the link color the same as the text color */
+            }
+        
+            .author-link:hover {
+                text-decoration: underline; /* Adds underline on hover for better user interaction */
+            }
+        </style>
 
             <div class="is-size-5 publication-authors">
               <span class="author-block"><sup>1</sup>University of Michigan <sup>2</sup>New York University</span>
             </div>
             <div class="is-size-7 publication-authors">
               <span class="author-block"><sup>*</sup>Denotes Equal Contribution</span>
+            </div>
 
             <div class="column has-text-centered">
                <div class="publication-links">
                 <!-- Arxiv PDF link -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a href="" target="_blank"
-                    class="external-link button is-normal is-rounded">
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
                     <span>Paper</span>
                   </a>
-                </span>
+                </span> -->
 
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
                   <a href="" target="_blank"
-                    class="external-link button is-normal is-rounded">
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
@@ -136,24 +220,43 @@
                 <!-- Dataset abstract Link -->
                 <span class="link-block">
                   <a href="" target="_blank"
-                    class="external-link button is-normal is-rounded">
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
-                      <i class="ai ai-arxiv"></i>
+                      <i class="fas fa-database"></i>
                     </span>
-                    <span>Data</span>
+                    <span>3D-GRAND Data</span>
                   </a>
                 </span>
 
-                <!-- Github link -->
                 <span class="link-block">
-                  <a href="https://github.com/3d-grand/3d-grand" target="_blank"
-                    class="external-link button is-normal is-rounded">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-database"></i>
+                    </span>
+                    <span>3D-POPE Data</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                          <i class="fas fa-trophy"></i> <!-- Using a trophy icon for the leaderboard -->
+                      </span>
+                      <span>3D-POPE Leaderboard</span> <!-- Label text for the button -->
+                  </a>
+              </span>
+
+              <!-- Github link -->
+              <span class="link-block">
+                <a href="" target="_blank" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code</span>
-                  </a>
-                </span>
+                    <span>Code</span> <!-- Label text for the button -->
+                </a>
+            </span>
+
 
               </div>
             </div>
@@ -190,7 +293,37 @@
     </div>
   </section>
   <!-- End paper abstract -->
-
+  <style>
+    .centered-content {
+      position: relative; /* Needed for absolute positioning inside */
+      left: 50%; /* Center the div relative to its normal position */
+      transform: translateX(-50%); /* Perfectly center the div */
+      width: 150%;
+      display: flex;
+      justify-content: space-around; /* Distribute extra space around items */
+      align-items: center;
+      height: 550px;
+    }
+  
+    .centered-content iframe {
+      flex: 0 1 30%; /* Take up 40% of the parent container */
+      border: none;
+      height: 100%;
+      aspect-ratio: 14/9;
+    }
+  
+    .centered-content figure {
+      flex: 0 1 60%; /* Take up 60% of the parent container */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .centered-content img {
+      max-height: 100%;
+      width: auto;
+    }
+  </style>
   
   <section class="hero is-small">
     <div class="hero-body">
@@ -198,32 +331,36 @@
             <div class="columns is-centered">
                 <h2 class="title is-3">Data Distribution</h2>
             </div>
+            <br>
             <div class="container">
                 <div class="columns is-centered">
-                    <img src="assets/images/data_info_hub-1.png" width="90%" alt="Generalist outputs" />
+                    <img src="assets/images/data_info_hub-1.png" style="width: 90%;" alt="Generalist outputs" />
                 </div>
                 <br>
-                
+                <!-- <div class="columns is-centered" style="display: flex; align-items: start;">
+                  <div style="flex: 1;">
+                      <iframe src="sankey.html" style="width: 100%; height: 500px; border: none;"></iframe>
+                  </div>
+                  <div style="flex: 1; padding-top: 20px;">
+                      <img src="assets/images/Table_1.png" style="width: 100%; height: 500px; object-fit: contain;" alt="Descriptive alt text" />
+                  </div> -->
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-xl-6 col-lg-6 col-md-12">
+                        <iframe src="sankey.html" style="width: 100%; height: 500px; border: none;"></iframe>
+                      </div>
+                      <div class="col-xl-6 col-lg-6 col-md-12" style="padding-top: 20px;">
+                        <img src="assets/images/Table_1.png" style="width: 100%; height: 500px; object-fit: contain;" alt="Descriptive alt text" />
+                      </div>
+                    </div>
+                  </div>
+              </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="hero is-small">
-  <div class="hero-body">
-      <div class="container">
-          <div class="container">
-              
-              <div class="columns" style="margin-left: -35%;"> <!-- Shift everything in this div to the left -->
-                  <iframe src="sankey.html" style="width:60%; height:550px; border:none; margin-left: -5%;"></iframe>
-                  <figure>
-                    <img src="assets/images/table_1__.png" style="max-height:140%; max-width:180%;" alt="Descriptive alt text" />
-                  </figure>
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
 
   <section class="hero is-light">
     <div class="hero-body">
@@ -231,8 +368,9 @@
         <div class="columns is-centered">
         <h2 class="title is-3">Data Curation Pipeline</h2>
       </div>
+      <br>
         <div class="columns is-centered">
-          <img src="assets/images/data_curation_pipeline-1.png" width="80%" alt="Our Framework" />
+          <img src="assets/images/data_curation-1.png" width="80%" alt="Our Framework" />
         </div>
       </div>
     </div>
@@ -245,7 +383,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-fullwidth">
-          <h2 class="title is-3">Results Visualization</h2>
+          <h2 class="title is-3">Data Visualization</h2>
           <div class="select is-rounded">
             <select id="pointCloudSelector">
               <option value="scene1">Scene 1</option>
@@ -254,27 +392,17 @@
           </div>
 
           <div class="columns is-centered" style="position: relative; margin-top: 20px;">
-            <div class="control"
-              style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
-              <label class="radio">
-                <input value="caption" type="radio" name="task" onclick="changeScene()"> <b>Grounded Scene description</b>
-              </label>
-
-              <span style="width:5em"></span>
-
-              <label class="radio">
-                <input value="qa" type="radio" name="task" onclick="changeScene()"> <b>Grounded QA</b>
-              </label>
-
-              <span style="width:5em"></span>
-
-              <label class="radio">
-                <input value="reference" type="radio" name="task" onclick="changeScene()"> <b>Grounded Object Reference</b>
-              </label>
-
-              <span style="width:5em"></span>
-
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" onclick="changeScene()" value="caption" checked>
+              <label class="btn btn-outline-primary" for="btnradio1"><b>Grounded Scene Description</b></label>
+          
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" onclick="changeScene()" value="qa">
+              <label class="btn btn-outline-primary" for="btnradio2"><b>Grounded QA</b></label>
+          
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" onclick="changeScene()" value="reference">
+              <label class="btn btn-outline-primary" for="btnradio3"><b>Grounded Object Reference</b></label>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -282,65 +410,63 @@
     </div>
     <div class="hero-body">
       <div class="container">
-        <div style="display: flex; margin-top: 20px;">
-          <div style="flex: 3; height: 400px; position: relative;">
-            <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
-            <!-- <canvas id="webgl_output" style="width: 100%; height: 100%;"></canvas> -->
-            <!-- <div class="columns is-centered"> -->
-            <iframe id="html-plot" src="assets/scene1.html" style="width:100%; height:500px; border:none;"></iframe>
-            <!-- </div> -->
+        <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px; width: 100%;">
+          <div style="width: 100%; position: relative; display: flex; justify-content: center; align-items: center; height: 500px;">
+            <div id="pose_loading" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"></div>
+            <iframe id="html-plot" src="assets/scene1.html" style="width: 100%; height: 100%; border: none;"></iframe>
           </div>
-          <div id="info" style="flex: 2; font-size: 15px; padding: 10px;">
+          <div id="info" style="width: 100%; font-size: 15px; padding: 10px; text-align: center;">
             <span style="font-size: 25px; border-color: black;">Please select a task.</span>
           </div>
         </div>
       </div>
-    </div>
+    
+
   </section>
 
-  
-  <section class="section hero is-light">
+
+  <section class="section hero is-small">
     <div class="container is-max-desktop">
-      <div class="container">
         <div class="columns is-centered">
-          <h2 class="title is-3" style="margin-bottom: 0.5rem;">Evaluating Hallucination for 3D-LLMs: 3D-POPE Leaderboard</h2>
-      </div>
-      <div class="columns is-centered has-text-centered">
-        <div class="container">
-          <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <table class="table svelte-1txh5yn" style="width: auto; margin-top: 2rem;"> <thead class="thead svelte-1txh5yn"><tr slot="thead" class="svelte-1bvc1p0"><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-0);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Model Idx</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-1);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">🤖 Model</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-2);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Precision (Random Split) </span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-3);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Recall (Random Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-4);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">F1 Score (Random Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-5);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Accuracy (Random Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-6);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Yes (%) (Random Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Precision (Popular Split)</span><div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-5);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Recall (Popular Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-6);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">F1 Score (Popular Split)</span> <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Accuracy (Popular Split)</span>
-<div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Yes (%) (Popular Split)</span>
-<div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Precision (Adversarial Split)</span>
-<div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Recall (Adversarial Split)</span>
-<div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">F1 Score (Adversarial Split)</span> 
-<div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Accuracy (Adversarial Split)</span> 
-<div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th><th aria-sort="none" class="svelte-1bvc1p0" style="width: var(--cell-width-7);"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">Yes (%) (Adversarial Split)</span> 
-            <div class="sort-button undefined svelte-1bvc1p0"><svg width="1em" height="1em" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" class="svelte-1bvc1p0"><path d="M4.49999 0L8.3971 6.75H0.602875L4.49999 0Z"></path></svg></div></div> </th></tr><iframe style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;" aria-hidden="true" tabindex="-1" src="about:blank"></iframe></thead> <tbody class="tbody svelte-1txh5yn">
-            
-              <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">1</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="" target="_blank" rel="noopener noreferrer">Random Baseline</a></p>
-              </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.00</span></div> </td></tr>
-            
-              <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">2</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://vis-www.cs.umass.edu/3dllm/" target="_blank" rel="noopener noreferrer">3D-LLM</a></p>
-              </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.03</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">99.88</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">66.67</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.07</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">99.81</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">49.97</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">99.88</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">66.61</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">49.94</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">99.94</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">49.97</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">99.88</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">66.61</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">49.94</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">99.94</span></div> </td></tr>
-          
-              <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">3</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://3d-vista.github.io/" target="_blank" rel="noopener noreferrer">3D-VistTA</a></p>
-              </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">50.12</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">53.58</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">51.79</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">49.66</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">53.95</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">47.40</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">51.88</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">49.54</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">49.49</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">52.30</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">48.28</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">54.39</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">51.15</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">51.14</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">52.99</span></div> </td></tr>
-          
-              <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">4</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://embodied-generalist.github.io/" target="_blank" rel="noopener noreferrer">LEO</a></p>
-              </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">51.95</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">77.65</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">62.25</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">52.91</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">74.73</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">48.30</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">77.65</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">59.55</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">47.27</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">80.38</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">48.47</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">77.98</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">59.78</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">47.52</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">80.45</span></div> </td></tr>
-          
-              <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">5</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://3d-grand.github.io/" target="_blank" rel="noopener noreferrer">Ours zero-shot (Grounding)</a></p>
-              </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">93.34</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">84.25</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">88.56</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">89.12</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">45.13</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">73.05</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">84.28</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">78.26</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">76.59</span><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">57.69</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">69.86</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">84.21</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">76.37</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">73.95</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">60.26</span></div> </td></tr></tbody> <tfoot class="tfoot svelte-1txh5yn" style="position: relative;"><iframe style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;" aria-hidden="true" tabindex="-1" src="about:blank"></iframe></tfoot></table>
-          
-          <!-- <tr slot="tbody" class="svelte-1bvc1p0 row_odd" style="height: 10px;"><td tabindex="0" style="width: var(--cell-width-0);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">6</span></div> </td><td tabindex="0" style="width: var(--cell-width-1);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua"><span class="md svelte-ftv0x7"><p><a style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;" href="https://3d-instruct.github.io" target="_blank" rel="noopener noreferrer">3D-GRAND (Grounding)</a></p>
-          </span></span></div> </td><td tabindex="0" style="width: var(--cell-width-2);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">85.68</span></div> </td><td tabindex="0" style="width: var(--cell-width-3);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">88.22</span></div> </td><td tabindex="0" style="width: var(--cell-width-4);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">82.34</span></div> </td><td tabindex="0" style="width: var(--cell-width-5);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">81.69</span></div> </td><td tabindex="0" style="width: var(--cell-width-6);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">81.32</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">82.28</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">82.10</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">81.72</span></div> </td><td tabindex="0" style="width: var(--cell-width-7);" class="svelte-1bvc1p0"><div class="cell-wrap svelte-1bvc1p0"> <span tabindex="-1" role="button" style="" class="svelte-z9gpua">82.72</span></div> </td></tr></tbody> <tfoot class="tfoot svelte-1txh5yn" style="position: relative;"><iframe style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;" aria-hidden="true" tabindex="-1" src="about:blank"></iframe></tfoot></table> -->
-          
-            </div>
-          </div>
+            <h2 class="title is-3" style="margin-bottom: 0.5rem;">Evaluating Hallucination for 3D-LLMs</h2>
         </div>
-      </div>
+        <div class="columns is-centered">
+            <div class="column is-one-third">
+                <div class="iframe-container">
+                    <iframe src="assets/Precision.html"></iframe>
+                </div>
+            </div>
+            <div class="column is-two-thirds">
+                <div class="iframe-container">
+                    <iframe src="table.html"></iframe>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
+</section>
+<!-- <style>
+    .iframe-container {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        max-width: 100%;
+        min-width: 800px;
+    }
+
+    .iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (max-width: 799px) {
+        .iframe-container {
+            min-width: 100%;
+        }
+    }
+</style> -->
 
 
 
@@ -409,7 +535,7 @@
   
     function changeScene() {
       var scene = document.getElementById('pointCloudSelector').value;
-      var task = document.querySelector('input[type="radio"][name="task"]:checked')?.value;
+      var task = document.querySelector('input[name="btnradio"]:checked').value;
       updateContent(scene, task); 
       switchhtml(scene, task); 
     }
@@ -422,6 +548,7 @@
     }
   
     function updateContent(scene, task) {
+      console.log(window.scenesData)
       var content = window.scenesData && window.scenesData[scene] ? window.scenesData[scene][task] : 'Please select a task.';
       if (!content) {
         return;
@@ -435,18 +562,8 @@
       updateInfoText(content['text'], fontSize, content, task);
     }
 
-    function extractBracketContents(input) {
-      const regex = /\[([^\[\]]+)\]/;
-      const match = input.match(regex);
-      if (match && match[1]) {
-          // Split the matched group by commas and trim whitespace around items
-          return match[1].split(',').map(item => item.trim());
-      }
-      return []; // Return an empty array if no match is found
-  }
-
     function formatQA(inputString) {
-      // Bold the "Q:" and add "A:" in bold with a line break before it
+      // Bold Q: and A: with a break between
       let formattedString = inputString.replace("Q:", "<b>Q:</b>").replace(" A:", "<br><b>A:</b>");
 
       return formattedString;
@@ -454,19 +571,16 @@
   
     function updateInfoText(text, fontSize, content, task) {
       if (text) {
-          // Iterate over each key in the content object to replace occurrences in the text
+          // iterate over each key in content object to replace occurrences in text
           for (const key in content) {
               if (content.hasOwnProperty(key)) {
-                  const color = content[key] || 'black'; // Default color is black if not specified
-                  // We include angle brackets in the actual key replacement to match how they appear in the text
-                  //const fullKey = `<${key}>`; // Assume keys in JSON are stored without angle brackets
+                  const color = content[key] || 'black';
                   const replacement = `<span style="color: ${color};">${key}</span>`;
-                // Locate the last occurrence of the full key (with brackets)
                 let lastIndex = text.lastIndexOf(key);
 
-                // Replace only the last occurrence of the key in the text with the colored span
+                // replace only the last occurrence of the key in the text with the colored span
                 if (lastIndex !== -1) {
-                    text = text.substring(0, lastIndex) + replacement + text.substring(lastIndex + key.length);
+                    text = text.substring(0, lastIndex) + "<b>" + replacement + "</b>" + text.substring(lastIndex + key.length);
                 }
               }
           }
@@ -480,8 +594,9 @@
 
       var infoDiv = document.getElementById("info");
       console.log('text',text)
+      text = escapeHTML(text);
       //infoDiv.innerHTML = `<span style="font-size: ${fontSize}px;">${text}</span>`;
-      infoDiv.innerHTML = escapeHTML(text);
+      infoDiv.innerHTML = text;
   }
   
   // escape all html tags except for span, b, br
@@ -489,19 +604,7 @@
     return str.replace(/<(?!\/?(span|b)(?=>|\s.*>)|br\s*\/?>)/gi, function(match) {
         return match.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     });
-}
-
-    function escapeHtml(text) {
-      let textWithoutTags = text.replace(/<([^>]+)>/g, function(match, tag) {
-        // Allow <p> tags but escape others
-        if (tag.match(/^p style="color: [^"]+;"$/)) {
-          return match; // do not escape
-        } else {
-          return `&lt;${tag}&gt;`;
-        }
-      });
-      return textWithoutTags.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-    }
+  }
   </script>
 
 </body>

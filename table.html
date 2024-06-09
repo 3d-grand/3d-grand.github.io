@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    .scrollable-div {
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .grey {
+        background-color: #d3d3d3;
+    }
+    .blue {
+        background-color: #d7ecf8;
+    }
+</style>
+</head>
+<body>
+<div class="scrollable-div">
+    <table>
+        <thead>
+            <tr>
+                <th>Dataset</th>
+                <th>3D-POPE</th>
+                <th>Model</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1 Score</th>
+                <th>Accuracy</th>
+                <th>Yes (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="15">ScanNet200 Val</td>
+                <td rowspan="5">Random</td>
+                <td>Random Baseline</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+            </tr>
+            <tr>
+                <td>3D-LLM</td>
+                <td class="blue">50.03</td>
+                <td class="grey">99.88</td>
+                <td class="grey">66.67</td>
+                <td class="grey">50.07</td>
+                <td class="grey">99.81</td>
+            </tr>
+            <tr>
+                <td>3D-VisTA</td>
+                <td class="blue">50.12</td>
+                <td class="grey">53.58</td>
+                <td class="grey">51.79</td>
+                <td class="grey">49.66</td>
+                <td class="grey">53.95</td>
+            </tr>
+            <tr>
+                <td>LEO</td>
+                <td class="blue">51.95</td>
+                <td class="grey">77.65</td>
+                <td class="grey">62.25</td>
+                <td class="grey">52.91</td>
+                <td class="grey">74.73</td>
+            </tr>
+            <tr>
+                <td>Ours zero-shot (Grounding)</td>
+                <td class="blue">93.34</td>
+                <td class="grey">84.25</td>
+                <td class="grey">88.56</td>
+                <td class="grey">89.12</td>
+                <td class="grey">45.13</td>
+            </tr>
+            <tr>
+                <td rowspan="5">Popular</td>
+                <td>Random Baseline</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+            </tr>
+            <tr>
+                <td>3D-LLM</td>
+                <td class="blue">49.97</td>
+                <td class="grey">99.88</td>
+                <td class="grey">66.61</td>
+                <td class="grey">49.94</td>
+                <td class="grey">99.94</td>
+            </tr>
+            <tr>
+                <td>3D-VisTA</td>
+                <td class="blue">47.40</td>
+                <td class="grey">51.88</td>
+                <td class="grey">49.54</td>
+                <td class="grey">49.49</td>
+                <td class="grey">52.30</td>
+            </tr>
+            <tr>
+                <td>LEO</td>
+                <td class="blue">48.30</td>
+                <td class="grey">77.65</td>
+                <td class="grey">59.55</td>
+                <td class="grey">47.27</td>
+                <td class="grey">80.38</td>
+            </tr>
+            <tr>
+                <td>Ours zero-shot (Grounding)</td>
+                <td class="blue">73.05</td>
+                <td class="grey">84.28</td>
+                <td class="grey">78.26</td>
+                <td class="grey">76.59</td>
+                <td class="grey">57.69</td>
+            </tr>
+            <tr>
+                <td rowspan="5">Adversarial</td>
+                <td>Random Baseline</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+                <td class="grey">50.00</td>
+            </tr>
+            <tr>
+                <td>3D-LLM</td>
+                <td class="blue">49.97</td>
+                <td class="grey">99.88</td>
+                <td class="grey">66.61</td>
+                <td class="grey">49.94</td>
+                <td class="grey">99.94</td>
+            </tr>
+            <tr>
+                <td>3D-VisTA</td>
+                <td class="blue">48.28</td>
+                <td class="grey">54.39</td>
+                <td class="grey">51.15</td>
+                <td class="grey">51.14</td>
+                <td class="grey">52.99</td>
+            </tr>
+            <tr>
+                <td>LEO</td>
+                <td class="blue">48.47</td>
+                <td class="grey">77.98</td>
+                <td class="grey">59.78</td>
+                <td class="grey">47.52</td>
+                <td class="grey">80.45</td>
+            </tr>
+            <tr>
+                <td>Ours zero-shot (Grounding)</td>
+                <td class="blue">69.86</td>
+                <td class="grey">84.21</td>
+                <td class="grey">76.37</td>
+                <td class="grey">73.95</td>
+                <td class="grey">60.26</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
