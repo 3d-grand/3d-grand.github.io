@@ -319,27 +319,17 @@
           </div>
 
           <div class="columns is-centered" style="position: relative; margin-top: 20px;">
-            <div class="control"
-              style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
-              <label class="radio">
-                <input value="caption" type="radio" name="task" onclick="changeScene()"> <b>Grounded Scene description</b>
-              </label>
-
-              <span style="width:5em"></span>
-
-              <label class="radio">
-                <input value="qa" type="radio" name="task" onclick="changeScene()"> <b>Grounded QA</b>
-              </label>
-
-              <span style="width:5em"></span>
-
-              <label class="radio">
-                <input value="reference" type="radio" name="task" onclick="changeScene()"> <b>Grounded Object Reference</b>
-              </label>
-
-              <span style="width:5em"></span>
-
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" onclick="changeScene()" value="caption" checked>
+              <label class="btn btn-outline-primary" for="btnradio1"><b>Grounded Scene Description</b></label>
+          
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" onclick="changeScene()" value="qa">
+              <label class="btn btn-outline-primary" for="btnradio2"><b>Grounded QA</b></label>
+          
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" onclick="changeScene()" value="reference">
+              <label class="btn btn-outline-primary" for="btnradio3"><b>Grounded Object Reference</b></label>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -469,7 +459,7 @@
   
   function changeScene() {
       var scene = document.getElementById('pointCloudSelector').value;
-      var task = document.querySelector('input[type="radio"][name="task"]:checked')?.value;
+      var task = document.querySelector('input[name="btnradio"]:checked').value;
       updateContent(scene, task); 
       switchContent(scene, task); 
   }
