@@ -199,3 +199,16 @@ body {
   color: black;
   background-color: #e5f8f9;
 }
+
+.responsive-iframe {
+  width: 100%;        /* Makes the width of the iframe 100% of its container */
+  height: 50vh;       /* Sets the height based on the viewport height */
+  border: none;       /* Optional: removes the border around the iframe */
+}
+
+/* Additional styles to ensure responsiveness on smaller screens */
+@media (max-width: 768px) {
+  .responsive-iframe {
+      height: 30vh;   /* Adjusts the height for smaller devices */
+  }
+}
