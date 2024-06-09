@@ -2,25 +2,86 @@
   "scene1": {
     "reference": {
       "text": "This is a <p>dining chair</p>[<dining chair-2>] with a dark wooden frame and a deep green cushioned seat. The chair exudes classic elegance and is positioned <p>next to the dining table</p>[<dining table-1>]. It is placed <p>below the pendant lamp</p>[<pendant lamp-6>].",
-      "<p>dining chair</p>": "red",
+      "<p>dining chair</p>-c": "red",
       "[<dining chair-2>]": "red",
-      "<p>next to the dining table</p>": "green",
+      "<p>next to the dining table</p>-b": "green",
       "[<dining table-1>]": "green",
-      "<p>below the pendant lamp</p>": "purple",
+      "<p>below the pendant lamp</p>-a": "purple",
       "[<pendant lamp-6>]": "purple"
     },
     "caption": {
-      "text": "'The living room is a multifunctional space that seamlessly blends dining and living areas with a mix of styles. At its heart, the <p>dining table</p>[<dining table-1>] stands with its rich walnut color, inviting gatherings for meals. Surrounding it are four <p>dining chair</p>[<dining chair-2>], <p>dining chair</p>[<dining chair-3>], <p>dining chair</p>[<dining chair-4>], and <p>dining chair</p>[<dining chair-5>], all with deep green cushioned seats and dark wooden frames, offering comfortable seating. Above the dining area, the <p>pendant lamp</p>[<pendant lamp-6>] in a soft beige color casts a warm glow over the table.\n\nIn the living area, the <p>three-seat sofa</p>[<three-seat/multi-seat sofa-7>] with its neutral grey tone and straight-lined shape provides a spot for relaxation and socializing. Nearby, the <p>tv stand</p>[<tv stand-8>] features a sleek black finish and supports entertainment activities. The <p>coffee table</p>[<coffee table-11>] is centrally placed in front of the sofa, its modern black hue and glossy finish complementing the minimalist sofa. Above the coffee table, the <p>pendant lamp</p>[<pendant lamp-12>] with its golden hue and metallic finish adds a touch of modern elegance.\n\nAdditional storage and utility are provided by the <p>sideboard</p>[<sideboard/side cabinet/console table-9>] with its dark grey hue, located near the dining area, and the <p>drawer chest</p>[<drawer chest/corner cabinet-10>] with its black matte finish, which could serve as a decorative feature or storage. The <p>washing machine</p>[<others-0>], a sleek and glossy washing machine, is an unusual but practical addition to the space, suggesting a compact living situation where functionality is maximized. The combination of different styles and the arrangement of furniture create a harmonious and comfortable environment for dining, lounging, and daily activities.'"
+      "text": "'The living room is a multifunctional space that seamlessly blends dining and living areas with a mix of styles. At its heart, the <p>dining table</p>[<dining table-1>] stands with its rich walnut color, inviting gatherings for meals. Surrounding it are four <p>dining chair</p>[<dining chair-2>], <p>dining chair</p>[<dining chair-3>], <p>dining chair</p>[<dining chair-4>], and <p>dining chair</p>[<dining chair-5>], all with deep green cushioned seats and dark wooden frames, offering comfortable seating. Above the dining area, the <p>pendant lamp</p>[<pendant lamp-6>] in a soft beige color casts a warm glow over the table.\n\nIn the living area, the <p>three-seat sofa</p>[<three-seat/multi-seat sofa-7>] with its neutral grey tone and straight-lined shape provides a spot for relaxation and socializing. Nearby, the <p>tv stand</p>[<tv stand-8>] features a sleek black finish and supports entertainment activities. The <p>coffee table</p>[<coffee table-11>] is centrally placed in front of the sofa, its modern black hue and glossy finish complementing the minimalist sofa. Above the coffee table, the <p>pendant lamp</p>[<pendant lamp-12>] with its golden hue and metallic finish adds a touch of modern elegance.\n\nAdditional storage and utility are provided by the <p>sideboard</p>[<sideboard/side cabinet/console table-9>] with its dark grey hue, located near the dining area, and the <p>drawer chest</p>[<drawer chest/corner cabinet-10>] with its black matte finish, which could serve as a decorative feature or storage. The combination of different styles and the arrangement of furniture create a harmonious and comfortable environment for dining, lounging, and daily activities.'",
+      "<p>drawer chest</p>": "#636ef9",
+      "[<drawer chest/corner cabinet-10>]": "#636ef9",
+      "<p>sideboard</p>-h": "#fecb53",
+      "[<sideboard/side cabinet/console table-9>]": "#fecb53",
+      "<p>pendant lamp</p>-j": "#00cc96",
+      "[<pendant lamp-12>]": "#00cc96",
+      "<p>coffee table</p>-i": "#ef553b",
+      "[<coffee table-11>]": "#ef553b",
+      "<p>tv stand</p>-h": "#ff97ff",
+      "[<tv stand-8>]": "#ff97ff",
+      "<p>three-seat sofa</p>-g":"#b5e880",
+      "[<three-seat/multi-seat sofa-7>]": "#b5e880",
+      "<p>pendant lamp</p>-f": "#ff6692",
+      "[<pendant lamp-6>]": "#ff6692",
+      "<p>dining chair</p>-e": "#17d3f3",
+      "[<dining chair-5>]": "#17d3f3",
+      "<p>dining chair</p>-d": "#ffa15a",
+      "[<dining chair-4>]": "#ffa15a",
+      "<p>dining chair</p>-c": "#ab63fa",
+      "[<dining chair-3>]": "#ab63fa",
+      "<p>dining chair</p>-b": "#00cc96",
+      "[<dining chair-2>]": "#00cc96",
+      "<p>dining table</p>-a": "#ef553b",
+      "[<dining table-1>]": "#ef553b"
+
     },
     "qa": {
-      "text": "Q: Is this room equipped with <p>dining chair</p>? A:Yes, there are <p>dining chairs</p>['<dining chair-2>, <dining chair-3>, <dining chair-4>, <dining chair-5>'] available."
+      "text": "Q: Is this room equipped with <p>dining chair</p>? A:Yes, there are <p>dining chairs</p>[<dining chair-2>, <dining chair-3>, <dining chair-4>, <dining chair-5>] available.",
+      "[<dining chair-2>": "#00cc96",
+      "<dining chair-3>": "#ab63fa",
+      "<dining chair-4>": "#ffa15a",
+      "<dining chair-5>]": "#17d3f3",
+      "<p>dining chair</p>-a": "black"
     },
     "scene_id": "1d7a01b8-4621-4ac0-8d81-b1c8f0cedc98/LivingDiningRoom-21674"
   },
   "scene2": {
-      "reference": "This is a <p>children's cabinet</p>[<children cabinet-7>] with calming blue and white stripes. The cabinet has a smooth finish, pleasant to the touch. It is located next to the <p>king-size bed</p>[<king-size bed-0>] and is positioned behind the <p>corner cabinet</p>[<drawer chest/corner cabinet-2>].",
-      "caption": "In the KidsRoom, a Mediterranean theme with a touch of modernity creates a welcoming space for children. The centerpiece is the <p>king-size bed</p>[<king-size bed-0>], offering a large and comfortable sleeping area. Storage is ample, with two matching <p>corner cabinet</p>[<drawer chest/corner cabinet-1>] and <p>corner cabinet</p>[<drawer chest/corner cabinet-2>] in a soft gray, and three <p>children's cabinet</p>[<children cabinet-7>], <p>children's cabinet</p>[<children cabinet-8>], and <p>children's cabinet</p>[<children cabinet-9>] with blue and white stripes that evoke a soothing seaside vibe. The two <p>dining chair</p>[<dining chair-3>] and <p>dining chair</p>[<dining chair-4>] in modern style provide seating with a contemporary flair, while the <p>side table</p>[<corner/side table-5>] adds a touch of Korean elegance. For educational activities, the <p>chalkboard</p>[<others-6>] serves as a versatile chalkboard. The room's ambiance is completed by the <p>ceiling lamp</p>[<ceiling lamp-10>], which casts a soft light from above. This room is ideal for children to sleep, play, and learn in a space that feels both cozy and stylish.",
-      "qa": "Q: I was wondering, do we have any <p>corner cabinet</p> here? A: You can find <p>corner cabinets</p>['<drawer chest/corner cabinet-1>, <drawer chest/corner cabinet-2>'] in this area.",
-      "scene_id": "2d2220aa-bd4a-4c8d-a716-273daae2bf68@KidsRoom-10319"
+    "reference": {
+      "text": "This is a <p>children's cabinet</p>[<children cabinet-7>] with calming blue and white stripes. The cabinet has a smooth finish, pleasant to the touch. It is located next to the <p>king-size bed</p>[<king-size bed-0>] and is positioned behind the <p>corner cabinet</p>[<drawer chest/corner cabinet-2>].",
+      "<p>children's cabinet</p>-c": "#123456",
+      "[<children cabinet-7>]": "#123456",
+      "<p>king-size bed</p>-b": "#654321",
+      "[<king-size bed-0>]": "#654321",
+      "<p>corner cabinet</p>-a": "#abcdef",
+      "[<drawer chest/corner cabinet-2>]": "#abcdef"
+    },
+    "caption": {
+      "text": "In the KidsRoom, a Mediterranean theme with a touch of modernity creates a welcoming space for children. The centerpiece is the <p>king-size bed</p>[<king-size bed-0>], offering a large and comfortable sleeping area. Storage is ample, with two matching <p>corner cabinet</p>[<drawer chest/corner cabinet-1>] and <p>corner cabinet</p>[<drawer chest/corner cabinet-2>] in a soft gray, and three <p>children's cabinet</p>[<children cabinet-7>], <p>children's cabinet</p>[<children cabinet-8>], and <p>children's cabinet</p>[<children cabinet-9>] with blue and white stripes that evoke a soothing seaside vibe. The two <p>dining chair</p>[<dining chair-3>] and <p>dining chair</p>[<dining chair-4>] in modern style provide seating with a contemporary flair, while the <p>side table</p>[<corner/side table-5>] adds a touch of Korean elegance. For educational activities, the <p>chalkboard</p>[<others-6>] serves as a versatile chalkboard. The room's ambiance is completed by the <p>ceiling lamp</p>[<ceiling lamp-10>], which casts a soft light from above. This room is ideal for children to sleep, play, and learn in a space that feels both cozy and stylish.",
+      "<p>corner cabinet</p>-h": "#89abcdef",
+      "[<drawer chest/corner cabinet-1>]": "#89abcdef",
+      "<p>children's cabinet</p>-j": "#fedcba",
+      "[<children cabinet-8>]": "#fedcba",
+      "<p>children's cabinet</p>-i": "#abcdef",
+      "[<children cabinet-9>]": "#abcdef",
+      "<p>dining chair</p>-h": "#abc123",
+      "[<dining chair-3>]": "#abc123",
+      "<p>dining chair</p>-g": "#123abc",
+      "[<dining chair-4>]": "#123abc",
+      "<p>side table</p>-f": "#321cba",
+      "[<corner/side table-5>]": "#321cba",
+      "<p>chalkboard</p>-e": "#cba321",
+      "[<others-6>]": "#cba321",
+      "<p>ceiling lamp</p>-d": "#654321",
+      "[<ceiling lamp-10>]": "#654321"
+    },
+    "qa": {
+      "text": "Q: I was wondering, do we have any <p>corner cabinet</p> here? A: You can find <p>corner cabinets</p>['<drawer chest/corner cabinet-1>, <drawer chest/corner cabinet-2>'] in this area.",
+      "[<drawer chest/corner cabinet-1>": "#89abcdef",
+      "<drawer chest/corner cabinet-2>]": "#abcdef",
+      "<p>corner cabinet</p>-a": "#abcdef"
+    },
+    "scene_id": "2d2220aa-bd4a-4c8d-a716-273daae2bf68@KidsRoom-10319"
   }
 }

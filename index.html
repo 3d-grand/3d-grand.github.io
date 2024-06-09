@@ -85,7 +85,7 @@
   <!-- <script src="https://unpkg.com/three@0.127.0/build/three.module.js"></script> -->
   <script type="text/javascript">
     function switchhtml(path, task) {
-      console.log('switching')
+      //console.log('switching')
       if (!task) {
         path = `assets/${path}.html`;
       }
@@ -531,8 +531,8 @@
     function changeScene() {
       var scene = document.getElementById('pointCloudSelector').value;
       var task = document.querySelector('input[name="btnradio"]:checked').value;
-      console.log('scene', scene)
-      console.log('task', task)
+      //console.log('scene', scene)
+      //console.log('task', task)
       updateContent(scene, task); 
       switchhtml(scene, task); 
     }
@@ -545,12 +545,12 @@
     }
   
     function updateContent(scene, task) {
-      console.log(window.scenesData)
+      //console.log(window.scenesData)
       var content = window.scenesData && window.scenesData[scene] ? window.scenesData[scene][task] : 'Please select a task.';
       if (!content) {
         return;
       }
-      console.log('content', content)
+      //console.log('content', content)
       if (content['text'].includes('select a task.')) {
         var fontSize = 25;
       } else {
@@ -568,35 +568,50 @@
   
     function updateInfoText(text, fontSize, content, task) {
       if (text) {
+          // Object to store indices of occurrences already colored
+          let coloredIndices = {};
+  
           // iterate over each key in content object to replace occurrences in text
-          for (const key in content) {
+          for (var key in content) {
               if (content.hasOwnProperty(key)) {
+                console.log('key', key)
                   const color = content[key] || 'black';
+  
+                  // Construct replacement with appropriate tags and styles
+                  let replaceKey, replacement;
                   if (key.startsWith("<p>")) {
-                      var replaceKey = key.replace("<p>", "").replace("</p>", "");
-                      var replacement = `<p><span style="color: ${color};">${replaceKey}</span></p>`
+                      key = key.slice(0, -2);
+                      replaceKey = key.replace("<p>", "").replace("</p>", "");
+                      replacement = `<p><span style="color: ${color};">${replaceKey}</span></p>`;
+                  } else if (key.startsWith("[") && key.endsWith("]")) {
+                      replaceKey = key.replace("[", "").replace("]", "");
+                      replacement = `<b>[<span style="color: ${color};">${replaceKey}</span>]</b>`;
+                  } else if (key.startsWith("[")) {
+                      replaceKey = key.replace("[", "");
+                      replacement = `<b>[<span style="color: ${color};">${replaceKey}</span>`;
+                  } else if (key.endsWith("]")) {
+                      replaceKey = key.replace("]", "");
+                      replacement = `<span style="color: ${color};">${replaceKey}</span>]</b>`;
+                  } else {
+                      replacement = `<b><span style="color: ${color};">${key}</span></b>`;
                   }
-                  else if (key.startsWith("[") && key.endsWith("]")) {
-                      var replaceKey = key.replace("[", "").replace("]", "");
-                      var replacement = `<b>[<span style="color: ${color};">${replaceKey}</span>]</b>`
+  
+                  // Find all occurrences of the key and store indices
+                  let index = text.indexOf(key);
+                  let indices = [];
+                  while (index !== -1) {
+                      indices.push(index);
+                      index = text.indexOf(key, index + 1);
                   }
-                  else if (key.startsWith("[")) {
-                      var replaceKey = key.replace("[", "");
-                      var replacement = `<b>[<span style="color: ${color};">${replaceKey}</span>`
+  
+                  // Determine the last uncolored index
+                  let lastIndex = indices.filter(i => !coloredIndices[i]).pop();
+  
+                  // replace only the last uncolored occurrence of the key in the text
+                  if (lastIndex !== undefined) {
+                      text = text.substring(0, lastIndex) + "<b>" + replacement + "</b>" + text.substring(lastIndex + key.length);
+                      coloredIndices[lastIndex] = true; // Mark this index as colored
                   }
-                  else if (key.endsWith("]")) {
-                      var replaceKey = key.replace("]", "");
-                      var replacement = `<span style="color: ${color};">${replaceKey}</span>]</b>`
-                  }
-                  else {
-                      var replacement = `<b><span style="color: ${color};">${key}</span></b>`;
-                  }
-                  let lastIndex = text.lastIndexOf(key);
-
-                // replace only the last occurrence of the key in the text with the colored span
-                if (lastIndex !== -1) {
-                    text = text.substring(0, lastIndex) + "<b>" + replacement + "</b>" + text.substring(lastIndex + key.length);
-                }
               }
           }
       } else {
@@ -606,13 +621,13 @@
       if (task === 'qa') {
           text = formatQA(text);
       }
-
+  
       var infoDiv = document.getElementById("info");
-      console.log('text',text)
+      //console.log('text',text);
       text = escapeHTML(text);
-      //infoDiv.innerHTML = `<span style="font-size: ${fontSize}px;">${text}</span>`;
       infoDiv.innerHTML = text;
   }
+  
   
   // escape all html tags except for span, b, br
   function escapeHTML(str) {
