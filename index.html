@@ -25,18 +25,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    #info {
-      width: 300px;
-      /* 固定宽度 */
-      height: 400px;
-      /* 固定高度 */
-      overflow: auto;
-      /* 内容超出时自动显示滚动条 */
-      padding: 10px;
-      /* 内边距 */
-      font-size: 20px;
-      /* 文字大小 */
-    }
     .link-container {
     display: flex; /* Sets the container to flex to align children inline */
     justify-content: center; /* Centers the buttons horizontally */
@@ -420,15 +408,12 @@
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
             <iframe id="html-plot" src="assets/scene1.html" style="width:100%; height:100%; border: 2px solid #d3d3d3; border-radius: 10px;"></iframe>
           </div>
-          <div id="info" class="col-xl-6 col-lg-6 col-md-12" style="width: 50%; font-size: 15px; padding: 10px; border: 2px solid #d3d3d3; border-radius: 10px;">
+          <div id="info" class="col-xl-6 col-lg-6 col-md-12" style="text-align: center; font-size: 15px; padding: 10px; border: 2px solid #d3d3d3; border-radius: 10px;">
             <span style="font-size: 25px;">Please select a task.</span>
           </div>
         </div>
       </div>
     </div>
-    
-    
-    
 
   </section>
 
@@ -439,12 +424,12 @@
             <h2 class="title is-3" style="margin-bottom: 0.5rem;">Evaluating Hallucination for 3D-LLMs</h2>
         </div>
         <div class="columns is-centered">
-            <div class="column is-one-third">
+            <div class="col-xl-6 col-lg-6 col-md-12 is-half">
                 <div class="iframe-container">
                     <iframe src="assets/Precision.html"></iframe>
                 </div>
             </div>
-            <div class="column is-two-thirds">
+            <div class="col-xl-6 col-lg-6 col-md-12 is-half">
                 <div class="iframe-container">
                     <iframe src="table.html"></iframe>
                 </div>
@@ -528,8 +513,8 @@
               updateText(radio); 
           });
       });
-  
-      loadJsonData(); 
+      
+      loadJsonData();
     });
   
     function loadJsonData() {
@@ -537,6 +522,8 @@
           .then(response => response.json())
           .then(data => {
               window.scenesData = data; 
+          }).then(() => {
+              changeScene();
           })
           .catch(error => console.error('Error loading the JSON data:', error));
     }
@@ -544,6 +531,8 @@
     function changeScene() {
       var scene = document.getElementById('pointCloudSelector').value;
       var task = document.querySelector('input[name="btnradio"]:checked').value;
+      console.log('scene', scene)
+      console.log('task', task)
       updateContent(scene, task); 
       switchhtml(scene, task); 
     }
