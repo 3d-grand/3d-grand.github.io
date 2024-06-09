@@ -37,26 +37,31 @@
       font-size: 20px;
       /* 文字大小 */
     }
-    .external-link {
+    .link-container {
+    display: flex; /* Sets the container to flex to align children inline */
+    justify-content: center; /* Centers the buttons horizontally */
+    flex-wrap: wrap; /* Allows the buttons to wrap on small screens */
+    gap: 10px; /* Adds space between the buttons */
+  }
+
+  .external-link {
     text-decoration: none; /* Removes underline from the button text */
-    display: inline-block;
+    display: block;
     padding: 10px 20px;
-    margin: 5px;
-    border-radius: 10px;
     background-color: #f2f2f2;
     color: black;
     border: none;
+    border-radius: 10px;
     cursor: pointer;
     font-family: Arial, sans-serif;
   }
 
   .external-link:hover {
-    text-decoration: none; /* Ensures that the text remains not underlined on hover */
-    background-color: #ddd;
+    background-color: #ddd; /* Changes background on hover */
   }
 
   .icon {
-    margin-right: 8px;
+    margin-right: 8px; /* Space between icon and text */
   }
   </style>
 
@@ -185,40 +190,55 @@
                 </span> -->
 
                 <!-- ArXiv abstract Link -->
-                <div class="link-block">
-                  <a href="https://arxiv.org" target="_blank" class="external-link">
-                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
                     <span>arXiv</span>
                   </a>
-                </div>
-                
-                <div class="link-block">
-                  <a href="https://example.com/dataset1" target="_blank" class="external-link">
-                    <span class="icon"><i class="fas fa-database"></i></span>
+                </span>
+
+                <!-- Dataset abstract Link -->
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="fas fa-database"></i>
+                    </span>
                     <span>3D-GRAND Data</span>
                   </a>
-                </div>
-                
-                <div class="link-block">
-                  <a href="https://example.com/dataset2" target="_blank" class="external-link">
-                    <span class="icon"><i class="fas fa-database"></i></span>
+                </span>
+
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="fas fa-database"></i>
+                    </span>
                     <span>3D-POPE Data</span>
                   </a>
-                </div>
-                
-                <div class="link-block">
-                  <a href="https://example.com/leaderboard" target="_blank" class="external-link">
-                    <span class="icon"><i class="fas fa-trophy"></i></span>
-                    <span>3D-POPE Leaderboard</span>
+                </span>
+
+                <span class="link-block">
+                  <a href="" target="_blank" class="external-link button is-normal is-rounded">
+                      <span class="icon">
+                          <i class="fas fa-trophy"></i> <!-- Using a trophy icon for the leaderboard -->
+                      </span>
+                      <span>3D-POPE Leaderboard</span> <!-- Label text for the button -->
                   </a>
-                </div>
-                
-                <div class="link-block">
-                  <a href="https://github.com" target="_blank" class="external-link">
-                    <span class="icon"><i class="fab fa-github"></i></span>
-                    <span>Code</span>
-                  </a>
-                </div>
+              </span>
+
+              <!-- Github link -->
+              <span class="link-block">
+                <a href="" target="_blank" class="external-link button is-normal is-rounded">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span> <!-- Label text for the button -->
+                </a>
+            </span>
 
 
               </div>
