@@ -55,26 +55,26 @@
       align-items: center;
       width: 100%;
     }
-
+    
     .centered-content iframe,
     .centered-content figure {
       width: 100%;
       margin-bottom: 20px;
     }
-
-    .centered-content iframe {
-      height: 300px;
-    }
-
+    
     @media (min-width: 768px) {
       .centered-content {
         flex-direction: row;
         justify-content: space-between;
       }
-
-      .centered-content iframe,
+    
+      .centered-content iframe {
+        flex: 0 1 70%;
+        height: 550px;
+      }
+    
       .centered-content figure {
-        width: 48%;
+        flex: 0 1 30%;
         height: 550px;
       }
     }
@@ -201,8 +201,8 @@
     <div class="hero-body">
       <div class="container">
         <div class="centered-content">
-          <iframe src="sankey.html"></iframe>
-          <figure>
+          <iframe src="sankey.html" style="flex: 0 1 70%;"></iframe>
+          <figure style="flex: 0 1 30%;">
             <img src="assets/images/Table_1.png" alt="Descriptive alt text" />
           </figure>
         </div>
@@ -276,18 +276,23 @@
     </div>
   </section>
 
-  <section class="section hero is-small">
-    <div class="container">
-      <div class="columns is-centered">
-        <h2 class="title is-3" style="margin-bottom: 0.5rem;">Evaluating Hallucination for 3D-LLMs</h2>
+<!-- Evaluating Hallucination for 3D-LLMs Section -->
+<section class="section hero is-small">
+  <div class="container">
+    <div class="columns is-centered">
+      <h2 class="title is-3" style="margin-bottom: 0.5rem;">Evaluating Hallucination for 3D-LLMs</h2>
+    </div>
+    <div class="columns is-centered">
+      <div class="container iframe-container" style="width: 70%;">
+        <iframe src="assets/Precision.html" style="width: 100%; min-width: 300px; height: 500px;"></iframe>
       </div>
-      <div class="columns is-centered">
-        <div class="container iframe-container" style="width: 100%;">
-          <iframe src="assets/Precision.html" style="width: 100%; min-width: 300px; height: 500px;"></iframe>
-        </div>
+      <div class="container figure-container" style="width: 30%;">
+        <!-- Add any additional content or figures here -->
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
