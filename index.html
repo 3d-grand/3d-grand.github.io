@@ -206,7 +206,37 @@
     </div>
   </section>
   <!-- End paper abstract -->
-
+  <style>
+    .centered-content {
+      position: relative; /* Needed for absolute positioning inside */
+      left: 50%; /* Center the div relative to its normal position */
+      transform: translateX(-50%); /* Perfectly center the div */
+      width: 150%;
+      display: flex;
+      justify-content: space-around; /* Distribute extra space around items */
+      align-items: center;
+      height: 550px;
+    }
+  
+    .centered-content iframe {
+      flex: 0 1 30%; /* Take up 40% of the parent container */
+      border: none;
+      height: 100%;
+      aspect-ratio: 14/9;
+    }
+  
+    .centered-content figure {
+      flex: 0 1 60%; /* Take up 60% of the parent container */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .centered-content img {
+      max-height: 100%;
+      width: auto;
+    }
+  </style>
   
   <section class="hero is-small">
     <div class="hero-body">
@@ -214,62 +244,24 @@
             <div class="columns is-centered">
                 <h2 class="title is-3">Data Distribution</h2>
             </div>
+            <br>
             <div class="container">
                 <div class="columns is-centered">
                     <img src="assets/images/data_info_hub-1.png" width="90%" alt="Generalist outputs" />
                 </div>
                 <br>
+                <div class="centered-content">
+                  <iframe src="sankey.html"></iframe>
+                  <figure>
+                    <img src="assets/images/Table_1.png" alt="Descriptive alt text" />
+                  </figure>
+                </div>
                 
             </div>
         </div>
     </div>
 </section>
 
-
-<style>
-  .centered-content {
-    position: relative; /* Needed for absolute positioning inside */
-    left: 50%; /* Center the div relative to its normal position */
-    transform: translateX(-50%); /* Perfectly center the div */
-    width: 150%;
-    display: flex;
-    justify-content: space-around; /* Distribute extra space around items */
-    align-items: center;
-    height: 550px;
-  }
-
-  .centered-content iframe {
-    flex: 0 1 30%; /* Take up 40% of the parent container */
-    border: none;
-    height: 100%;
-    aspect-ratio: 14/9;
-  }
-
-  .centered-content figure {
-    flex: 0 1 60%; /* Take up 60% of the parent container */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .centered-content img {
-    max-height: 100%;
-    width: auto;
-  }
-</style>
-
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div class="centered-content">
-        <iframe src="sankey.html"></iframe>
-        <figure>
-          <img src="assets/images/Table_1.png" alt="Descriptive alt text" />
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
 
   <section class="hero is-light">
     <div class="hero-body">
