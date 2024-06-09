@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
   <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:image" content="../static/images/your_twitter_banner_image.png">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
@@ -40,22 +40,22 @@
   </style>
 
   <title>3D-GRAND</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="../static/css/bulma.min.css">
+  <link rel="stylesheet" href="../static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="../static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="../static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="../static/css/index.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <!-- <script src="static/js/index.js"></script> -->
+  <script defer src="../static/js/fontawesome.all.min.js"></script>
+  <script src="../static/js/bulma-carousel.min.js"></script>
+  <script src="../static/js/bulma-slider.min.js"></script>
+  <!-- <script src="../static/js/index.js"></script> -->
   <!-- <script src="https://unpkg.com/three@0.127.0/build/three.module.js"></script> -->
   <script type="text/javascript">
     function switchhtml(path) {
@@ -173,7 +173,7 @@
       <div class="container">
         <div class="columns is-centered">
           <!-- Your image here -->
-          <img src="assets/images/teaser-1.png" width="90%" alt="Generalist outputs" />
+          <img src="../assets/images/teaser-1.png" width="90%" alt="Generalist outputs" />
         </div>
       </div>
     </div>
@@ -205,7 +205,7 @@
             </div>
             <div class="container">
                 <div class="columns is-centered">
-                    <img src="assets/images/data_info_hub-1.png" width="90%" alt="Generalist outputs" />
+                    <img src="../assets/images/data_info_hub-1.png" width="90%" alt="Generalist outputs" />
                 </div>
                 <br>
                 
@@ -253,7 +253,7 @@
       <div class="centered-content">
         <iframe src="sankey.html"></iframe>
         <figure>
-          <img src="assets/images/Table_1.png" alt="Descriptive alt text" />
+          <img src="../assets/images/Table_1.png" alt="Descriptive alt text" />
         </figure>
       </div>
     </div>
@@ -267,7 +267,7 @@
         <h2 class="title is-3">Data Curation Pipeline</h2>
       </div>
         <div class="columns is-centered">
-          <img src="assets/images/data_curation_pipeline-1.png" width="80%" alt="Our Framework" />
+          <img src="../assets/images/data_curation_pipeline-1.png" width="80%" alt="Our Framework" />
         </div>
       </div>
     </div>
@@ -322,7 +322,7 @@
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
             <!-- <canvas id="webgl_output" style="width: 100%; height: 100%;"></canvas> -->
             <!-- <div class="columns is-centered"> -->
-            <iframe id="html-plot" src="assets/scene1.html" style="width:100%; height:500px; border:none;"></iframe>
+            <iframe id="html-plot" src="../assets/scene1.html" style="width:100%; height:500px; border:none;"></iframe>
             <!-- </div> -->
           </div>
           <div id="info" style="flex: 2; font-size: 15px; padding: 10px;">
@@ -342,7 +342,7 @@
             </div>
             <div class="columns is-centered">
                 <div class="container iframe-container" style="width: 100%;"> <!-- Increase the width as needed -->
-                    <iframe src="assets/Precision.html" style="width: 100%; min-width: 800px; height: 500px;"></iframe>
+                    <iframe src="../assets/Precision.html" style="width: 100%; min-width: 800px; height: 500px;"></iframe>
                 </div>
             </div>
         </div>
@@ -406,7 +406,7 @@
   });
   
   function loadJsonData() {
-      fetch('assets/data.json')
+      fetch('../assets/data.json')
           .then(response => response.json())
           .then(data => {
               window.scenesData = data; 
@@ -449,10 +449,10 @@
           return;
       }
       if (!task) {
-        var htmlFile = `assets/${scene}.html`; 
+        var htmlFile = `../assets/${scene}.html`; 
       }
       else {
-        var htmlFile = `assets/${scene}_${task}.html`; 
+        var htmlFile = `../assets/${scene}_${task}.html`; 
       }
       switchhtml(htmlFile); 
   }
