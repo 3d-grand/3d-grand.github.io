@@ -241,10 +241,10 @@
   }
 
   .centered-content iframe {
-    flex: 0 1 40%; /* Take up 40% of the parent container */
+    flex: 0 1 30%; /* Take up 40% of the parent container */
     border: none;
     height: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 14/9;
   }
 
   .centered-content figure {
@@ -346,21 +346,7 @@
     </div>
   </section>
 
-  <style>
-    .responsive-iframe {
-      width: 100%;        /* Makes the width of the iframe 100% of its container */
-      height: 30vh;       /* Sets the height based on the viewport height */
-      border: none;       /* Optional: removes the border around the iframe */
-    }
 
-    /* Additional styles to ensure responsiveness on smaller screens */
-    @media (max-width: 768px) {
-        .responsive-iframe {
-            height: 20vh;   /* Adjusts the height for smaller devices */
-        }
-    }
-  </style>
-  
   <section class="section hero is-small">
     <div class="container is-max-desktop">
         <div class="container">
@@ -368,8 +354,8 @@
                 <h2 class="title is-3" style="margin-bottom: 0.5rem;">Evaluating Hallucination for 3D-LLMs</h2>
             </div>
             <div class="columns is-centered">
-                <div class="container">
-                    <iframe src="assets/Precision.html" class="responsive-iframe"></iframe>
+                <div class="container iframe-container" style="width: 100%;"> <!-- Increase the width as needed -->
+                    <iframe src="assets/Precision.html" style="width: 100%; min-width: 800px; height: 500px;"></iframe>
                 </div>
             </div>
         </div>
