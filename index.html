@@ -595,25 +595,24 @@
                   } else {
                       replacement = `<b><span style="color: ${color};">${key}</span></b>`;
                   }
-  
-                  // Find all occurrences of the key and store indices
-                  let index = text.indexOf(key);
-                  let indices = [];
-                  while (index !== -1) {
-                      indices.push(index);
-                      index = text.indexOf(key, index + 1);
-                  }
-  
-                  // Determine the last uncolored index
-                  let lastIndex = indices.filter(i => !coloredIndices[i]).pop();
-  
-                  // replace only the last uncolored occurrence of the key in the text
-                  if (lastIndex !== undefined) {
-                      text = text.substring(0, lastIndex) + "<b>" + replacement + "</b>" + text.substring(lastIndex + key.length);
-                      coloredIndices[lastIndex] = true; // Mark this index as colored
+                    // Find all occurrences of the key and store indices
+                    let index = text.indexOf(key);
+                    let indices = [];
+                    while (index !== -1) {
+                        indices.push(index);
+                        index = text.indexOf(key, index + 1);
+                    }
+    
+                    // Determine the last uncolored index
+                    let lastIndex = indices.filter(i => !coloredIndices[i]).pop();
+    
+                    // replace only the last uncolored occurrence of the key in the text
+                    if (lastIndex !== undefined) {
+                        text = text.substring(0, lastIndex) + "<b>" + replacement + "</b>" + text.substring(lastIndex + key.length);
+                        coloredIndices[lastIndex] = true; // Mark this index as colored
+                    }
                   }
               }
-          }
       } else {
           text = "No information available";
       }
@@ -623,7 +622,7 @@
       }
   
       var infoDiv = document.getElementById("info");
-      //console.log('text',text);
+      console.log('text',text);
       text = escapeHTML(text);
       infoDiv.innerHTML = text;
   }
