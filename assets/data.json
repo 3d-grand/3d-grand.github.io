@@ -37,7 +37,7 @@
       "[<dining table-1>]": "#ef553b"
     },
     "qa": {
-      "text": "Q: Is this room equipped with <p>dining chair</p>? A:Yes, there are <p>dining chairs</p>[<dining chair-2>, <dining chair-3>, <dining chair-4>, <dining chair-5>] available.",
+      "text": "Q: Is this room equipped with dining chairs? A:Yes, there are <p>dining chairs</p>[<dining chair-2>, <dining chair-3>, <dining chair-4>, <dining chair-5>] available.",
       "[<dining chair-2>": "#00cc96",
       "<dining chair-3>": "#ab63fa",
       "<dining chair-4>": "#ffa15a",
@@ -82,7 +82,7 @@
       "[<king-size bed-0>]": "#ef553b"
     },
     "qa": {
-      "text": "Q: I was wondering, do we have any <p>corner cabinet</p> here? A: You can find <p>corner cabinets</p>[<drawer chest/corner cabinet-1>, <drawer chest/corner cabinet-2>] in this area.",
+      "text": "Q: I was wondering, do we have any corner cabinets here? A: You can find <p>corner cabinets</p>[<drawer chest/corner cabinet-1>, <drawer chest/corner cabinet-2>] in this area.",
       "[<drawer chest/corner cabinet-1>": "#ef553b",
       "<drawer chest/corner cabinet-2>]": "#00cc96",
       "<p>corner cabinets</p>-a": "black"
