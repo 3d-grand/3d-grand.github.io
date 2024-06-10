@@ -37,7 +37,7 @@
       "[<dining table-1>]": "#ef553b"
     },
     "qa": {
-      "text": "Q: Is this room equipped with dining chairs? A:Yes, there are <p>dining chairs</p>[<dining chair-2>, <dining chair-3>, <dining chair-4>, <dining chair-5>] available.",
+      "text": "Q: Is this room equipped with dining chairs? A: Yes, there are <p>dining chairs</p>[<dining chair-2>, <dining chair-3>, <dining chair-4>, <dining chair-5>] available.",
       "[<dining chair-2>": "#00cc96",
       "<dining chair-3>": "#ab63fa",
       "<dining chair-4>": "#ffa15a",
