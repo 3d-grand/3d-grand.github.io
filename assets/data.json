@@ -1,7 +1,7 @@
 {
   "scene1": {
     "reference": {
-      "text": "This is a <p>dining chair</p>[<dining chair-2>] with a dark wooden frame and a deep green cushioned seat. The chair exudes classic elegance and is positioned <p>next to the dining table</p>[<dining table-1>]. It is placed <p>below the pendant lamp</p>[<pendant lamp-6>].",
+      "text": "This is a <p>dining chair</p>[<dining chair-2>] with a dark wooden frame and a deep green cushioned seat. The chair exudes classic elegance and is positioned <p>next to the dining table</p>[<dining table-1>]. It is placed below the <p>pendant lamp</p>[<pendant lamp-6>].",
       "<p>dining chair</p>-c": "#ef553b",
       "[<dining chair-2>]": "#ef553b",
       "<p>next to the dining table</p>-b": "#00cc96",
@@ -37,7 +37,7 @@
       "[<dining table-1>]": "#ef553b"
     },
     "qa": {
-      "text": "Q: Is this room equipped with <p>dining chair</p>? A:Yes, there are <p>dining chairs</p>[<dining chair-2>, <dining chair-3>, <dining chair-4>, <dining chair-5>] available.",
+      "text": "Q: Is this room equipped with dining chairs? A:Yes, there are <p>dining chairs</p>[<dining chair-2>, <dining chair-3>, <dining chair-4>, <dining chair-5>] available.",
       "[<dining chair-2>": "#00cc96",
       "<dining chair-3>": "#ab63fa",
       "<dining chair-4>": "#ffa15a",
