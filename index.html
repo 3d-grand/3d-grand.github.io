@@ -5,19 +5,20 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta property="og:site_name" content="3D-GRAND" />
-  <meta name="description" content="We introduce 3D-GRAND, a pioneering large-scale dataset comprising 40,087 household scenes paired with 6.2 million densely-grounded scene-language instructions. Our results show that instruction tuning with 3D-GRAND significantly enhances grounding capabilities and reduces hallucinations in 3D-LLMs. As part of our contributions, we propose a comprehensive benchmark 3D-POPE to systematically evaluate hallucination in 3D-LLMs, enabling fair comparisons among future models. Our experiments highlight a scaling effect between dataset size and 3D-LLM performance, emphasizing the critical role of large-scale 3D-text datasets in advancing embodied AI research. Notably, our results demonstrate early signals for effective sim-to-real transfer, indicating that models trained on large synthetic data can perform well on real-world 3D scans. Through 3D-GRAND and 3D-POPE, we aim to equip the embodied AI community with essential resources and insights, setting the stage for more reliable and better-grounded 3D-LLMs." />
-  <meta property="og:title" content="3D-GRAND - A Million-Scale Dataset for 3D-LLMs with Better Grounding and Less Hallucination" />
-  <meta property="og:description" content="We introduce 3D-GRAND, a pioneering large-scale dataset comprising 40,087 household scenes paired with 6.2 million densely-grounded scene-language instructions. Our results show that instruction tuning with 3D-GRAND significantly enhances grounding capabilities and reduces hallucinations in 3D-LLMs. As part of our contributions, we propose a comprehensive benchmark 3D-POPE to systematically evaluate hallucination in 3D-LLMs, enabling fair comparisons among future models. Our experiments highlight a scaling effect between dataset size and 3D-LLM performance, emphasizing the critical role of large-scale 3D-text datasets in advancing embodied AI research. Notably, our results demonstrate early signals for effective sim-to-real transfer, indicating that models trained on large synthetic data can perform well on real-world 3D scans. Through 3D-GRAND and 3D-POPE, we aim to equip the embodied AI community with essential resources and insights, setting the stage for more reliable and better-grounded 3D-LLMs." />
+  <meta name="description" content="3D-GRAND is the first million-scale, densely-grounded 3D-text dataset for 3D-LLMs. 3D-POPE is the first benchmark to evaluate 3D-text hallucinations. We find 3D-GRAND is effective in enhencing grounding capability and reduce hallucinations for 3D-LLMs." />
+  <meta property="og:title" content="3D-GRAND - A Large Dataset for 3D-LLMs with Better Grounding and Less Hallucination" />
+  <meta property="og:description" content="3D-GRAND is the first million-scale, densely-grounded 3D-text dataset for 3D-LLMs. 3D-POPE is the first benchmark to evaluate 3D-text hallucinations. We find 3D-GRAND is effective in enhencing grounding capability and reduce hallucinations for 3D-LLMs." />
   <meta property="og:url" content="https://3d-grand.github.io/" />
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="https://3d-grand.github.io/assets/images/teaser-1.png" />
+  <meta property="og:image" content="static/image/teaser-1.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="460" />
 
 
-  <meta name="twitter:title" content="3D-GRAND: A Million-Scale Dataset for 3D-LLMs with Better Grounding and Less Hallucination">
+  <meta name="twitter:title" content="3D-GRAND: A Large Dataset for 3D-LLMs with Better Grounding and Less Hallucination">
   <meta name="twitter:description" content="3D-GRAND is the first million-scale, densely-grounded 3D-text dataset for 3D-LLMs. The dataset is effective in enhencing grounding capability and reduce hallucinations for 3D-LLMs.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="https://3d-grand.github.io/assets/images/teaser-1.png">
+  <meta name="twitter:image" content="static/image/teaser-1.png">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="3D-LLM,Hallucination,Embodied AI,Computer Vision,NLP,Robotics">
@@ -63,8 +64,9 @@
   }
   </style>
 
-  <title>3D-GRAND - A Million-Scale Dataset for 3D-LLMs</title>
-  <link rel="icon" type="image/png" href="assets/images/home_icon.png">
+  <title>3D-GRAND - A Large Dataset for 3D-LLMs</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="static/css/bulma.min.css">
@@ -132,7 +134,7 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">🏠💬 3D-GRAND</h1>
-            <h3 class="title is-3 publication-title">A Million-Scale Dataset for 3D-LLMs with Better Grounding and Less Hallucination</h3>
+            <h3 class="title is-3 publication-title">A Large Dataset for 3D-LLMs with Better Grounding and Less Hallucination</h3>
           <div class="is-size-5 publication-authors">
             <div class="is-size-5 publication-authors">
                 <span class="author-block">
@@ -277,6 +279,7 @@
         </div>
       </div>
     </div>
+  </section>
   <!-- Paper abstract -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
@@ -292,6 +295,7 @@
       </div>
     </div>
   </section>
+  
   <!-- End paper abstract -->
   <style>
     .centered-content {
@@ -337,14 +341,6 @@
                     <img src="assets/images/data_info_hub-1.png" style="width: 90%;" alt="Generalist outputs" />
                 </div>
                 <br>
-                <!-- <div class="columns is-centered" style="display: flex; align-items: start;">
-                  <div style="flex: 1;">
-                      <iframe src="sankey.html" style="width: 100%; height: 500px; border: none;"></iframe>
-                  </div>
-                  <div style="flex: 1; padding-top: 20px;">
-                      <img src="assets/images/Table_1.png" style="width: 100%; height: 500px; object-fit: contain;" alt="Descriptive alt text" />
-                  </div> -->
-
                   <div class="container">
                     <div class="row">
                       <div class="col-xl-6 col-lg-6 col-md-12">
@@ -445,24 +441,29 @@
     </div>
 </section>
 
-<section class="section hero is-small" id="plotly_plot_section">
-  <div class="container is-max-desktop">
-      <div class="columns is-centered">
-          <h2 class="title is-3" style="margin-bottom: 0.5rem;">Data Scaling Laws</h2>
-      </div>
-      <div class="columns is-centered">
-          <div class="column is-one-half">
-              <div class="iframe-container" style="margin-left: 0;">
-                  <iframe style="margin-left: 0;" src="assets/corrected_grounding_scaling_law_plot.html"></iframe>
-              </div>
+
+<section class="hero is-small">
+  <div class="hero-body">
+      <div class="container">
+          <div class="columns is-centered">
+              <h2 class="title is-3">Data Scaling</h2>
           </div>
-          <div class="column is-one-half">
-              <div class="iframe-container">
-                  <iframe src="assets/hallucination_rates_plot.html"></iframe>
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 is-half" style="margin-left: 0;">
+                  <div class="iframe-container">
+                  <iframe style="margin-left: 0;"src="assets/corrected_grounding_scaling_law_plot.html"></iframe>
+                </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 is-half">
+                  <div class="iframe-container">
+                    <iframe src="assets/hallucination_rates_plot.html"></iframe>
+                  </div>
+                </div>
               </div>
-          </div>
-      </div>
-  </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 
