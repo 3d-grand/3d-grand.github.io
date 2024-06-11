@@ -6,19 +6,19 @@
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
   <meta name="description" content="3D-GRAND is the first million-scale, densely-grounded 3D-text dataset for 3D-LLMs. 3D-POPE is the first benchmark to evaluate 3D-text hallucinations. We find 3D-GRAND is effective in enhencing grounding capability and reduce hallucinations for 3D-LLMs." />
-  <meta property="og:title" content="3D-GRAND - Towards Better Grounding and Less Hallucination for 3D-LLMs" />
-  <meta property="og:description" content="D-GRAND is the first million-scale, densely-grounded 3D-text dataset for 3D-LLMs. 3D-POPE is the first benchmark to evaluate 3D-text hallucinations. We find 3D-GRAND is effective in enhencing grounding capability and reduce hallucinations for 3D-LLMs." />
+  <meta property="og:title" content="3D-GRAND - A Large Dataset for 3D-LLMs with Better Grounding and Less Hallucination" />
+  <meta property="og:description" content="3D-GRAND is the first million-scale, densely-grounded 3D-text dataset for 3D-LLMs. 3D-POPE is the first benchmark to evaluate 3D-text hallucinations. We find 3D-GRAND is effective in enhencing grounding capability and reduce hallucinations for 3D-LLMs." />
   <meta property="og:url" content="https://3d-grand.github.io/" />
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="assets/images/teaser-1.png" />
+  <meta property="og:image" content="static/image/teaser-1.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="460" />
 
 
-  <meta name="twitter:title" content="3D-GRAND: Towards Better Grounding and Less Hallucination for 3D-LLMs">
+  <meta name="twitter:title" content="3D-GRAND: A Large Dataset for 3D-LLMs with Better Grounding and Less Hallucination">
   <meta name="twitter:description" content="3D-GRAND is the first million-scale, densely-grounded 3D-text dataset for 3D-LLMs. The dataset is effective in enhencing grounding capability and reduce hallucinations for 3D-LLMs.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="assets/images/teaser-1.png">
+  <meta name="twitter:image" content="static/image/teaser-1.png">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="3D-LLM,Hallucination,Embodied AI,Computer Vision,NLP,Robotics">
@@ -64,8 +64,9 @@
   }
   </style>
 
-  <title>3D-GRAND</title>
+  <title>3D-GRAND - A Large Dataset for 3D-LLMs</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="static/css/bulma.min.css">
@@ -132,9 +133,8 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">
-              <span style="font-weight: bold;">3D-GRAND</span>: Towards Better Grounding and Less Hallucination for 3D-LLMs
-          </h1>
+            <h1 class="title is-1 publication-title">🏠💬 3D-GRAND</h1>
+            <h3 class="title is-3 publication-title">A Large Dataset for 3D-LLMs with Better Grounding and Less Hallucination</h3>
           <div class="is-size-5 publication-authors">
             <div class="is-size-5 publication-authors">
                 <span class="author-block">
@@ -235,8 +235,8 @@
                   </a>
               </span>
               <span class="link-block">
-                <a href="http://sled-whistler.eecs.umich.edu:7777/" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span>🤗 Demo (Coming soon)</span> <!-- Label text for the button -->
+                <a href="https://huggingface.co/spaces/jedyang97/3D-GRAND" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span>🤗 Demo</span> <!-- Label text for the button -->
                 </a>
               </span>
 
@@ -264,12 +264,21 @@
       <div class="container">
         <div class="columns is-centered">
           <!-- Your image here -->
-          <img src="assets/images/teaser-1.png" width="90%" alt="Generalist outputs" />
+          <img src="assets/images/teaser-1.png" width="90%" alt="Overview" />
         </div>
       </div>
     </div>
   </section>
-
+  <!-- insert a big iframe for the demo -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.36.1/gradio.js"></script>
+          <gradio-app src="https://jedyang97-3d-grand.hf.space"></gradio-app>
+        </div>
+      </div>
+    </div>
   <!-- Paper abstract -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
