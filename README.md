@@ -1,4 +1,5 @@
 # Files and Images Being Used
+
 ## Images:
 
 static/images/your_banner_image.png
