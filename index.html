@@ -408,7 +408,7 @@
         <div class="row">
           <div class="col-xl-6 col-lg-6 col-md-12" style="height: 500px; position: relative;">
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
-            <iframe id="html-plot" src="assets/scene1.html" style="width:100%; height:100%; border: 2px solid #d3d3d3; border-radius: 10px;"></iframe>
+            <iframe id="html-plot" src="assets/scene1.html" loading="lazy" style="width:100%; height:100%; border: 2px solid #d3d3d3; border-radius: 10px;"></iframe>
           </div>
           <div id="info" class="col-xl-6 col-lg-6 col-md-12" style="text-align: center; font-size: 15px; padding: 10px; border: 2px solid #d3d3d3; border-radius: 10px;">
             <span style="font-size: 25px;">Please select a task.</span>
@@ -432,14 +432,189 @@
                 </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 is-half">
-                <div class="iframe-container">
-                    <iframe src="table.html"></iframe>
-                </div>
+              <style>
+                table th, table td {
+                  text-align: center;
+                  vertical-align: middle;
+                  padding: 4px;
+                }
+              </style>
+                <table style="width: 100%; border-collapse: collapse; border: 1px solid black; font-size: 12px;">
+                  <thead>
+                    <tr>
+                      <!-- <th style="padding: 4px;">Dataset</th> -->
+                      <th style="padding: 4px;">3D-POPE</th>
+                      <th style="padding: 4px;">Model</th>
+                      <th style="padding: 4px;">Precision</th>
+                      <th style="padding: 4px;">Recall</th>
+                      <th style="padding: 4px;">F1 Score</th>
+                      <th style="padding: 4px;">Accuracy</th>
+                      <th style="padding: 4px;">Yes (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- ScanNet200 Val, Random Baseline -->
+                    <tr>
+                      <!-- <td rowspan="5" style="padding: 4px;">ScanNet200 Val</td> -->
+                      <td rowspan="5" style="padding: 4px; font-weight: bold;">Random</td>
+                      <td style="padding: 4px;">Random Baseline</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px;">3D-LLM</td>
+                      <td style="background-color: #d7ecf8; padding: 4px;">50.03</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">99.88</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">66.67</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.07</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">99.81</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px;">3D-VisTA</td>
+                      <td style="background-color: #d7ecf8; padding: 4px;">50.12</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">53.58</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">51.79</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">49.66</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">53.95</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px;">LEO</td>
+                      <td style="background-color: #d7ecf8; padding: 4px;">51.95</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">77.65</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">62.25</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">52.91</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">74.73</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px; font-weight: bold;">Ours zero-shot (Grounding)</td>
+                      <td style="background-color: #d7ecf8; padding: 4px; font-weight: bold;">93.34</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">84.25</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">88.56</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">89.12</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">45.13</td>
+                    </tr>
+            
+                    <!-- ScanNet200 Val, Popular -->
+                    <tr>
+                      <td rowspan="5" style="padding: 4px; font-weight: bold;">Popular</td>
+                      <td style="padding: 4px;">Random Baseline</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px;">3D-LLM</td>
+                      <td style="background-color: #d7ecf8; padding: 4px;">49.97</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">99.88</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">66.61</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">49.94</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">99.94</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px;">3D-VisTA</td>
+                      <td style="background-color: #d7ecf8; padding: 4px;">47.40</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">51.88</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">49.54</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">49.49</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">52.30</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px;">LEO</td>
+                      <td style="background-color: #d7ecf8; padding: 4px;">48.30</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">77.65</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">59.55</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">47.27</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">80.38</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px; font-weight: bold;">Ours zero-shot (Grounding)</td>
+                      <td style="background-color: #d7ecf8; padding: 4px; font-weight: bold;">73.05</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">84.28</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">78.26</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">76.59</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">57.69</td>
+                    </tr>
+            
+                    <!-- ScanNet200 Val, Adversarial -->
+                    <tr>
+                      <td rowspan="5" style="padding: 4px; font-weight: bold;">Adversarial</td>
+                      <td style="padding: 4px;">Random Baseline</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">50.00</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px;">3D-LLM</td>
+                      <td style="background-color: #d7ecf8; padding: 4px;">49.97</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">99.88</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">66.61</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">49.94</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">99.94</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px;">3D-VisTA</td>
+                      <td style="background-color: #d7ecf8; padding: 4px;">48.28</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">54.39</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">51.15</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">51.14</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">52.99</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px;">LEO</td>
+                      <td style="background-color: #d7ecf8; padding: 4px;">48.47</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">77.98</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">59.78</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">47.52</td>
+                      <td style="background-color: #d3d3d3; padding: 4px;">80.45</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 4px; font-weight: bold;">Ours zero-shot (Grounding)</td>
+                      <td style="background-color: #d7ecf8; padding: 4px; font-weight: bold;">69.86</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">84.21</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">76.37</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">73.95</td>
+                      <td style="background-color: #d3d3d3; padding: 4px; font-weight: bold;">60.26</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
             </div>
         </div>
     </div>
 </section>
 
+<style>
+  .scrollable-div {
+      overflow-x: auto;
+  }
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid black;
+  }
+  th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+  }
+  th {
+      background-color: #f2f2f2;
+  }
+  .grey {
+      background-color: #d3d3d3;
+  }
+  .blue {
+      background-color: #d7ecf8;
+  }
+</style>
 
 <section class="hero is-small">
   <div class="hero-body">
