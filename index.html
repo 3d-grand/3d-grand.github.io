@@ -76,6 +76,8 @@
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap JS (for collapse functionality) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="static/css/index.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -268,17 +270,40 @@
       </div>
     </div>
   </section>
-  <!-- insert a big iframe for the demo -->
+
+  <section class="hero is-small">
+    <div class="container is-max-desktop">
+      <div class="hero-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <video id="teaser" autoplay="" muted="" loop="" playsinline="" style="max-height: 500px;">
+          <source src="./assets/3d_grand_demo.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          Model trained with <span class="dnerf">3D-GRAND</span> enables users to densely-ground noun phrases in a sentece.
+        </h2>
+        <!-- Button to toggle the iframe -->
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#iframeCollapse" aria-expanded="false" aria-controls="iframeCollapse">
+          👉 Try the Demo
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- demo, with a toggle button to show/hide iframe-->
   <section class="hero is-small">
     <div class="hero-body">
       <div class="container">
-        <div class="columns is-centered">
-          <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.36.1/gradio.js"></script>
-          <gradio-app src="https://jedyang97-3d-grand.hf.space"></gradio-app>
+        <!-- Collapsible iframe container -->
+        <div class="collapse" id="iframeCollapse">
+          <div class="columns is-centered">
+            <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.36.1/gradio.js"></script>
+            <gradio-app src="https://jedyang97-3d-grand.hf.space"></gradio-app>
+          </div>
         </div>
       </div>
     </div>
   </section>
+  
+
   <!-- Paper abstract -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
@@ -408,7 +433,7 @@
         <div class="row">
           <div class="col-xl-6 col-lg-6 col-md-12" style="height: 500px; position: relative;">
             <div id="pose_loading" style="position: absolute; left: 50%; top: 51.1%;"></div>
-            <iframe id="html-plot" src="assets/scene1.html" loading="lazy" style="width:100%; height:100%; border: 2px solid #d3d3d3; border-radius: 10px;"></iframe>
+            <iframe id="html-plot" src="assets/scene1.html" style="width:100%; height:100%; border: 2px solid #d3d3d3; border-radius: 10px;"></iframe>
           </div>
           <div id="info" class="col-xl-6 col-lg-6 col-md-12" style="text-align: center; font-size: 15px; padding: 10px; border: 2px solid #d3d3d3; border-radius: 10px;">
             <span style="font-size: 25px;">Please select a task.</span>
